@@ -113,6 +113,37 @@ There are some additional things which may be received as Evidence, but which is
 
 (NOTE: There are apparently exclaves that ar inside other countries exclaves, like Nahwa. Unclear if exclave information is even relevant, or if second order matters at all)
 
+# CDDL Definition
+
+~~~~
+; # import rfc9711 as eat
+; # import rfc9393
+
+$$ear-appraisal-extension //= (
+    ear.geographic-result-label => geographic-result-claims
+)
+
+geographic-result-claims = non-empty<{
+    eat.jurisdiction-country-label = iso-3361-alpha-2-country-code,
+    eat.jurisdiction-country-exclave-label = bool,
+    eat.jurisdiction-state-label   = tstr.size(2..16),
+    eat.jurisdiction-state-exclave-label = bool,
+    eat.jurisdiction-city-label    = tstr.size(2..16),
+    eat.jurisdiction-city-exclave-label = bool,
+    eat.enclosing-exclave-country-label = iso-3361-alpha-2-country-code,
+    eat.near-to-label   = eat.uuid-type,
+    rack-U-number-label = uint .gt 0,
+    cabinet-number = uint .gt 0,
+    hallway-number = uint,
+    room-number    = tstr.size(2..64),
+    floor-number   = int,
+}>
+ear.geographic-result-label = eat.JC<"TBD02", TBD01>
+
+iso-3361-alpha-2-country-code = tstr.size(2)
+~~~~
+
+
 
 # Security Considerations
 
@@ -121,7 +152,9 @@ TODO Security
 
 # IANA Considerations
 
-TODO
+IANA is asked to allocate TBD01 from the "CBOR Web Token Claims" registry
+{{IANA.cwt}}, and TBD02 (suggestion: "ear.geographic-result-claims") from the
+"JSON Web Token Claims" registry {{IANA.jwt}}.
 
 --- back
 
