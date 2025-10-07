@@ -1,0 +1,270 @@
+
+
+
+
+RATS (if adopted)                                          M. Richardson
+Internet-Draft                                  Sandelman Software Works
+Intended status: Standards Track                          7 October 2025
+Expires: 10 April 2026
+
+
+                     Geographic Attestation Results
+            draft-richardson-rats-geographic-results-latest
+
+Abstract
+
+   Many workloads have limitations on what geography they are allowed to
+   operate in.  This is often due to a regulation that requires that the
+   computation occur in a particular jurisdiction.
+
+   This document is about encoding a variety of geographical conclusions
+   in an Attestation Result.
+
+About This Document
+
+   This note is to be removed before publishing as an RFC.
+
+   Status information for this document may be found at
+   https://datatracker.ietf.org/doc/draft-richardson-rats-geographic-
+   results/.
+
+   Discussion of this document takes place on the RATS Working Group
+   mailing list (mailto:rats@ietf.org), which is archived at
+   https://mailarchive.ietf.org/arch/browse/rats/.  Subscribe at
+   https://www.ietf.org/mailman/listinfo/rats/.
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/mcr/geographicresult.
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 10 April 2026.
+
+Copyright Notice
+
+   Copyright (c) 2025 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Revised BSD License text as
+   described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Revised BSD License.
+
+Table of Contents
+
+   1.  Introduction
+   2.  Conventions and Definitions
+   3.  Claim definition
+   4.  CDDL Definition
+   5.  Security Considerations
+   6.  IANA Considerations
+   7.  References
+     7.1.  Normative References
+     7.2.  Informative References
+   Acknowledgments
+   Author's Address
+
+1.  Introduction
+
+   Resolving the question of where certain computations occurs can be
+   critical to assessing how much trust to put into the result.
+
+   Example.  Example.  Example.
+
+   [I-D.ietf-rats-ear] provides a framework that allows an [RFC9334]
+   Verifier to return a conclusion as to geographic region for an Target
+   Environment.
+
+   While [RFC9711], Section 4.2.10 provides a very good WGS84 based
+   location claim, often very suitable as Evidence, it is not ideal for
+   the use by Relying Parties.  There are a few reasons:
+
+   *  the latitude and longitude describe a location on the Earth.  The
+      Relying Party is seldom interested in that level of detail.  It
+      needs to know if it's in the correct place.
+
+   *  the geographic position leaks significant amount of private
+      information that is not necessary for the Relying Party to know.
+
+   *  for many activities, it is the Legal Jurisdiction that matters,
+      not the actual location.  Jurisdictions often do not have well
+      defined concentric boundaries.  For instance, the Korean
+      Consultate in Los Angelos is usually for Legal purposes, in Korea.
+      Yet, only a few meters away, possibly below the level of WGS84
+      accuracy, the jurisdiction would be different.
+
+   This document offers a new set of structured abstract claims that
+   provides an evaluated view of where a Target Environment is.  The
+   mechanism to do this appraisal may depend upon a number of factors
+   which may be related to physical geographic position, but also
+   include other considerations.
+
+   For instance, a claim that Target Environment is less than 1ns (as
+   light travels in a fiber optic cable) away from another Target
+   Enviroment whose location is known.  A typical fiber optic cable has
+   a speed of 200,000 kilometers per second (slower than light in a
+   vacuum to the index of refraction of the glass involved.  So if the
+   round trip time between environments is 1ns, then the distance
+   between Target Environments can be appraised to be within 1m of each
+   other.
+
+2.  Conventions and Definitions
+
+   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+   "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and
+   "OPTIONAL" in this document are to be interpreted as described in
+   BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
+   capitals, as shown here.
+
+3.  Claim definition
+
+   This claim definition goes into the EAR submods map.  Mumble mumble.
+   AR4SI + $ear CDDL TBD.
+
+   Geographic Results can contain one or more of the following claims.
+
+   1.   jurisdiction-country = ISO3361 country code.
+
+   2.   jurisdiction-country-exclave = booleann
+
+   3.   jurisdiction-state = country-specific list
+
+   4.   jurisdiction-state-exclave = country-specific-list
+
+   5.   jurisdiction-city = state-specific list
+
+   6.   jurisdiction-city-exclave = state-specific-list
+
+   7.   enclosing-exclave-country = ISO3361 country code
+
+   8.   near-to = another entity+distance
+
+   9.   rack-U-number = ordinal, numbered from bottom RU as 1.
+
+   10.  cabinet-number = ordinal, DC specific ordering, might ignore
+        hallway, room and floor
+
+   11.  hallway-number = ordinal
+
+   12.  room-numbr = string
+
+   13.  floor-number = string, usually representing an integer.
+
+   There are some additional things which may be received as Evidence,
+   but which is sometimes important to convert to Results, having
+   verified some aspects.  (TBD) 1. range-to-tower = designation of
+   tower, distance-readings 2.
+
+   (NOTE: There are apparently exclaves that ar inside other countries
+   exclaves, like Nahwa.  Unclear if exclave information is even
+   relevant, or if second order matters at all)
+
+4.  CDDL Definition
+
+; # import rfc9711 as eat
+; # import rfc9393
+
+$$ear-appraisal-extension //= (
+    ear.geographic-result-label => geographic-result-claims
+)
+
+geographic-result-claims = non-empty<{
+    eat.jurisdiction-country-label = iso-3361-alpha-2-country-code,
+    eat.jurisdiction-country-exclave-label = bool,
+    eat.jurisdiction-state-label   = tstr.size(2..16),
+    eat.jurisdiction-state-exclave-label = bool,
+    eat.jurisdiction-city-label    = tstr.size(2..16),
+    eat.jurisdiction-city-exclave-label = bool,
+    eat.enclosing-exclave-country-label = iso-3361-alpha-2-country-code,
+    eat.near-to-label   = eat.uuid-type,
+    rack-U-number-label = uint .gt 0,
+    cabinet-number = uint .gt 0,
+    hallway-number = uint,
+    room-number    = tstr.size(2..64),
+    floor-number   = int,
+}>
+ear.geographic-result-label = eat.JC<"TBD02", TBD01>
+
+iso-3361-alpha-2-country-code = tstr.size(2)
+
+5.  Security Considerations
+
+   TODO Security
+
+6.  IANA Considerations
+
+   IANA is asked to allocate TBD01 from the "CBOR Web Token Claims"
+   registry [IANA.cwt], and TBD02 (suggestion: "ear.geographic-result-
+   claims") from the "JSON Web Token Claims" registry [IANA.jwt].
+
+7.  References
+
+7.1.  Normative References
+
+   [I-D.ietf-rats-ear]
+              Fossati, T., Voit, E., Trofimov, S., and H. Birkholz, "EAT
+              Attestation Results", Work in Progress, Internet-Draft,
+              draft-ietf-rats-ear-01, 24 July 2025,
+              <https://datatracker.ietf.org/doc/html/draft-ietf-rats-
+              ear-01>.
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", BCP 14, RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/rfc/rfc2119>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/rfc/rfc8174>.
+
+   [RFC9334]  Birkholz, H., Thaler, D., Richardson, M., Smith, N., and
+              W. Pan, "Remote ATtestation procedureS (RATS)
+              Architecture", RFC 9334, DOI 10.17487/RFC9334, January
+              2023, <https://www.rfc-editor.org/rfc/rfc9334>.
+
+   [RFC9711]  Lundblade, L., Mandyam, G., O'Donoghue, J., and C.
+              Wallace, "The Entity Attestation Token (EAT)", RFC 9711,
+              DOI 10.17487/RFC9711, April 2025,
+              <https://www.rfc-editor.org/rfc/rfc9711>.
+
+7.2.  Informative References
+
+   [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
+              <https://www.iana.org/assignments/cwt>.
+
+   [IANA.jwt] IANA, "JSON Web Token (JWT)",
+              <https://www.iana.org/assignments/jwt>.
+
+   [ptp]      Wikipedia, "Precision Time Protocol", 7 October 2025,
+              <https://en.wikipedia.org/wiki/Precision_Time_Protocol>.
+
+   [speed]    Genuine Modules, "How fast does fiber optics travel?", 7
+              October 2025, <https://www.genuinemodules.com/how-fast-
+              does-fiber-optics-travel_a6553>.
+
+Acknowledgments
+
+   TODO acknowledge.
+
+Author's Address
+
+   Michael Richardson
+   Sandelman Software Works
+   Email: mcr+ietf@sandelman.ca
