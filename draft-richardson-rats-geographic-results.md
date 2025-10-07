@@ -32,10 +32,20 @@ normative:
   I-D.ietf-rats-ear:
 
 informative:
+  IANA.cwt:
+  IANA.jwt:
   speed:
     target: "https://www.genuinemodules.com/how-fast-does-fiber-optics-travel_a6553"
+    title: "How fast does fiber optics travel?"
+    date: 2025-10-07
+    author:
+      org: "Genuine Modules"
   ptp:
     target: https://en.wikipedia.org/wiki/Precision_Time_Protocol
+    title: "Precision Time Protocol"
+    author:
+      org: Wikipedia
+    date: 2025-10-07
 
 --- abstract
 
@@ -111,8 +121,7 @@ TODO Security
 
 # IANA Considerations
 
-This document has no IANA actions.
-
+TODO
 
 --- back
 
