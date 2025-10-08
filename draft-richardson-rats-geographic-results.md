@@ -117,30 +117,45 @@ There are some additional things which may be received as Evidence, but which is
 
 ~~~~
 ; # import rfc9711 as eat
-; # import rfc9393
+; # import rfcXXXX as corim
 
 $$ear-appraisal-extension //= (
     ear.geographic-result-label => geographic-result-claims
 )
 
 geographic-result-claims = non-empty<{
-    eat.jurisdiction-country-label = iso-3361-alpha-2-country-code,
-    eat.jurisdiction-country-exclave-label = bool,
-    eat.jurisdiction-state-label   = tstr.size(2..16),
-    eat.jurisdiction-state-exclave-label = bool,
-    eat.jurisdiction-city-label    = tstr.size(2..16),
-    eat.jurisdiction-city-exclave-label = bool,
-    eat.enclosing-exclave-country-label = iso-3361-alpha-2-country-code,
-    eat.near-to-label   = eat.uuid-type,
-    rack-U-number-label = uint .gt 0,
-    cabinet-number = uint .gt 0,
-    hallway-number = uint,
-    room-number    = tstr.size(2..64),
-    floor-number   = int,
+  ? grc.jurisdiction-country-label => iso-3361-alpha-2-country-code
+  ? grc.jurisdiction-country-exclave-label => bool
+  ? grc.jurisdiction-state-label => tstr .size (2..16)
+  ? grc.jurisdiction-state-exclave-label => bool
+  ? grc.jurisdiction-city-label => tstr .size(2..16)
+  ? grc.jurisdiction-city-exclave-label => bool
+  ? grc.enclosing-exclave-country-label => iso-3361-alpha-2-country-code
+  ? grc.near-to-label => corim.uuid-type
+  ? grc.rack-U-number-label => uint .gt 0
+  ? grc.cabinet-number => uint .gt 0
+  ? grc.hallway-number => uint
+  ? grc.room-number => tstr .size (2..64)
+  ? grc.floor-number => int
 }>
+
 ear.geographic-result-label = eat.JC<"TBD02", TBD01>
 
-iso-3361-alpha-2-country-code = tstr.size(2)
+grc.jurisdiction-country-label = eat.JC<"grc.jurisdiction-country", 0>
+grc.jurisdiction-country-exclave-label = eat.JC<"grc.jurisdiction-country-exclave", 1>
+grc.jurisdiction-state-label = eat.JC<"grc.jurisdiction-state", 2>
+grc.jurisdiction-state-exclave-label = eat.JC<"grc.jurisdiction-state-exclave", 3>
+grc.jurisdiction-city-label = eat.JC<"grc.jurisdiction-city", 4>
+grc.jurisdiction-city-exclave-label = eat.JC<"grc.jurisdiction-city-exclave", 5>
+grc.enclosing-exclave-country-label = eat.JC<"grc.enclosing-exclave-country", 6>
+grc.near-to-label  = eat.JC<"grc.near-to", 7>
+grc.rack-U-number-label = eat.JC<"grc.rack-U-number", 8>
+grc.cabinet-number = eat.JC<"grc.cabinet-number", 9>
+grc.hallway-number = eat.JC<"grc.hallway-number", 10>
+grc.room-number = eat.JC<"grc.room-number", 10>
+grc.floor-number = eat.JC<"grc.floor-number", 11>
+
+iso-3361-alpha-2-country-code = tstr .size 2
 ~~~~
 
 
