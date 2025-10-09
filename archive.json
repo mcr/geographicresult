@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-10-07T00:29:01.516186+00:00",
+  "timestamp": "2025-10-09T00:28:56.832014+00:00",
   "repo": "mcr/geographicresult",
   "labels": [
     {
@@ -50,5 +50,55 @@
     }
   ],
   "issues": [],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOPwVOic6skepg",
+      "title": "feat: fill in references for speed and ptp",
+      "url": "https://github.com/mcr/geographicresult/pull/1",
+      "state": "MERGED",
+      "author": "mcr",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-10-07T20:20:59Z",
+      "updatedAt": "2025-10-08T16:03:29Z",
+      "baseRepository": "mcr/geographicresult",
+      "baseRefName": "main",
+      "baseRefOid": "35bc2e8c4201872a7a114cbe3568feff7c3f035d",
+      "headRepository": "mcr/geographicresult",
+      "headRefName": "result-claims",
+      "headRefOid": "f942ec733dfaba64696ec2e4f24b064c9c1aceb6",
+      "closedAt": "2025-10-08T16:03:29Z",
+      "mergedAt": "2025-10-08T16:03:29Z",
+      "mergedBy": "mcr",
+      "mergeCommit": {
+        "oid": "1f2144d76b7c4fd2141511249fca65a27c0412b4"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOPwVOic7Fjqu6",
+          "commit": {
+            "abbreviatedOid": "1c34486"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "the CDDL needed some TLC",
+          "createdAt": "2025-10-08T11:53:53Z",
+          "updatedAt": "2025-10-08T11:54:39Z",
+          "comments": [
+            {
+              "originalPosition": 31,
+              "body": "```suggestion\r\n; # import rfc9711 as eat\r\n; # import rfcXXXX as corim\r\n\r\n$$ear-appraisal-extension //= (\r\n    ear.geographic-result-label => geographic-result-claims\r\n)\r\n\r\ngeographic-result-claims = non-empty<{\r\n  ? grc.jurisdiction-country-label => iso-3361-alpha-2-country-code\r\n  ? grc.jurisdiction-country-exclave-label => bool\r\n  ? grc.jurisdiction-state-label => tstr .size (2..16)\r\n  ? grc.jurisdiction-state-exclave-label => bool\r\n  ? grc.jurisdiction-city-label => tstr .size(2..16)\r\n  ? grc.jurisdiction-city-exclave-label => bool\r\n  ? grc.enclosing-exclave-country-label => iso-3361-alpha-2-country-code\r\n  ? grc.near-to-label => corim.uuid-type\r\n  ? grc.rack-U-number-label => uint .gt 0\r\n  ? grc.cabinet-number => uint .gt 0\r\n  ? grc.hallway-number => uint\r\n  ? grc.room-number => tstr .size (2..64)\r\n  ? grc.floor-number => int\r\n}>\r\n\r\near.geographic-result-label = eat.JC<\"TBD02\", TBD01>\r\n\r\ngrc.jurisdiction-country-label = eat.JC<\"grc.jurisdiction-country\", 0>\r\ngrc.jurisdiction-country-exclave-label = eat.JC<\"grc.jurisdiction-country-exclave\", 1>\r\ngrc.jurisdiction-state-label = eat.JC<\"grc.jurisdiction-state\", 2>\r\ngrc.jurisdiction-state-exclave-label = eat.JC<\"grc.jurisdiction-state-exclave\", 3>\r\ngrc.jurisdiction-city-label = eat.JC<\"grc.jurisdiction-city\", 4>\r\ngrc.jurisdiction-city-exclave-label = eat.JC<\"grc.jurisdiction-city-exclave\", 5>\r\ngrc.enclosing-exclave-country-label = eat.JC<\"grc.enclosing-exclave-country\", 6>\r\ngrc.near-to-label  = eat.JC<\"grc.near-to\", 7>\r\ngrc.rack-U-number-label = eat.JC<\"grc.rack-U-number\", 8>\r\ngrc.cabinet-number = eat.JC<\"grc.cabinet-number\", 9>\r\ngrc.hallway-number = eat.JC<\"grc.hallway-number\", 10>\r\ngrc.room-number = eat.JC<\"grc.room-number\", 10>\r\ngrc.floor-number = eat.JC<\"grc.floor-number\", 11>\r\n\r\niso-3361-alpha-2-country-code = tstr .size 2\r\n```",
+              "createdAt": "2025-10-08T11:53:53Z",
+              "updatedAt": "2025-10-08T11:54:39Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
