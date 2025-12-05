@@ -89,7 +89,6 @@ So if the round trip time between environments is 1ns, then the distance between
 # Claim definition
 
 This claim definition goes into the EAR submods map.
-Mumble mumble. AR4SI + $ear CDDL TBD.
 
 Geographic Results can contain one or more of the following claims.
 
@@ -153,8 +152,8 @@ TODO Security
 # IANA Considerations
 
 IANA is asked to allocate TBD01 from the "CBOR Web Token Claims" registry
-{{IANA.cwt}}, and TBD02 (suggestion: "ear.geographic-result-claims") from the
-"JSON Web Token Claims" registry {{IANA.jwt}}.
+{{IANA.cwt}} (from a Specification Required Integer range), and TBD02 (suggestion: "ear.geographic-result-claims") from the "JSON Web Token Claims" registry {{IANA.jwt}}.
+
 
 --- back
 
