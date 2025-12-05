@@ -4,8 +4,8 @@
 
 RATS (if adopted)                                          M. Richardson
 Internet-Draft                                  Sandelman Software Works
-Intended status: Standards Track                         4 November 2025
-Expires: 8 May 2026
+Intended status: Standards Track                         5 December 2025
+Expires: 8 June 2026
 
 
                      Geographic Attestation Results
@@ -51,7 +51,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 May 2026.
+   This Internet-Draft will expire on 8 June 2026.
 
 Copyright Notice
 
@@ -135,8 +135,7 @@ Table of Contents
 
 3.  Claim definition
 
-   This claim definition goes into the EAR submods map.  Mumble mumble.
-   AR4SI + $ear CDDL TBD.
+   This claim definition goes into the EAR submods map.
 
    Geographic Results can contain one or more of the following claims.
 
@@ -226,8 +225,9 @@ iso-3361-alpha-2-country-code = tstr .size 2
 6.  IANA Considerations
 
    IANA is asked to allocate TBD01 from the "CBOR Web Token Claims"
-   registry [IANA.cwt], and TBD02 (suggestion: "ear.geographic-result-
-   claims") from the "JSON Web Token Claims" registry [IANA.jwt].
+   registry [IANA.cwt] (from a Specification Required Integer range),
+   and TBD02 (suggestion: "ear.geographic-result-claims") from the "JSON
+   Web Token Claims" registry [IANA.jwt].
 
 7.  References
 
