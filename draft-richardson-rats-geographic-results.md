@@ -27,9 +27,11 @@ author:
   email: mcr+ietf@sandelman.ca
 
 normative:
-  RFC9334:
   RFC9711:
   I-D.ietf-rats-ear:
+  RFC9334: Architecture
+  I-D.ietf-rats-endorsements:
+  RFC9360:
 
 informative:
   IANA.cwt:
@@ -46,6 +48,25 @@ informative:
     author:
       org: Wikipedia
     date: 2025-10-07
+  IDevID:
+    target: https://1.ieee802.org/security/802-1ar/l
+    title: IEEE 802.1AR Secure Device Identifier
+    author:
+    - org: IEEE Standard
+    date: 2018
+  LLDP:
+    target: https://www.ieee802.org/1/pages/802.1AB-rev.html
+    title: 802.1AB-REV - Station and Media Access Control Connectivity Discovery
+    author:
+    - org: IEEE Standard
+    date: 2009-06-19
+  rollover:
+    target: https://en.wikipedia.org/wiki/Rollover_cable
+    title: Console Rollover Cable
+    author:
+    - org: Wikipedia
+    date: 2025-04-26
+
 
 --- abstract
 
@@ -64,7 +85,7 @@ Example.
 Example.
 Example.
 
-{{I-D.ietf-rats-ear}} provides a framework that allows an {{RFC9334}} Verifier to return a conclusion as to geographic region for an Target Environment.
+{{I-D.ietf-rats-ear}} provides a framework that allows an {{-Architecture}} Verifier to return a conclusion as to geographic region for an Target Environment.
 
 While {{RFC9711, Section 4.2.10}} provides a very good WGS84 based location claim, often very suitable as Evidence, it is not ideal for the use by Relying Parties.
 
@@ -175,7 +196,7 @@ grc.floor-number = eat.JC<"grc.floor-number", 11>
 iso-3166-alpha-2-country-code = tstr .size 2
 ~~~~
 
-# Appendix A {popendorsement}
+# Proof of Placement {#popendorsement}
 
 Some aspects of a device can not be intuited by the device itself.
 For instance, a router platform may have no way to know what color the case is, where in a cabinet it is located, or which electrical circuit it is connected to.
@@ -187,9 +208,7 @@ device in a cryptographically strong manner.
 
 This protocol is not designed to run over Internet Protocol cabling, but rather over mechanisms such as USB cables, or serial consoles.
 
---- middle
-
-# Introduction
+## Introduction
 
 In the RATS Architecture {{-Architecture}}, an important input to the Verifier function is the Endorsement.
 Endorsements {{I-D.ietf-rats-endorsements}} provide information that the Attester can not inherently know.
@@ -221,13 +240,13 @@ The auditor then plugs a physical cable between their audit device and the devic
 This cable is envisioned to be either a USB console "rollover" cable {{rollover}}.
 The audit device then initiates some commands over this cable that will result in a proof of the idnetity of connected device.
 
-# Protocol
+## Protocol
 
 It is assumed that the console port has been designed for use by humans.
 This protocol is designed to interact as if it's a human.
 Note that more sophisticated mechanisms such as SLIP or PPP would be more vulnerable to spoofing.
 
-## Initial Handshake {#loginhandshake}
+### Initial Handshake {#loginhandshake}
 
 The audit device sends carriage returns (octet 13) until it sees a response with a colon (":") in it.
 This is usually a "login:" or "username:" prompt of some kind.
@@ -238,7 +257,7 @@ On other systems, this might just an unpriviledged account with the normal promp
 
 The handshake is over when the word "endorsement" is seen.
 
-## Proof of Position
+### Attestation Results - Proof of Position
 
 (Proof of Position is probably a silly name that ought to be replaced)
 
@@ -345,7 +364,7 @@ In some cases the auditor might be entirely self-contained, producing the endors
 In that case, they would use the "endorsements" to load the resulting Endorsements directly into the device.
 
 
-# Alternatives to USB/serial cables
+## Alternatives to USB/serial cables
 
 There are a number of cases where a USB or serial console cable might be unavailable, or it's might be undesireable.
 Many smaller IoT devices, home routers and consumer items do not have any kind of console available.
@@ -380,7 +399,9 @@ For such devices, there are perhaps few privacy concerns, and the auditor needs 
 
 # Security Considerations
 
-There are three concerns with this protocol.
+The Attestation Result has some key issues XXX.
+
+There are three concerns with Proof of Position protocol.
 
 The first is the potential for unauthorized people to collect information about devices to which they have no authority to interogate.
 In industrial settings, this is mitigated by physical access controls.
@@ -406,11 +427,6 @@ Some operators prefer to never have a login process on the console/craft ports o
 This is usually done so that maintenance people do not need to have passwords that can then be  re-used over a network, weaking the security of the device.
 They depend upon physical security for the console ports to provide security.
 Such operators might wish to rethink this policy for devices which will be subject to audit.
-
-# Security Considerations
-
-TODO Security
-
 
 # IANA Considerations
 
