@@ -31,9 +31,27 @@ normative:
   I-D.ietf-rats-ear:
   RFC9334: Architecture
   I-D.ietf-rats-endorsements:
-  RFC9360:
 
 informative:
+  RFC9360:
+  IDevID:
+    target: https://1.ieee802.org/security/802-1ar/l
+    title: IEEE 802.1AR Secure Device Identifier
+    author:
+    - org: IEEE Standard
+    date: 2018
+  LLDP:
+    target: https://www.ieee802.org/1/pages/802.1AB-rev.html
+    title: 802.1AB-REV - Station and Media Access Control Connectivity Discovery
+    author:
+    - org: IEEE Standard
+    date: 2009-06-19
+  rollover:
+    target: https://en.wikipedia.org/wiki/Rollover_cable
+    title: Console Rollover Cable
+    author:
+    - org: Wikipedia
+    date: 2025-04-26
   IANA.cwt:
   IANA.jwt:
   speed:
@@ -306,7 +324,7 @@ These statements may require human audiitors to inspect the device physically.
 But, which device is really in front of an auditor?  This document describes a mechanism by which an auditor can make physical contact with a device and collect information to identify the
 device in a cryptographically strong manner.
 
-This protocol is not designed to run over Internet Protocol cabling, but rather over mechanisms such as USB cables, or serial consoles.
+The Proof of Presence protocol is intended to provide a mechanism by which device identity can be established via non-networked, physical cabling such as a USB cable, or a serial (craft) console.
 
 ## Introduction
 
@@ -326,7 +344,7 @@ In these cases an endorsement will need to be created, often by a human inspecto
 There are some challenges for such an auditor: they could be led astray by malicious intent to inspect the wrong device, or they could simply not locate the device they intended to audit.
 This results in an endorsement linked to the wrong device.
 
-## Overview of mechanism
+### Overview of mechanism
 
 The auditor is equiped with a portable device (e.g., a tablet computer) containing an endorsement  signing key.
 This is the audit device.
@@ -340,7 +358,18 @@ The auditor then plugs a physical cable between their audit device and the devic
 This cable is envisioned to be either a USB console "rollover" cable {{rollover}}.
 The audit device then initiates some commands over this cable that will result in a proof of the idnetity of connected device.
 
-## Protocol
+## Terminology
+
+Audit Device:
+: The device that is used to collect information that will go into endorsements.
+
+Device Under Audit:
+: Abbreviated to DUA. The device for which endorsements are being made.
+
+Auditor:
+: The human who inspects the Device Under Audit.
+
+## Presence Protocol
 
 It is assumed that the console port has been designed for use by humans.
 This protocol is designed to interact as if it's a human.
@@ -357,9 +386,9 @@ On other systems, this might just an unpriviledged account with the normal promp
 
 The handshake is over when the word "endorsement" is seen.
 
-### Attestation Results - Proof of Position
+### Proof of Presence
 
-(Proof of Position is probably a silly name that ought to be replaced)
+(Proof of Presence, or POP, is not a great TLA, as it often refers to proof that a private key is used.  A better name is saught)
 
 All commands are prefixed with "rfcXXXX" (with a trailing space, where XXXX is the number of this document).
 A second word indicates the command.
@@ -410,7 +439,7 @@ x5t is from {{RFC9360}}.
 The hash algoritm SHOULD be SHA256, or newer.
 (Example to be updated.
 
-## Collection of Endorsement Claims
+### Collection of Endorsement Claims
 
 The audit device then validates the received EAT object from the device.
 The audit device locates the public part of the device's Attestation Key.
@@ -423,7 +452,7 @@ Such a layer of indirection might affect the audit's ability to indicate which p
 Some key physical information that an auditor might need to collect is which fibre patches are connected to which ports of the switch.
 This information would be ideally collected by scanning (and checking) labels on the fibre patches.
 
-## Additional Commands
+### Additional Commands
 
 Some additional commands can be provided by the device under audit:
 
@@ -446,7 +475,7 @@ This command allows the auditor to load any resulting endorsements directly into
 "exit":
 : This command indicates that the audit is over, and the device under audit can return the console interface to the normal state.
 
-## Generation of Endorsement
+### Generation of Endorsement
 
 The auditor, having collected one or more proofs, then transmits them to the endorsement agency.
 This may be via physical transfer, secured email, or some secured online API.
@@ -487,7 +516,7 @@ This process would probably need to augmented with some other forms of feedback;
 
 Note: the console/USB cable could also be redirected to another host!
 
-# Privacy Considerations
+## Privacy Considerations
 
 The ability to walk up to a device and interogate it as to it's identity is potentially privacy violating if the device is associated with a person.
 This would include all kinds of small devices: phones, laptops, electric bicycles, automobiles,
@@ -497,11 +526,9 @@ This is reasonable for some devices and some audit processes, but for other proc
 For devices such as large routing platforms, they are often located in data centers with multiple layers of physical access control: locked buildings, locked machine rooms, and locked cabinets.
 For such devices, there are perhaps few privacy concerns, and the auditor needs credentials in order to access the device at all.
 
-# Security Considerations
+## Security Considerations
 
-The Attestation Result has some key issues XXX.
-
-There are three concerns with Proof of Position protocol.
+There are three concerns with this protocol.
 
 The first is the potential for unauthorized people to collect information about devices to which they have no authority to interogate.
 In industrial settings, this is mitigated by physical access controls.
@@ -528,17 +555,10 @@ This is usually done so that maintenance people do not need to have passwords th
 They depend upon physical security for the console ports to provide security.
 Such operators might wish to rethink this policy for devices which will be subject to audit.
 
-# IANA Considerations
+## IANA Considerations
 
-## Attestation Result
-
-IANA is asked to allocate TBD01 from the "CBOR Web Token Claims" registry
-{{IANA.cwt}}, and TBD02 (suggestion: "ear.geographic-result-claims") from the
-"JSON Web Token Claims" registry {{IANA.jwt}}.
-
-## Endorsement Result
-
-IANA is asked to allocate TBD03 from the "CBOR Web Token Claims registry {{IANA.cwt}}.
+IANA is asked to allocate a CBOR Tag for this object.
+Details TBD.
 
 # Acknowledgments
 {:numbered="false"}
