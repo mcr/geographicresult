@@ -22,7 +22,7 @@ Abstract
    is appropriate for a given situation, the result of the Verification
    can be expressed in a similiarly defined EAT Attestation Result.
 
-   This document is therefore about encoding a variety of geographical
+   This document is about encoding a variety of geographical conclusions
    conclusions in an Attestation Result.  In addition, one mechanism of
    directly creating a geographic result in the form of an Endorsement
    is described in an appendix.
@@ -88,7 +88,7 @@ Table of Contents
    7.  References
      7.1.  Normative References
      7.2.  Informative References
-   Appendix A.  Proof of Presense
+   Appendix A.  Proof of Placement
      A.1.  Introduction
        A.1.1.  Overview of mechanism
      A.2.  Terminology
@@ -102,8 +102,6 @@ Table of Contents
      A.5.  Privacy Considerations
      A.6.  Security Considerations
      A.7.  IANA Considerations
-   Appendix B.  Acknowledgements
-   Appendix C.  Changelog
    Acknowledgments
    Author's Address
 
@@ -126,59 +124,72 @@ Table of Contents
 
    *  the latitude and longitude describe a location on the Earth.  The
       Relying Party is seldom interested in that level of detail.  It
-      needs to know if it's in the correct place.
+      needs to know if it's in an acceptable place.
 
-   *  the geographic position leaks significant amount of private
+   *  the geographic position can leak significant amount of private
       information that is not necessary for the Relying Party to know.
+      Information not collected/stored can not be inadvertently
+      disclosed.
 
    *  for many activities, it is the Legal Jurisdiction that matters,
       not the actual location.  Jurisdictions often do not have well
       defined concentric boundaries.  For instance, the South Korean
-      Consultate in Los Angelos is often for Legal purposes, in Korea.
+      Consultate in Los Angelos is usually for Legal purposes, in Korea.
       Yet, only a few meters away, possibly below the level of WGS84
       accuracy, the jurisdiction would be different.
 
-   *  there are many other situations involving exclaves, and even
-      exclaves inside other exclaves where the boundaries are quite
-      complex.
-
    This document offers a new set of structured abstract claims that
-   provides an evaluated view of where a Target Environment is.
+   provides an evaluated view of where a Target Environment is.  The
+   mechanism to do this appraisal may depend upon a number of factors
+   which may be related to physical geographic position, but also
+   include other considerations.
 
-   The mechanism to do this appraisal may depend upon a number of
-   factors which may be related to physical geographic position, but
-   also include other considerations.
+   There are many different ways in which a Verifier might generate this
+   result from Evidence and/or Endorsements that are provided to it.
+   The exact method can be important for a small number of uses, but
+   more often, if the Verify is trusted, then the details are not
+   important.  The exact method may be of interest only during forensic
+   audits.  This document does _not_ standardize any mechanism for a
+   Verify to appraise location data.
 
    The most obvious way is through various Global Navitation Satellite
    Systems (GNSS): the United States Global Positioning System (GPS),
    Russia's Global Navigation Satellite System (GLONASS), China's BeiDou
    Navigation Satellite System (BDS) and the European Union's Galileo.
-   These signals can be spoofed, manipulated and suppressed.  There are
-   many environments, such as inside a (Faraday) cage in a Data Center,
-   where GNSS signals do not reach.  Whether or not they are a good
-   measure of location is not the subject of this document.  Rather, if
-   a Verifier believes that information trustworthy for the purpose
-   intended, then it may use the format described here to document it's
-   conclusion.
+   These signals can be spoofed, manipulated and suppressed, however
+   that does not render these signals useless, just that the level of
+   trust must be carefully evaluated.  There are also many environments,
+   such as inside a (Faraday) cage in a Data Center, where GNSS signals
+   do not reach.
 
    There are also other radio methods, such as time of travel
    calculations from a mobile (LTE) tower.
 
-   An example of mechanically determination of location without radio
-   could be a claim that a Target Environment is less than 1ns (as light
-   travels in a fiber optic cable) away from another Target Enviroment
-   whose location is known.  A typical fiber optic cable has a speed of
-   200,000 kilometers per second (slower than light in a vacuum to the
-   index of refraction of the glass involved).  So if the round trip
-   time between environments is 1ns, then the distance between Target
-   Environments can be appraised to be within 1m of each other.  Other
-   work contemplates claims like this one
+   [I-D.lkspa-rats-verifiable-geo-fence] provides a more general
+   architecture for such evaluations.
 
-   Finally, one method to find out where a device is for a trusted human
-   to go and look at it.  Perform an audit.  The result is not an
-   Attestation Result according to [RFC9334], but instead it is an
-   Endorsement.  Appendix A describes a protocol that could be used for
-   a human auditor to make such an evaluation.
+   As an example of another method, described in
+   [I-D.ramki-ptp-hardware-rooted-attestation], there could be Evidence
+   that a Target Environment is less than 1ns (as light travels in a
+   fiber optic cable) away from another Target Enviroment whose location
+   is known.  Given a typical fiber optic cable has a speed of 200,000
+   kilometers per second (slower than light in a vacuum due to the index
+   of refraction of the glass involved), so if the round trip time
+   between environments is 1ns, then the distance between Target
+   Environments can be appraised to be within 1m of each other.
+
+   Whether or not any of these methods are a good enough measure of
+   location is not the subject of this document.  Rather, if a Verifier
+   believes that information trustworthy for the purpose intended, then
+   it may use the format described here to document it's conclusion.
+
+   In addition to detailing the Attestation Result (EAR) format for the
+   results, this document also addresses the case of an Endorsement
+   created as to a device's location.  Appendix A details a processs by
+   which this Endorsement could be generated by a human auditor equipped
+   with a smartphone, tablet, or dedicated auditing device.  Appendix A
+   is not a normative part of the Attestation Result defined below, but
+   it is considered a normative process defined by this document.
 
 2.  Conventions and Definitions
 
@@ -188,25 +199,35 @@ Table of Contents
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
+   Audit Device:  The device that is used to collect information that
+      will go into endorsements.
+
+   Device Under Audit:  Abbreviated to DUA.  The device for which
+      endorsements are being made.
+
+   Auditor:  The human who inspects the Device Under Audit.
+
 3.  Claim definition
 
-   This claim definition goes into the EAR submods map.
+   This claim definition goes into the EAR submods map.  Mumble mumble.
+   AR4SI + $ear CDDL TBD.
 
    Geographic Results can contain one or more of the following claims.
 
-   1.   jurisdiction-country = ISO3361 country code.
+   1.   jurisdiction-country = ISO3166 country code.
 
-   2.   jurisdiction-country-exclave = booleann
+   2.   jurisdiction-country-exclave = boolean
 
-   3.   jurisdiction-subdivision = country-specific list
+   3.   jurisdiction-subdivision = ISO3166-2 subdivision code (country-
+        specific)
 
-   4.   jurisdiction-subdivision-exclave = country-specific-list
+   4.   jurisdiction-subdivusion-exclave = boolean
 
-   5.   jurisdiction-city = subdivision-specific list
+   5.   jurisdiction-city = subdivision-specific list (not standardized)
 
-   6.   jurisdiction-city-exclave = subdivision-specific-list
+   6.   jurisdiction-city-exclave = state-specific-list
 
-   7.   enclosing-exclave-country = ISO3361 country code
+   7.   enclosing-exclave-country = ISO3166 country code
 
    8.   near-to = another entity+distance
 
@@ -221,15 +242,14 @@ Table of Contents
 
    13.  floor-number = string, usually representing an integer.
 
-   14.  Data Center
-
    There are some additional things which may be received as Evidence,
    but which is sometimes important to convert to Results, having
-   verified some aspects.  (TBD) 1. range-to-tower = designation of
-   tower, distance-readings 2.
+   verified some aspects.  (TBD)
+
+   1.  range-to-tower = designation of tower, distance-readings
 
    (NOTE: There are apparently exclaves that ar inside other countries
-   exclaves, like Nahwa.  Unclear if exclave information is even
+   exclaves, like Nahwa.  It is unclear if exclave information is even
    relevant, or if second order matters at all)
 
 4.  CDDL Definition
@@ -242,27 +262,28 @@ $$ear-appraisal-extension //= (
 )
 
 geographic-result-claims = non-empty<{
-  ? grc.jurisdiction-country-label => iso-3361-alpha-2-country-code
+  ? grm.claim-uuid => corim.uuid-type
+  ? grc.jurisdiction-country-label => iso-3166-alpha-2-country-code
   ? grc.jurisdiction-country-exclave-label => bool
   ? grc.jurisdiction-subdivision-label => tstr .size (2..16)
-  ? grc.jurisdiction-subdivision-exclave-label => bool
+  ? grc.jurisdiction-state-exclave-label => bool
   ? grc.jurisdiction-city-label => tstr .size(2..16)
   ? grc.jurisdiction-city-exclave-label => bool
-  ? grc.enclosing-exclave-country-label => iso-3361-alpha-2-country-code
+  ? grc.enclosing-exclave-country-label => iso-3166-alpha-2-country-code
   ? grc.near-to-label => corim.uuid-type
   ? grc.rack-U-number-label => uint .gt 0
   ? grc.cabinet-number => uint .gt 0
   ? grc.hallway-number => uint
   ? grc.room-number => tstr .size (2..64)
   ? grc.floor-number => int
-  ? grc.data-center-name => tstr .size (2..64)
 }>
 
 ear.geographic-result-label = eat.JC<"TBD02", TBD01>
 
+grc.claim-uuid = corim.uuid-type
 grc.jurisdiction-country-label = eat.JC<"grc.jurisdiction-country", 0>
 grc.jurisdiction-country-exclave-label = eat.JC<"grc.jurisdiction-country-exclave", 1>
-grc.jurisdiction-subdivision-label = eat.JC<"grc.jurisdiction-subdivision", 2>
+grc.jurisdiction-subdivision-label = eat.JC<"grc.jurisdiction-state", 2>
 grc.jurisdiction-subdivision-exclave-label = eat.JC<"grc.jurisdiction-subdivision-exclave", 3>
 grc.jurisdiction-city-label = eat.JC<"grc.jurisdiction-city", 4>
 grc.jurisdiction-city-exclave-label = eat.JC<"grc.jurisdiction-city-exclave", 5>
@@ -273,14 +294,16 @@ grc.cabinet-number = eat.JC<"grc.cabinet-number", 9>
 grc.hallway-number = eat.JC<"grc.hallway-number", 10>
 grc.room-number = eat.JC<"grc.room-number", 10>
 grc.floor-number = eat.JC<"grc.floor-number", 11>
-grc.data-center-name = eat.JC<"grc.data-center-name", 12>
 
-iso-3361-alpha-2-country-code = tstr .size 2
+iso-3166-alpha-2-country-code = tstr .size 2
 
    There are a number of different fields in this claim, and all of them
    are marked optional.  But, at least some result MUST be provided.
    Which one will be needed is subject to the target usage and the needs
    of the Relying Party.
+
+   The claim-uuid field allows this claim/endorsement to be labelled,
+   which can be used in the near-to-label attribute of another claim.
 
    The explicitely geographic based jurisdiction fields are arranged in
    a hierarchy of values.  The outer most values are REQUIRED when any
@@ -311,15 +334,16 @@ iso-3361-alpha-2-country-code = tstr .size 2
    In that case, the Relying Party will receive the country, subdivision
    and city of where the computation is.
 
-   In general, only one of country or country-exclave, subdivision or
-   subdivision-exclave, and city or city-exclave will be present.  When
+   In general, only one of (country, country-exclave), (subdivision,
+   subdivision-exclave), and (city, city-exclave) will be present.  When
    the exclave versions are present, if the Relying Party needs to
    indicate where the exclave is located, it may use the enclosing-
    exclave-country label.
 
    The near-to-label is an arbitrary relative reference, and it refers
    to some other claim that the Relying Party is assumed to already know
-   about.  The definition of "near" is up to the Verifier, but in
+   about.  It is a uuid value, and SHOULD refer to another claim by its
+   claim-uuid The definition of "near" is up to the Verifier, but in
    general, it is expected that it is close enough that it is in the
    same jurisdiction as the other entity.
 
@@ -353,17 +377,17 @@ iso-3361-alpha-2-country-code = tstr .size 2
 
    This artifact contains abtracted information about a location.  The
    location could include where a person operating the computation is,
-   such as if this describes the location of a person's smartphone, in
-   which case the location, even abstracted would be PII.  It is almost
+   such as if this escribes the location of a person's smartphone, in
+   which case the location, even bstracted would be PII.  It is almost
    always preferable for this artifact to remain private, however the
    integrity of the artifact is not compromised if that is not the case.
 
 5.2.  Integrity Threats
 
    The most important threat is that claims could be corrupted or
-   intentionally changed as they are transfered from Verifier to Relying
+   intentionally changed as hey are transfered from Verifier to Relying
    Party.  EAR are signed objects, and the signature from the Verifier
-   maintains the integrity of that object.  The claims present in this
+   maintains the integrity of hat object.  The claims present in this
    document will most often be combined with other claims in the same
    artifact.
 
@@ -377,8 +401,8 @@ iso-3361-alpha-2-country-code = tstr .size 2
 
    This artifact is the result of a calculation or audit that
    establishes a result.  Once created, it can be valid for a period of
-   time from seconds (GNSS result on a smartphone) to months (human
-   audit of a data center).
+   time from seconds (GNSS result on a martphone) to months (human audit
+   of a data center).
 
    Distruptions to the mechanism of location calculation do not make the
    result of the previous calculation invalid.  However, it is possible
@@ -386,11 +410,6 @@ iso-3361-alpha-2-country-code = tstr .size 2
    For instance, the GNSS signals can easily be jammed.
 
 6.  IANA Considerations
-
-   IANA is asked to allocate TBD01 from the "CBOR Web Token Claims"
-   registry [IANA.cwt] (from a Specification Required Integer range),
-   and TBD02 (suggestion: "ear.geographic-result-claims") from the "JSON
-   Web Token Claims" registry [IANA.jwt].
 
 7.  References
 
@@ -435,6 +454,23 @@ iso-3361-alpha-2-country-code = tstr .size 2
 
 7.2.  Informative References
 
+   [I-D.lkspa-rats-verifiable-geo-fence]
+              Krishnan, R., Smith, N., Lopez, D., Prasad, A., Addepalli,
+              S., and H. Birkholz, "Verifiable Proof of Environment
+              Attestation Profile", Work in Progress, Internet-Draft,
+              draft-lkspa-rats-verifiable-geo-fence-03, 13 June 2026,
+              <https://datatracker.ietf.org/doc/html/draft-lkspa-rats-
+              verifiable-geo-fence-03>.
+
+   [I-D.ramki-ptp-hardware-rooted-attestation]
+              Krishnan, R., Richardson, M., Lopez, D., Prasad, A., and
+              S. Addepalli, "Hardware-Rooted Attestation for Precision
+              Time Protocol: Scalable Workload Identity and Phased PQC
+              Readiness", Work in Progress, Internet-Draft, draft-ramki-
+              ptp-hardware-rooted-attestation-01, 1 March 2026,
+              <https://datatracker.ietf.org/doc/html/draft-ramki-ptp-
+              hardware-rooted-attestation-01>.
+
    [IANA.cwt] IANA, "CBOR Web Token (CWT) Claims",
               <https://www.iana.org/assignments/cwt>.
 
@@ -467,7 +503,7 @@ iso-3361-alpha-2-country-code = tstr .size 2
               October 2025, <https://www.genuinemodules.com/how-fast-
               does-fiber-optics-travel_a6553>.
 
-Appendix A.  Proof of Presense
+Appendix A.  Proof of Placement
 
    Some aspects of a device can not be intuited by the device itself.
    For instance, a router platform may have no way to know what color
@@ -810,12 +846,6 @@ A.6.  Security Considerations
 A.7.  IANA Considerations
 
    IANA is asked to allocate a CBOR Tag for this object.  Details TBD.
-
-Appendix B.  Acknowledgements
-
-   Your name here.
-
-Appendix C.  Changelog
 
 Acknowledgments
 
