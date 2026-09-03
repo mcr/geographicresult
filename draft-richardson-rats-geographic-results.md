@@ -25,6 +25,9 @@ author:
   name: Michael Richardson
   org: Sandelman Software Works
   email: mcr+ietf@sandelman.ca
+- ins: S. Nikolaichuk
+  name: Serhii Nikolaichuk
+  email: nikolaichuk.s.f@gmail.com
 
 normative:
   RFC9711:
