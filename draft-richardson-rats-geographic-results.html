@@ -1236,9 +1236,6 @@ In addition, one mechanism of directly creating a geographic result in the form 
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.6">
                 <p id="section-toc.1-1.8.2.6.1"><a href="#appendix-A.6" class="auto internal xref">A.6</a>.  <a href="#name-security-considerations-2" class="internal xref">Security Considerations</a></p>
 </li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.7">
-                <p id="section-toc.1-1.8.2.7.1"><a href="#appendix-A.7" class="auto internal xref">A.7</a>.  <a href="#name-iana-considerations-2" class="internal xref">IANA Considerations</a></p>
-</li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
@@ -1304,23 +1301,6 @@ Rather, if a Verifier believes that information trustworthy for the purpose inte
 "<span class="bcp14">MAY</span>", and "<span class="bcp14">OPTIONAL</span>" in this document are to be interpreted as
 described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span> when, and only when, they
 appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="section-2-2">
-        <dt id="section-2-2.1">Audit Device:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.2">
-          <p id="section-2-2.2.1">The device that is used to collect information that will go into endorsements.<a href="#section-2-2.2.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.3">Device Under Audit:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.4">
-          <p id="section-2-2.4.1">Abbreviated to DUA. The device for which endorsements are being made.<a href="#section-2-2.4.1" class="pilcrow">¶</a></p>
-</dd>
-        <dd class="break"></dd>
-<dt id="section-2-2.5">Auditor:</dt>
-        <dd style="margin-left: 1.5em" id="section-2-2.6">
-          <p id="section-2-2.6.1">The human who inspects the Device Under Audit.<a href="#section-2-2.6.1" class="pilcrow">¶</a></p>
-</dd>
-      <dd class="break"></dd>
-</dl>
 </section>
 </div>
 <div id="claim-definition">
@@ -1510,7 +1490,8 @@ However, it is possible that such an attack could make subsequent calculations i
 <section id="section-6">
       <h2 id="name-iana-considerations">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
-    </h2>
+      </h2>
+<p id="section-6-1">IANA is asked to allocate TBD01 from the "CBOR Web Token Claims" registry <span>[<a href="#IANA.cwt" class="cite xref">IANA.cwt</a>]</span> (from a Specification Required Integer range), and TBD02 (suggestion: "ear.geographic-result-claims") from the "JSON Web Token Claims" registry <span>[<a href="#IANA.jwt" class="cite xref">IANA.jwt</a>]</span>.<a href="#section-6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-combined-references">
@@ -1715,8 +1696,7 @@ A second word indicates the command.
 The allows the device under audit to collect all operations under a single command or command sub-system.<a href="#appendix-A.3.2-2" class="pilcrow">¶</a></p>
 <p id="appendix-A.3.2-3">The audit device then sends the word/command "position-proof", followed by a 33 byte nonce, base64URL encoded into a 45 byte string.
 (33 bytes are recommended because being divisible by three, they encode evenly in base64, leaving  no trailing =)<a href="#appendix-A.3.2-3" class="pilcrow">¶</a></p>
-<p id="appendix-A.3.2-4">The device under audit then responds with a CBOR format EAT object, encoded in base64URL, and wrapped in the strings "--- BEGIN COSE OBJECT ---" and "--- END COSE OBJECT ---"
-{XXX: or should we use CBOR Diagnostic Format?}<a href="#appendix-A.3.2-4" class="pilcrow">¶</a></p>
+<p id="appendix-A.3.2-4">The device under audit then responds with a CBOR format EAT object, encoded in base64URL, and wrapped in the strings "--- BEGIN COSE OBJECT ---" and "--- END COSE OBJECT ---"<a href="#appendix-A.3.2-4" class="pilcrow">¶</a></p>
 <p id="appendix-A.3.2-5">The EAT payload should be constructed as follows.
 Shown are a few attributes that would make sense to include.
 The above provide nonce becomes the eat_nonce.<a href="#appendix-A.3.2-5" class="pilcrow">¶</a></p>
@@ -1731,7 +1711,7 @@ The above provide nonce becomes the eat_nonce.<a href="#appendix-A.3.2-5" class=
     / hwversion /      260: ["1.3.4", 1], / Multipartnumeric version /
     / swname /         271: "Acme OS",
     / swversion /      272: ["3.5.5", 1],
-    }
+}
 </pre><a href="#appendix-A.3.2-6" class="pilcrow">¶</a>
 </div>
 <p id="appendix-A.3.2-7">The EAT payload is signed using the device under audit's Attestation Key.
@@ -1904,15 +1884,6 @@ Some operators prefer to never have a login process on the console/craft ports o
 This is usually done so that maintenance people do not need to have passwords that can then be  re-used over a network, weaking the security of the device.
 They depend upon physical security for the console ports to provide security.
 Such operators might wish to rethink this policy for devices which will be subject to audit.<a href="#appendix-A.6-6" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="iana-considerations-1">
-<section id="appendix-A.7">
-        <h3 id="name-iana-considerations-2">
-<a href="#appendix-A.7" class="section-number selfRef">A.7. </a><a href="#name-iana-considerations-2" class="section-name selfRef">IANA Considerations</a>
-        </h3>
-<p id="appendix-A.7-1">IANA is asked to allocate a CBOR Tag for this object.
-Details TBD.<a href="#appendix-A.7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>

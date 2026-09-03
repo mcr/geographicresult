@@ -101,7 +101,6 @@ Table of Contents
      A.4.  Alternatives to USB/serial cables
      A.5.  Privacy Considerations
      A.6.  Security Considerations
-     A.7.  IANA Considerations
    Acknowledgments
    Author's Address
 
@@ -198,14 +197,6 @@ Table of Contents
    "OPTIONAL" in this document are to be interpreted as described in
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
-
-   Audit Device:  The device that is used to collect information that
-      will go into endorsements.
-
-   Device Under Audit:  Abbreviated to DUA.  The device for which
-      endorsements are being made.
-
-   Auditor:  The human who inspects the Device Under Audit.
 
 3.  Claim definition
 
@@ -410,6 +401,11 @@ iso-3166-alpha-2-country-code = tstr .size 2
    For instance, the GNSS signals can easily be jammed.
 
 6.  IANA Considerations
+
+   IANA is asked to allocate TBD01 from the "CBOR Web Token Claims"
+   registry [IANA.cwt] (from a Specification Required Integer range),
+   and TBD02 (suggestion: "ear.geographic-result-claims") from the "JSON
+   Web Token Claims" registry [IANA.jwt].
 
 7.  References
 
@@ -618,8 +614,7 @@ A.3.2.  Proof of Presence
 
    The device under audit then responds with a CBOR format EAT object,
    encoded in base64URL, and wrapped in the strings "--- BEGIN COSE
-   OBJECT ---" and "--- END COSE OBJECT ---" {XXX: or should we use CBOR
-   Diagnostic Format?}
+   OBJECT ---" and "--- END COSE OBJECT ---"
 
    The EAT payload should be constructed as follows.  Shown are a few
    attributes that would make sense to include.  The above provide nonce
@@ -634,7 +629,7 @@ A.3.2.  Proof of Presence
       / hwversion /      260: ["1.3.4", 1], / Multipartnumeric version /
       / swname /         271: "Acme OS",
       / swversion /      272: ["3.5.5", 1],
-      }
+  }
 
    The EAT payload is signed using the device under audit's Attestation
    Key. (A TPM's Endorsement Key can not sign things) The hash of the
@@ -842,10 +837,6 @@ A.6.  Security Considerations
    upon physical security for the console ports to provide security.
    Such operators might wish to rethink this policy for devices which
    will be subject to audit.
-
-A.7.  IANA Considerations
-
-   IANA is asked to allocate a CBOR Tag for this object.  Details TBD.
 
 Acknowledgments
 
