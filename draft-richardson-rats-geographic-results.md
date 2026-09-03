@@ -217,7 +217,82 @@ grc.floor-number = eat.JC<"grc.floor-number", 11>
 iso-3166-alpha-2-country-code = tstr .size 2
 ~~~~
 
-# Proof of Placement {#popendorsement}
+There are a number of different fields in this claim, and all of them are marked optional.
+But, at least some result MUST be provided.
+Which one will be needed is subject to the target usage and the needs of the Relying Party.
+
+The `claim-uuid` field allows this claim/endorsement to be labelled, which can be used in the `near-to-label` attribute of another claim.
+
+The explicitely geographic based jurisdiction fields are arranged in a hierarchy of values.
+The outer most values are REQUIRED when any inner value is also present.
+This includes the claims: country, subdivision, and city, or the equivalent exclave claims (country-exclave, subdivision-exclave, and city-exclave).
+
+Note that the ISO 3166 term for a part of a country is called a "subdivision".
+This should be understood to mean "state" (e.g., in the USA, Australia), "province" and "territory" (e.g., Canada, France).
+There are no IANA maintained values for "subdivision", but the ISO 3166-2 has codes for many subdivisions, which can be seen in the ISO's Online Browsing Platform {{obp}}.
+
+In general, subdivision lists are maintained by countries.
+It is usually the case that city lists are maintained by subdivisions, and there are no lists of these in any hierarchial databases, such as the ISO might maintain for countries.
+It is therefore not unsual for there to be a Paris, Texas, USA, and a Paris, France, and a London, Ontario, Canada, as well as a London, England, UK.
+Equally, there are many cities called Springfield in different states of the USA.
+
+Exclaves can exist at all levels: one part of a city might be within another city, but both are in the same country and subdivision.
+
+Even when in an exclave, it is acceptable for a Verifier to only return the non-exclave version, hiding that an exclave is involved.
+In that case, the Relying Party will receive the country, subdivision and city of where the computation is.
+
+In general, only one of [country, country-exclave], [subdivision, subdivision-exclave], and [city, city-exclave] will be present.
+When the exclave versions are present, if the Relying Party needs to indicate where the exclave is located, it may use the enclosing-exclave-country label.
+
+The near-to-label is an arbitrary relative reference, and it refers to some other claim that the Relying Party is assumed to already know about.
+It is a uuid value, and SHOULD refer to another claim by its `claim-uuid`
+The definition of "near" is up to the Verifier, but in general, it is expected that it is close enough that it is in the same jurisdiction as the other entity.
+
+The series of claims, Data-Center, Floor-Number, Room-Number, Hallway-Number, Cabinet-Number and Rack-U-Number form a partial hierarchy designed to identify where a piece of equipment is.
+This set of claims is more useful when a location Endorsement is created by an auditor, such as through the process described in {{presence}}.
+
+Not all data centers are numbered in the same way.
+For some, the Room-Number implies the Floor-Number.
+For others, the Hallway-Number implies both room and floor, and for still others, the Cabinet-Number is unique per building.
+
+Rack-U numbers refer to the system within a cabinet, with the bottom most position labelled as 1.  This accomodates cabinets of varying heights and capacities.
+
+# Security Considerations
+
+These considerations do not cover the protocol described in {{presence}}.
+
+This document describes attributes that would go into an EAT format Attestation Result (EAR).
+This is an artifact that is communicated from a Verifier to a Relying Party.
+The threat model for this artifact is governed by a typical "CIA" list: Confidentiality, Integrity and Availability.
+
+## Confidentiality Threats
+
+This artifact contains abtracted information about a location.
+The location could include where a person operating the computation is, such as if this escribes the location of a person's smartphone, in which case the location, even bstracted would be PII.
+It is almost always preferable for this artifact to remain private, however the integrity of the artifact is not compromised if that is not the case.
+
+## Integrity Threats
+
+The most important threat is that claims could be corrupted or intentionally changed as hey are transfered from Verifier to Relying Party.
+EAR are signed objects, and the signature from the Verifier maintains the integrity of hat object.
+The claims present in this document will most often be combined with other claims in the same artifact.
+
+When an EAT format Endorsement is created by an auditor, the auditor signs the artifact.
+The Endorsement may be provided to a Verifier through out of band means, or it can be stored by the Attesting Environment, and carried through another protocol from Attester to Verifier.
+
+## Availability Threats
+
+This artifact is the result of a calculation or audit that establishes a result.
+Once created, it can be valid for a period of time from seconds (GNSS result on a martphone) to months (human audit of a data center).
+
+Distruptions to the mechanism of location calculation do not make the result of the previous calculation invalid.
+However, it is possible that such an attack could make subsequent calculations infeasible.  For instance, the GNSS signals can easily be jammed.
+
+# IANA Considerations
+
+--- back
+
+# Proof of Placement {#presence}
 
 Some aspects of a device can not be intuited by the device itself.
 For instance, a router platform may have no way to know what color the case is, where in a cabinet it is located, or which electrical circuit it is connected to.
@@ -460,9 +535,6 @@ IANA is asked to allocate TBD01 from the "CBOR Web Token Claims" registry
 ## Endorsement Result
 
 IANA is asked to allocate TBD03 from the "CBOR Web Token Claims registry {{IANA.cwt}}.
-
-
---- back
 
 # Acknowledgments
 {:numbered="false"}
