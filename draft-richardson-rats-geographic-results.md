@@ -79,7 +79,11 @@ informative:
 Many workloads have limitations on what geography they are allowed to operate in.
 This is often due to a regulation that requires that the computation occur in a particular jurisdiction.
 
-This document is about encoding a variety of geographical conclusions in an Attestation Result.
+There are many mechanisms by which Evidence of location may be created and then evaluated by a Verifier.
+No matter which mechanism is appropriate for a given situation, the result of the Verification can be expressed in a similiarly defined EAT Attestation Result.
+
+This document is about encoding a variety of geographical conclusions conclusions in an Attestation Result.
+In addition, one mechanism of directly creating a geographic result in the form of an Endorsement is described in an appendix.
 
 --- middle
 
