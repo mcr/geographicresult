@@ -91,9 +91,9 @@ While {{RFC9711, Section 4.2.10}} provides a very good WGS84 based location clai
 
 There are a few reasons:
 
-* the latitude and longitude describe a location on the Earth. The Relying Party is seldom interested in that level of detail.  It needs to know if it's in the {\em correct} place.
+* the latitude and longitude describe a location on the Earth. The Relying Party is seldom interested in that level of detail.  It needs to know if it's in an acceptable place.
 
-* the geographic position leaks significant amount of private information that is not necessary for the Relying Party to know.
+* the geographic position can leak significant amount of private information that is not necessary for the Relying Party to know.   Information not collected/stored can not be inadvertently disclosed.
 
 * for many activities, it is the Legal Jurisdiction that matters, not the actual location.  Jurisdictions often do not have well defined concentric boundaries.  For instance, the Korean Consultate in Los Angelos is usually for Legal purposes, in Korea.  Yet, only a few meters away, possibly below the level of WGS84 accuracy, the jurisdiction would be different.
 
@@ -103,6 +103,7 @@ The mechanism to do this appraisal may depend upon a number of factors which may
 There are many different ways in which a Verifier might generate this result from Evidence and/or Endorsements that are provided to it.
 The exact method can be important for a small number of uses, but more often, if the Verify is trusted, then the details are not important.
 The exact method may be of interest only during forensic audits.
+This document does *not* standardize any mechanism for a Verify to appraise location data.  That effort is provided by other documents, including {{I-D.lkspa-rats-verifiable-geo-fence}}.
 
 As an example of a method, not described here,  there could be Evidence that a Target Environment is less than 1ns (as light travels in a fiber optic cable) away from another Target Enviroment whose location is known.   Given a typical fiber optic cable has a speed of 200,000 kilometers per second (slower than light in a vacuum due to the index of refraction of the glass involved), so if the round trip time between environments is 1ns, then the distance between Target Environments can be appraised to be within 1m of each other.
 
