@@ -208,7 +208,6 @@ geographic-result-claims = non-empty<{
   ? grc.hallway-number => uint
   ? grc.room-number => tstr .size (2..64)
   ? grc.floor-number => int
-  ? grc.basis-label => geo-basis
 }>
 
 ear.geographic-result-label = eat.JC<"TBD02", TBD01>
@@ -227,26 +226,9 @@ grc.cabinet-number = eat.JC<"grc.cabinet-number", 9>
 grc.hallway-number = eat.JC<"grc.hallway-number", 10>
 grc.room-number = eat.JC<"grc.room-number", 12>
 grc.floor-number = eat.JC<"grc.floor-number", 11>
-grc.basis-label = eat.JC<"grc.basis", 13>
 
 iso-3166-alpha-2-country-code = tstr .size 2
 
-geo-basis = {
-  class: geo-basis-class,
-  ? ref: geo-basis-ref,
-}
-
-geo-basis-class = &(
-  evidence: 1,
-  endorsement: 2,
-  attestation-result: 3,
-)
-
-geo-basis-ref = {
-  ar-digest: bstr,
-  ? ar-format: tstr,
-  ? verifier-id: bstr,
-}
 ~~~~
 
 There are a number of different fields in this claim, and all of them are marked optional.
@@ -289,24 +271,9 @@ For others, the Hallway-Number implies both room and floor, and for still others
 
 Rack-U numbers refer to the system within a cabinet, with the bottom most position labelled as 1.  This accomodates cabinets of varying heights and capacities.
 
-grc.basis is OPTIONAL, and states how a Geographic Result was established,
-using the roles already defined in {{RFC9334}}: an `evidence` basis means
-the Attester itself produced the location (for example, a signed GNSS fix,
-or a hardware proximity measurement as in {{presence}}); an `endorsement`
-basis means a third party vouches for it (for example, a cloud provider's
-signed statement about a rack's location); an `attestation-result` basis
-means a Verifier computed or inferred it (for example, from an
-operator-selected region label, which is common practice today and carries
-none of the strength of the first two). The optional `ref` field points a
-Relying Party at the specific supporting claim by digest, without embedding
-it, the same way {{I-D.ietf-rats-endorsements}} keeps Endorsements separate
-from the Evidence they support.
-
-Without grc.basis, a Relying Party has no way to tell a hardware-rooted
+Without information as to basis or provenance, a Relying Party has no way to tell a hardware-rooted
 result from an operator-typed label, even though both may appear in the
-same claims map above. Reusing the three {{RFC9334}} roles avoids adding a
-closed list of positioning techniques that will need extending every time a
-new one appears.
+same claims map above.
 
 # Security Considerations
 
