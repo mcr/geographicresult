@@ -167,7 +167,6 @@ Geographic Results can contain one or more of the following claims.
 There are some additional things which may be received as Evidence, but which is sometimes important to convert to  Results,  having verified some aspects. (TBD)
 
 1. range-to-tower = designation of tower, distance-readings
-2.
 
 (NOTE: There are apparently exclaves that ar inside other countries exclaves, like Nahwa. It is unclear if exclave information is even relevant, or if second order matters at all)
 
@@ -182,6 +181,7 @@ $$ear-appraisal-extension //= (
 )
 
 geographic-result-claims = non-empty<{
+  ? grm.claim-uuid => corim.uuid-type
   ? grc.jurisdiction-country-label => iso-3166-alpha-2-country-code
   ? grc.jurisdiction-country-exclave-label => bool
   ? grc.jurisdiction-subdivision-label => tstr .size (2..16)
@@ -199,6 +199,7 @@ geographic-result-claims = non-empty<{
 
 ear.geographic-result-label = eat.JC<"TBD02", TBD01>
 
+grc.claim-uuid = corim.uuid-type
 grc.jurisdiction-country-label = eat.JC<"grc.jurisdiction-country", 0>
 grc.jurisdiction-country-exclave-label = eat.JC<"grc.jurisdiction-country-exclave", 1>
 grc.jurisdiction-subdivision-label = eat.JC<"grc.jurisdiction-state", 2>
