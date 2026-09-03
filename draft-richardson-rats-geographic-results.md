@@ -156,15 +156,6 @@ In addition to detailing the Attestation Result (EAR) format for the results, th
 
 {::boilerplate bcp14-tagged}
 
-Audit Device:
-: The device that is used to collect information that will go into endorsements.
-
-Device Under Audit:
-: Abbreviated to DUA. The device for which endorsements are being made.
-
-Auditor:
-: The human who inspects the Device Under Audit.
-
 # Claim definition
 
 This claim definition goes into the EAR submods map.
