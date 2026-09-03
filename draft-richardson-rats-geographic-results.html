@@ -1390,7 +1390,6 @@ geographic-result-claims = non-empty&lt;{
   ? grc.hallway-number =&gt; uint
   ? grc.room-number =&gt; tstr .size (2..64)
   ? grc.floor-number =&gt; int
-  ? grc.basis-label =&gt; geo-basis
 }&gt;
 
 ear.geographic-result-label = eat.JC&lt;"TBD02", TBD01&gt;
@@ -1409,26 +1408,9 @@ grc.cabinet-number = eat.JC&lt;"grc.cabinet-number", 9&gt;
 grc.hallway-number = eat.JC&lt;"grc.hallway-number", 10&gt;
 grc.room-number = eat.JC&lt;"grc.room-number", 12&gt;
 grc.floor-number = eat.JC&lt;"grc.floor-number", 11&gt;
-grc.basis-label = eat.JC&lt;"grc.basis", 13&gt;
 
 iso-3166-alpha-2-country-code = tstr .size 2
 
-geo-basis = {
-  class: geo-basis-class,
-  ? ref: geo-basis-ref,
-}
-
-geo-basis-class = &amp;(
-  evidence: 1,
-  endorsement: 2,
-  attestation-result: 3,
-)
-
-geo-basis-ref = {
-  ar-digest: bstr,
-  ? ar-format: tstr,
-  ? verifier-id: bstr,
-}
 </pre><a href="#section-4-1" class="pilcrow">¶</a>
 </div>
 <p id="section-4-2">There are a number of different fields in this claim, and all of them are marked optional.
@@ -1459,23 +1441,9 @@ This set of claims is more useful when a location Endorsement is created by an a
 For some, the Room-Number implies the Floor-Number.
 For others, the Hallway-Number implies both room and floor, and for still others, the Cabinet-Number is unique per building.<a href="#section-4-12" class="pilcrow">¶</a></p>
 <p id="section-4-13">Rack-U numbers refer to the system within a cabinet, with the bottom most position labelled as 1.  This accomodates cabinets of varying heights and capacities.<a href="#section-4-13" class="pilcrow">¶</a></p>
-<p id="section-4-14">grc.basis is <span class="bcp14">OPTIONAL</span>, and states how a Geographic Result was established,
-using the roles already defined in <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>: an <code>evidence</code> basis means
-the Attester itself produced the location (for example, a signed GNSS fix,
-or a hardware proximity measurement as in <a href="#presence" class="auto internal xref">Appendix A</a>); an <code>endorsement</code>
-basis means a third party vouches for it (for example, a cloud provider's
-signed statement about a rack's location); an <code>attestation-result</code> basis
-means a Verifier computed or inferred it (for example, from an
-operator-selected region label, which is common practice today and carries
-none of the strength of the first two). The optional <code>ref</code> field points a
-Relying Party at the specific supporting claim by digest, without embedding
-it, the same way <span>[<a href="#I-D.ietf-rats-endorsements" class="cite xref">I-D.ietf-rats-endorsements</a>]</span> keeps Endorsements separate
-from the Evidence they support.<a href="#section-4-14" class="pilcrow">¶</a></p>
-<p id="section-4-15">Without grc.basis, a Relying Party has no way to tell a hardware-rooted
+<p id="section-4-14">Without information as to basis or provenance, a Relying Party has no way to tell a hardware-rooted
 result from an operator-typed label, even though both may appear in the
-same claims map above. Reusing the three <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span> roles avoids adding a
-closed list of positioning techniques that will need extending every time a
-new one appears.<a href="#section-4-15" class="pilcrow">¶</a></p>
+same claims map above.<a href="#section-4-14" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
