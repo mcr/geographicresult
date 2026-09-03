@@ -241,7 +241,7 @@ Exclaves can exist at all levels: one part of a city might be within another cit
 Even when in an exclave, it is acceptable for a Verifier to only return the non-exclave version, hiding that an exclave is involved.
 In that case, the Relying Party will receive the country, subdivision and city of where the computation is.
 
-In general, only one of [country, country-exclave], [subdivision, subdivision-exclave], and [city, city-exclave] will be present.
+In general, only one of (country, country-exclave), (subdivision, subdivision-exclave), and (city, city-exclave) will be present.
 When the exclave versions are present, if the Relying Party needs to indicate where the exclave is located, it may use the enclosing-exclave-country label.
 
 The near-to-label is an arbitrary relative reference, and it refers to some other claim that the Relying Party is assumed to already know about.
