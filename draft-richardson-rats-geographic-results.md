@@ -303,6 +303,8 @@ However, it is possible that such an attack could make subsequent calculations i
 
 # IANA Considerations
 
+IANA is asked to allocate TBD01 from the "CBOR Web Token Claims" registry [IANA.cwt] (from a Specification Required Integer range), and TBD02 (suggestion: "ear.geographic-result-claims") from the "JSON Web Token Claims" registry [IANA.jwt].
+
 --- back
 
 # Proof of Placement {#presence}
@@ -389,7 +391,6 @@ The audit device then sends the word/command "position-proof", followed by a 33 
 (33 bytes are recommended because being divisible by three, they encode evenly in base64, leaving  no trailing =)
 
 The device under audit then responds with a CBOR format EAT object, encoded in base64URL, and wrapped in the strings "--- BEGIN COSE OBJECT ---" and "--- END COSE OBJECT ---"
-{XXX: or should we use CBOR Diagnostic Format?}
 
 The EAT payload should be constructed as follows.
 Shown are a few attributes that would make sense to include.
@@ -405,7 +406,7 @@ The above provide nonce becomes the eat_nonce.
     / hwversion /      260: ["1.3.4", 1], / Multipartnumeric version /
     / swname /         271: "Acme OS",
     / swversion /      272: ["3.5.5", 1],
-    }
+}
 ~~~~
 
 The EAT payload is signed using the device under audit's Attestation Key.
@@ -545,11 +546,6 @@ Some operators prefer to never have a login process on the console/craft ports o
 This is usually done so that maintenance people do not need to have passwords that can then be  re-used over a network, weaking the security of the device.
 They depend upon physical security for the console ports to provide security.
 Such operators might wish to rethink this policy for devices which will be subject to audit.
-
-## IANA Considerations
-
-IANA is asked to allocate a CBOR Tag for this object.
-Details TBD.
 
 # Acknowledgments
 {:numbered="false"}
