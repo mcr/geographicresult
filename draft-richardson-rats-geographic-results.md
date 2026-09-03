@@ -195,6 +195,7 @@ $$ear-appraisal-extension //= (
 
 geographic-result-claims = non-empty<{
   ? grm.claim-uuid => corim.uuid-type
+  ? grm.provence   => grc.provence-values
   ? grc.jurisdiction-country-label => iso-3166-alpha-2-country-code
   ? grc.jurisdiction-country-exclave-label => bool
   ? grc.jurisdiction-subdivision-label => tstr .size (2..16)
@@ -212,7 +213,6 @@ geographic-result-claims = non-empty<{
 
 ear.geographic-result-label = eat.JC<"TBD02", TBD01>
 
-grc.claim-uuid = corim.uuid-type
 grc.jurisdiction-country-label = eat.JC<"grc.jurisdiction-country", 0>
 grc.jurisdiction-country-exclave-label = eat.JC<"grc.jurisdiction-country-exclave", 1>
 grc.jurisdiction-subdivision-label = eat.JC<"grc.jurisdiction-state", 2>
@@ -226,8 +226,12 @@ grc.cabinet-number = eat.JC<"grc.cabinet-number", 9>
 grc.hallway-number = eat.JC<"grc.hallway-number", 10>
 grc.room-number = eat.JC<"grc.room-number", 10>
 grc.floor-number = eat.JC<"grc.floor-number", 11>
+grc.claim-uuid = eat.JC("corim.uuid-type", 12>
+grm.provence   = eat.JC("grc.provence-values", 13>
 
 iso-3166-alpha-2-country-code = tstr .size 2
+grm.provence   = tstr .size 8
+
 ~~~~
 
 There are a number of different fields in this claim, and all of them are marked optional.
@@ -304,6 +308,23 @@ However, it is possible that such an attack could make subsequent calculations i
 # IANA Considerations
 
 IANA is asked to allocate TBD01 from the "CBOR Web Token Claims" registry [IANA.cwt] (from a Specification Required Integer range), and TBD02 (suggestion: "ear.geographic-result-claims") from the "JSON Web Token Claims" registry [IANA.jwt].
+
+## Provenance Values
+
+IANA is asked to create a new registry, "Geographic Results Provenance Values".
+This registry contains the following columns:
+
+* a string/label of up to 12 characters
+* one unsigned integer.
+* a reference to the RFC
+
+New values may be added by RFC Required.
+The string SHALL be the name of the RFC in the form "RFC123456" (for an RFC of that number) and the integer SHALL be the number 123456.
+
+Note that only documents that actually standardize ways to calculate geographic results, are to be included.
+Implementers MAY use a string of the form "I-D.something" for both JSON and CBOR
+encoded results as Private Use values prior to publication of an RFC.
+
 
 --- back
 
