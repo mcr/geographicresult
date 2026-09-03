@@ -48,6 +48,12 @@ informative:
     author:
       org: Wikipedia
     date: 2025-10-07
+  obp:
+    target: "https://www.iso.org/obp/ui/#search"
+    title: "ISO Online Browsing Platform"
+    date: 2026-03-01
+    author:
+       org: "International Standards Organization"
   IDevID:
     target: https://1.ieee802.org/security/802-1ar/l
     title: IEEE 802.1AR Secure Device Identifier
