@@ -85,11 +85,9 @@ This document is about encoding a variety of geographical conclusions in an Atte
 
 # Introduction
 
-Resolving the question of where certain computations occurs can be critical to assessing how much trust to put into the result.
+Resolving the question of where certain computations are done can be critical to assessing how much trust to put into the result.
 
-Example.
-Example.
-Example.
+MORE USE CASES HERE.
 
 {{I-D.ietf-rats-ear}} provides a framework that allows an {{-Architecture}} Verifier to return a conclusion as to geographic region for an Target Environment.
 
@@ -101,7 +99,10 @@ There are a few reasons:
 
 * the geographic position can leak significant amount of private information that is not necessary for the Relying Party to know.   Information not collected/stored can not be inadvertently disclosed.
 
-* for many activities, it is the Legal Jurisdiction that matters, not the actual location.  Jurisdictions often do not have well defined concentric boundaries.  For instance, the Korean Consultate in Los Angelos is usually for Legal purposes, in Korea.  Yet, only a few meters away, possibly below the level of WGS84 accuracy, the jurisdiction would be different.
+* for many activities, it is the Legal Jurisdiction that matters, not the actual location.
+Jurisdictions often do not have well defined concentric boundaries.
+For instance, the South Korean Consultate in Los Angelos is usually for Legal purposes, in Korea.
+Yet, only a few meters away, possibly below the level of WGS84 accuracy, the jurisdiction would be different.
 
 This document offers a new set of structured abstract claims that provides an evaluated view of where a Target Environment is.
 The mechanism to do this appraisal may depend upon a number of factors which may be related to physical geographic position, but also include other considerations.
@@ -109,9 +110,21 @@ The mechanism to do this appraisal may depend upon a number of factors which may
 There are many different ways in which a Verifier might generate this result from Evidence and/or Endorsements that are provided to it.
 The exact method can be important for a small number of uses, but more often, if the Verify is trusted, then the details are not important.
 The exact method may be of interest only during forensic audits.
-This document does *not* standardize any mechanism for a Verify to appraise location data.  That effort is provided by other documents, including {{I-D.lkspa-rats-verifiable-geo-fence}}.
+This document does *not* standardize any mechanism for a Verify to appraise location data.
 
-As an example of a method, not described here,  there could be Evidence that a Target Environment is less than 1ns (as light travels in a fiber optic cable) away from another Target Enviroment whose location is known.   Given a typical fiber optic cable has a speed of 200,000 kilometers per second (slower than light in a vacuum due to the index of refraction of the glass involved), so if the round trip time between environments is 1ns, then the distance between Target Environments can be appraised to be within 1m of each other.
+The most obvious way is through various Global Navitation Satellite Systems (GNSS): the United States Global Positioning System (GPS), Russia's Global Navigation Satellite System (GLONASS), China's BeiDou Navigation Satellite System (BDS) and the European Union's Galileo.
+These signals can be spoofed, manipulated and suppressed, however that does not render these signals useless, just that the level of trust must be carefully evaluated.
+There are also many environments, such as inside a (Faraday) cage in a Data Center, where GNSS signals do not reach.
+
+There are also other radio methods, such as time of travel calculations from a mobile (LTE) tower.
+
+{{I-D.lkspa-rats-verifiable-geo-fence}} provides a more general architecture for such evaluations.
+
+As an example of another method, described in {{?I-D.ramki-ptp-hardware-rooted-attestation}},  there could be Evidence that a Target Environment is less than 1ns (as light travels in a fiber optic cable) away from another Target Enviroment whose location is known.
+Given a typical fiber optic cable has a speed of 200,000 kilometers per second (slower than light in a vacuum due to the index of refraction of the glass involved), so if the round trip time between environments is 1ns, then the distance between Target Environments can be appraised to be within 1m of each other.
+
+Whether or not any of these methods are a good enough measure of location is not the subject of this document.
+Rather, if a Verifier believes that information trustworthy for the purpose intended, then it may use the format described here to document it's conclusion.
 
 In addition to detailing the Attestation Result (EAR) format for the results, this document also addresses the case of an Endorsement created as to a device's location.
 {{popendorsement}} details a processs by which this Endorsement could be generated by a human auditor equipped with a smartphone, tablet, or dedicated auditing device.
