@@ -4,8 +4,8 @@
 
 RATS (if adopted)                                          M. Richardson
 Internet-Draft                                  Sandelman Software Works
-Intended status: Standards Track                        3 September 2026
-Expires: 7 March 2027
+Intended status: Standards Track                          S. Nikolaichuk
+Expires: 8 March 2027                                   4 September 2026
 
 
                      Geographic Attestation Results
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 March 2027.
+   This Internet-Draft will expire on 8 March 2027.
 
 Copyright Notice
 
@@ -102,7 +102,7 @@ Table of Contents
      A.5.  Privacy Considerations
      A.6.  Security Considerations
    Acknowledgments
-   Author's Address
+   Authors' Addresses
 
 1.  Introduction
 
@@ -846,8 +846,12 @@ Acknowledgments
 
    TODO acknowledge.
 
-Author's Address
+Authors' Addresses
 
    Michael Richardson
    Sandelman Software Works
    Email: mcr+ietf@sandelman.ca
+
+
+   Serhii Nikolaichuk
+   Email: nikolaichuk.s.f@gmail.com
