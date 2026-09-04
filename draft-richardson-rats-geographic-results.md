@@ -75,25 +75,6 @@ informative:
     date: 2026-03-01
     author:
        org: "International Standards Organization"
-  IDevID:
-    target: https://1.ieee802.org/security/802-1ar/l
-    title: IEEE 802.1AR Secure Device Identifier
-    author:
-    - org: IEEE Standard
-    date: 2018
-  LLDP:
-    target: https://www.ieee802.org/1/pages/802.1AB-rev.html
-    title: 802.1AB-REV - Station and Media Access Control Connectivity Discovery
-    author:
-    - org: IEEE Standard
-    date: 2009-06-19
-  rollover:
-    target: https://en.wikipedia.org/wiki/Rollover_cable
-    title: Console Rollover Cable
-    author:
-    - org: Wikipedia
-    date: 2025-04-26
-
 
 --- abstract
 
