@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-03T03:50:55.301677+00:00",
+  "timestamp": "2026-09-06T03:54:57.527926+00:00",
   "repo": "mcr/geographicresult",
   "labels": [
     {
@@ -49,7 +49,32 @@
       "color": "ffffff"
     }
   ],
-  "issues": [],
+  "issues": [
+    {
+      "number": 2,
+      "id": "I_kwDOPwVOic8AAAABPisRmg",
+      "title": "include a way to indicate provence/calculation",
+      "url": "https://github.com/mcr/geographicresult/issues/2",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "from https://mailarchive.ietf.org/arch/msg/rats/gJBC5a0lFrSI8lm9Vd4u37aqhag\n\n````\nThe question is whether a                                             \ngeographic Result should be able to carry some indication of the class                                            \nof input it rests on, so that it is not read as stronger than the                                                 \nevidence underneath it. If that belongs in a later revision or nowhere                                            \nat all, that is a fine answer.                                   \n```\n\n",
+      "createdAt": "2026-09-03T14:42:52Z",
+      "updatedAt": "2026-09-03T14:43:20Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "mcr",
+          "authorAssociation": "OWNER",
+          "body": "Should there be a new attribute, with an IANA registry for calculation?\n",
+          "createdAt": "2026-09-03T14:43:20Z",
+          "updatedAt": "2026-09-03T14:43:20Z"
+        }
+      ]
+    }
+  ],
   "pulls": [
     {
       "number": 1,
@@ -99,6 +124,144 @@
           ]
         }
       ]
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOPwVOic8AAAABCFDbKA",
+      "title": "fix CDDL label collision + add grc.basis for result strength",
+      "url": "https://github.com/mcr/geographicresult/pull/3",
+      "state": "MERGED",
+      "author": "nikolaichuk7",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Two changes, both against the CDDL in Section 4:\n\n1. `grc.room-number` and `grc.hallway-number` both encoded to label 10 \u2014 a CBOR decode collision. Moved `room-number` to 13.\n\n2. Adds an optional `grc.basis` (label 14), addressing #2. Rather than a closed list of positioning techniques (which would need extending every time a new one shows up), it reuses the three roles RFC 9334 already defines and this draft already cites normatively: `evidence` (the Attester itself produced the location \u2014 a signed GNSS fix, or the proximity measurement in Appendix A), `endorsement` (a third party vouches for it \u2014 e.g. a cloud provider's signed statement about a rack), `attestation-result` (a Verifier computed or inferred it \u2014 e.g. an operator-selected console region label, which today carries none of the strength of the first two but is indistinguishable from them in the current claims map). An optional `ref` points a Relying Party at the specific supporting claim by digest without embedding it, mirroring how draft-ietf-rats-endorsements keeps Endorsements separate from the Evidence they support.\n\nVerified against a clean build: baseline idnits was 4 errors / 1 flaw / 3 warnings (all pre-existing, unrelated to this section); after this change, identical counts, nothing new introduced. The `&(...)` group-to-choice syntax follows RFC 8610 \u00a72.2.2.2 verbatim.\n\nHappy to adjust the label numbers or field names if you'd rather go a different direction \u2014 this is meant to open the specific design question in #2, not settle it.",
+      "createdAt": "2026-09-03T15:40:53Z",
+      "updatedAt": "2026-09-03T16:01:42Z",
+      "baseRepository": "mcr/geographicresult",
+      "baseRefName": "main",
+      "baseRefOid": "3d5249c54a65973402f7a3851e54cd50161e56c3",
+      "headRepository": "mcr/geographicresult",
+      "headRefName": "grc-basis-and-label-fix",
+      "headRefOid": "299007da43f28643dd93af93dad3a9b6a8dd8689",
+      "closedAt": "2026-09-03T16:01:42Z",
+      "mergedAt": "2026-09-03T16:01:42Z",
+      "mergedBy": "mcr",
+      "mergeCommit": {
+        "oid": "3be864870b4eaafb05fb0c8535d7b1c1b803e099"
+      },
+      "comments": [
+        {
+          "author": "mcr",
+          "authorAssociation": "OWNER",
+          "body": "better to do this as two PRs, and we cross-ships, with my #4 ",
+          "createdAt": "2026-09-03T15:57:30Z",
+          "updatedAt": "2026-09-03T15:57:30Z"
+        },
+        {
+          "author": "mcr",
+          "authorAssociation": "OWNER",
+          "body": "> Two changes, both against the CDDL in Section 4:\r\n>     1. `grc.room-number` and `grc.hallway-number` both encoded to label 10 \u2014 a CBOR decode collision. Moved `room-number` to 13.\r\n\r\nDuh. \r\n\r\n>     2. Adds an optional `grc.basis` (label 14), addressing [include a way to indicate provence/calculation #2](https://github.com/mcr/geographicresult/issues/2). Rather than a closed list of positioning techniques (which would need extending every time a new one shows up), it reuses the three roles RFC 9334 already defines and this draft already cites normatively: `evidence` (the Attester itself produced the location \u2014 a signed GNSS fix, or the proximity measurement in Appendix A), `endorsement` (a third party vouches for it \u2014 e.g. a cloud provider's signed statement about a rack), `attestation-result` (a Verifier computed or inferred it \u2014 e.g. an operator-selected console region label, which today carries none of the strength of the first two but is indistinguishable from them in the current claims map). An optional `ref` points a Relying Party at the specific supporting claim by digest without embedding it, mirroring how draft-ietf-rats-endorsements keeps Endorsements separate from the Evidence they support.\r\n\r\nI think that this is the wrong set of values.\r\nI think that if one cares, one cares about the precise method.\r\n\r\n> Verified against a clean build: baseline idnits was 4 errors / 1 flaw / 3 warnings (all pre-existing, unrelated to this section); after this change, identical counts, nothing new introduced. The `&(...)` group-to-choice syntax follows RFC 8610 \u00a72.2.2.2 verbatim.\r\n\r\nyeah okay.\r\n\r\n> Happy to adjust the label numbers or field names if you'd rather go a different direction \u2014 this is meant to open the specific design question in #2, not settle it.\r\n\r\nI've merged the parts not related to basis.\r\n",
+          "createdAt": "2026-09-03T15:59:16Z",
+          "updatedAt": "2026-09-03T15:59:16Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOPwVOic8AAAABMDoHYQ",
+          "commit": {
+            "abbreviatedOid": "299007d"
+          },
+          "author": "mcr",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2026-09-03T15:59:54Z",
+          "updatedAt": "2026-09-03T16:01:28Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "```suggestion\n\n```",
+              "createdAt": "2026-09-03T15:59:55Z",
+              "updatedAt": "2026-09-03T16:01:28Z"
+            },
+            {
+              "originalPosition": 55,
+              "body": "```suggestion\nWithout grc.provence, a Relying Party has no way to tell a hardware-rooted\n```",
+              "createdAt": "2026-09-03T16:00:29Z",
+              "updatedAt": "2026-09-03T16:01:28Z"
+            },
+            {
+              "originalPosition": 53,
+              "body": "```suggestion\n\n```",
+              "createdAt": "2026-09-03T16:00:56Z",
+              "updatedAt": "2026-09-03T16:01:28Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOPwVOic8AAAABCFKiFw",
+      "title": "feat: add provence values",
+      "url": "https://github.com/mcr/geographicresult/pull/4",
+      "state": "OPEN",
+      "author": "mcr",
+      "authorAssociation": "OWNER",
+      "assignees": [],
+      "labels": [],
+      "body": "close #2 ",
+      "createdAt": "2026-09-03T15:54:52Z",
+      "updatedAt": "2026-09-03T19:34:25Z",
+      "baseRepository": "mcr/geographicresult",
+      "baseRefName": "main",
+      "baseRefOid": "6c123831f230e7c9713e933bed9272db7e4e5cfa",
+      "headRepository": "mcr/geographicresult",
+      "headRefName": "provenance-claim",
+      "headRefOid": "59dacc2906e7e58785de32168819e4da4ba1ee66",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "nikolaichuk7",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The CDDL on this branch does not parse. With `eat.JC<J,C>` stubbed, using the `cddl` gem 0.12.14:\n\n```\n$ cat t.cddl\neat.JC<J, C> = C\ngrc.claim-uuid = eat.JC(\"corim.uuid-type\", 12>\n\n$ cddl t.cddl generate\n*** Look for syntax problems around the %%% markers:\ngrc.claim-uuid = eat.JC%%%(\"corim.uuid-type\", 12>\n*** Parse error at 40 upto 40 of 64 (1410).\n```\n\nLines 229 and 230 open the generic argument list with `(` and close it with `>`. Changing `(` to `<` on both fixes it \u2014 the `>` is already right. Control: `eat.JC<\"corim.uuid-type\", 12>` parses and emits `12`.\n\nFixing the delimiter surfaces two more inside the same five added lines:\n\n```\nDuplicate rule definition grm.provence\n  -- old: >eat.JC<\"grc.provence-values\", 13>\"]<  (line 230)\n  -- new: >tstr .size 8\"]<                       (line 233)\n\nUnknown type grc.provence-values\n  referenced at line 198, never defined\n```\n\nSeparately, on the value type. `tstr .size 8` is exactly 8 bytes, so it rejects every form the Provenance Values section mandates:\n\n```\nx = tstr .size 8\n  \"RFC9711\"        -> REJECT   (7)\n  \"RFC123456\"      -> REJECT   (9)\n  \"I-D.something\"  -> REJECT   (13)\n```\n\n`tstr / uint` accepts all three, and also the bare integer form the section describes.\n\nRebase note: the base here is `6c12383`, so this branch still carries `grc.hallway-number` and `grc.room-number` both at label 10. On current main `room-number` is 12, and 13 upward are free.\n\nOne naming thing, lowest priority: the CDDL spells `provence` while the section heading and registry name spell `Provenance`. The prose is already right.\n",
+          "createdAt": "2026-09-03T19:34:25Z",
+          "updatedAt": "2026-09-03T19:34:25Z"
+        }
+      ],
+      "reviews": []
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDOPwVOic8AAAABCGnjog",
+      "title": "accept co-author invitation: add author block entry",
+      "url": "https://github.com/mcr/geographicresult/pull/5",
+      "state": "MERGED",
+      "author": "nikolaichuk7",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Accepting the invitation from your message on rats@ietf.org today:\n\n> I also have invited Serhii as a co-author, and should ey wish to accept, send a PR adding eir name.\n\nAuthor block only, no technical changes. Happy to use a different form of the name or add an org line if you prefer.\n\nThank you.",
+      "createdAt": "2026-09-03T19:11:04Z",
+      "updatedAt": "2026-09-04T00:23:18Z",
+      "baseRepository": "mcr/geographicresult",
+      "baseRefName": "main",
+      "baseRefOid": "13e7b8b0ae9dff11023fb25bed2735c2b8dd3b18",
+      "headRepository": "mcr/geographicresult",
+      "headRefName": "add-coauthor",
+      "headRefOid": "d4fb60ab74759b0139ecfb117287026e5fa38c17",
+      "closedAt": "2026-09-04T00:23:18Z",
+      "mergedAt": "2026-09-04T00:23:18Z",
+      "mergedBy": "mcr",
+      "mergeCommit": {
+        "oid": "c2b31a1f2ec4cb8f0f6af06c350fdfb8dc6137ee"
+      },
+      "comments": [],
+      "reviews": []
     }
   ]
 }
