@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-06T03:54:57.527926+00:00",
+  "timestamp": "2026-09-10T04:00:55.632705+00:00",
   "repo": "mcr/geographicresult",
   "labels": [
     {
@@ -260,6 +260,32 @@
       "mergeCommit": {
         "oid": "c2b31a1f2ec4cb8f0f6af06c350fdfb8dc6137ee"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOPwVOic8AAAABCr---Q",
+      "title": "add grm.basis and a claim-uuid label; fix two undefined CDDL names; worked examples",
+      "url": "https://github.com/mcr/geographicresult/pull/6",
+      "state": "OPEN",
+      "author": "nikolaichuk7",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Title: add grm.basis and a claim-uuid label; fix two undefined CDDL names; worked examples\n\nFollows the list thread on \"Should it care?\" and Michael's reply of 8 September (\"actually we need two (orthogonal) claims\"). This PR carries the class claim; the provenance registry text stays in #4 and applies on top.\n\n**What changes**\n\n- `grm.basis` (label 14): the class of artifact a geographic result rests on \u2014 `evidence` / `endorsement` / `attestation-result`, the three artifact classes of RFC 9334 Section 4.2 \u2014 written as a group-to-choice (RFC 8610 Section 2.2.2.2). Orthogonal to a provenance value: the class can always be populated, a standardized method only sometimes.\n- `grm.claim-uuid` gets a label (13). On main it is referenced inside the map but never defined, so the CDDL block does not parse (`cddl` 0.12.14: \"Unknown type grm.claim-uuid\"). `grc.jurisdiction-state-exclave-label` was likewise referenced but never defined; the map now uses the defined `subdivision-exclave` label. After this PR the block parses.\n- Prose: a short subsection on basis; a MUST for `claim-uuid` when a result is meant to be consumed as an Endorsement by another Verifier, so the consuming Verifier's result can say `endorsement` while the original class stays one hop away through the uuid; a Security Considerations subsection (\"this Verifier is trusted\" vs \"this Verifier had something to work with\").\n- Appendix \"Worked Examples\": two results from a Verifier written against this document and run over 26 public-cloud attestation artifacts. Azure West Europe \u2192 `{0: \"NL\", 13: uuid, 14: 1}` (25 bytes); GCP europe-west4 (SEV-SNP) \u2192 `{0: \"NL\", 4: \"Eemshaven\", 13: uuid, 14: 2}` (36 bytes). All 26 emitted results validate against the new CDDL; maps with `basis` 3, `basis` as text, or a 15-byte uuid are rejected.\n\n**Labels.** 0\u201312 are taken on main; 13 and 14 are the next free values. #4 assigns 12 to claim-uuid, which collides with `room-number`; rebasing #4 onto this branch resolves that and leaves 15 for `provence`.\n\n**Checks.** `kdrfc` builds; author-tools validation reports no errors (the remaining warnings are pre-existing: unused `ptp`/`speed` references, long lines in the presence appendix).\n",
+      "createdAt": "2026-09-08T14:29:52Z",
+      "updatedAt": "2026-09-08T14:29:53Z",
+      "baseRepository": "mcr/geographicresult",
+      "baseRefName": "main",
+      "baseRefOid": "9c4cd3229e318166f278c2651315fc874fc60bf4",
+      "headRepository": "mcr/geographicresult",
+      "headRefName": "two-claims",
+      "headRefOid": "62fe28242e5962ddea3a480931af40e0967a2b23",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
