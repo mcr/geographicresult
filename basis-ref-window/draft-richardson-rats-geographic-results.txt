@@ -645,21 +645,23 @@ A.3.  A trajectory-derived result and a second hop (basis: evidence,
    The third example is shaped after a trajectory-based producer: sixty-
    four device-signed breadcrumbs, each an H3 resolution-10 cell and a
    timestamp, fifteen minutes apart, with no coordinate ever signed or
-   seen.  The trajectory is synthetic and labelled as such in the
-   repository; the signatures, the encoding, the validation and the
-   appraisal are real, and every byte reproduces from fixed seeds.  A
-   geographic Verifier verifies the sixty-four signatures, requires each
-   whole cell to lie inside one country, and emits:
+   seen.  The cells and collection times were supplied by the author of
+   the trajectory producer and are labelled synthetic; the set carries
+   no signatures, so each breadcrumb is signed with the example's device
+   key.  The signatures, the encoding, the validation and the appraisal
+   are real, and every byte reproduces from fixed seeds.  A geographic
+   Verifier verifies the sixty-four signatures, requires each whole cell
+   to lie inside one country, and emits:
 
   {
     / grc.jurisdiction-country / 0: "NL",
-    / grm.claim-uuid /          13: h'2a4387ca93685f9f86f0addba972b4f9',
+    / grm.claim-uuid /          13: h'9c413213e4ad5396b1413d7e1c37c4f6',
     / grm.basis /               14: 0  / evidence /
   }
 
    Encoded (25 bytes):
 
-   a300624e4c0d502a4387ca93685f9f86f0addba972b4f90e00
+   a300624e4c0d509c413213e4ad5396b1413d7e1c37c4f60e00
 
    The same four bytes of jurisdiction as the two results above, resting
    on a third class.  A second Verifier consumed that result inside a
@@ -668,16 +670,16 @@ A.3.  A trajectory-derived result and a second hop (basis: evidence,
 
   {
     / grc.jurisdiction-country / 0: "NL",
-    / grm.claim-uuid /          13: h'6b78472e50a25a24a26be20816521977',
+    / grm.claim-uuid /          13: h'2bfa42bce6e45c2ab556b6a0862d11f7',
     / grm.basis /               14: 2  / attestation-result /,
-    / grm.basis-ref /           16: h'2a4387ca93685f9f86f0addba972b4f9',
-    / grm.observed-from /       17: 1(1788933600),
-    / grm.observed-until /      18: 1(1788990300)
+    / grm.basis-ref /           16: h'9c413213e4ad5396b1413d7e1c37c4f6',
+    / grm.observed-from /       17: 1(1767226500),
+    / grm.observed-until /      18: 1(1767283200)
   }
 
    Encoded (57 bytes):
 
-a600624e4c0d506b78472e50a25a24a26be208165219770e0210502a4387ca93685f9f86f0addba972b4f911c11a6aa0f5e012c11a6aa1d35c
+a600624e4c0d502bfa42bce6e45c2ab556b6a0862d11f70e0210509c413213e4ad5396b1413d7e1c37c4f611c11a6955bc8412c11a69569a00
 
    A Relying Party whose policy accepts only results that bottom out in
    Evidence or an Endorsement follows basis-ref to the first result and
