@@ -92,8 +92,8 @@ Table of Contents
    Appendix A.  Worked Examples
      A.1.  Microsoft Azure, West Europe (basis: endorsement)
      A.2.  Google Cloud, europe-west4 (basis: attestation-result)
-     A.3.  A trajectory-derived result and a second hop (basis:
-           evidence, then attestation-result)
+     A.3.  A result resting on another result (basis:
+           attestation-result, with basis-ref and an observation window)
    Appendix B.  Proof of Placement
      B.1.  Introduction
        B.1.1.  Overview of mechanism
@@ -639,34 +639,14 @@ a400624e4c046945656d73686176656e0d505e1a26c009cb5e8489c4f9efa68f78ad0e02
    carried any locational input and none for the seven SEV-SNP reports
    that carried none at all; all 19 results validate.
 
-A.3.  A trajectory-derived result and a second hop (basis: evidence,
-      then attestation-result)
+A.3.  A result resting on another result (basis: attestation-result,
+      with basis-ref and an observation window)
 
-   The third example is shaped after a trajectory-based producer: sixty-
-   four device-signed breadcrumbs, each an H3 resolution-10 cell and a
-   timestamp, fifteen minutes apart, with no coordinate ever signed or
-   seen.  The cells and collection times were supplied by the author of
-   the trajectory producer and are labelled synthetic; the set carries
-   no signatures, so each breadcrumb is signed with the example's device
-   key.  The signatures, the encoding, the validation and the appraisal
-   are real, and every byte reproduces from fixed seeds.  A geographic
-   Verifier verifies the sixty-four signatures, requires each whole cell
-   to lie inside one country, and emits:
-
-  {
-    / grc.jurisdiction-country / 0: "NL",
-    / grm.claim-uuid /          13: h'9c413213e4ad5396b1413d7e1c37c4f6',
-    / grm.basis /               14: 0  / evidence /
-  }
-
-   Encoded (25 bytes):
-
-   a300624e4c0d509c413213e4ad5396b1413d7e1c37c4f60e00
-
-   The same four bytes of jurisdiction as the two results above, resting
-   on a third class.  A second Verifier consumed that result inside a
-   signed EAR as an Attestation Result and emitted its own, carrying the
-   reference and the interval:
+   A Verifier consumed a geographic result that another Verifier had
+   derived from a device-signed trajectory (sixty-four H3 cells
+   collected fifteen minutes apart; the set was supplied by the author
+   of draft-ayerbe-trip-protocol and is labelled synthetic), and emitted
+   its own:
 
   {
     / grc.jurisdiction-country / 0: "NL",
@@ -681,13 +661,16 @@ A.3.  A trajectory-derived result and a second hop (basis: evidence,
 
 a600624e4c0d502bfa42bce6e45c2ab556b6a0862d11f70e0210509c413213e4ad5396b1413d7e1c37c4f611c11a6955bc8412c11a69569a00
 
-   A Relying Party whose policy accepts only results that bottom out in
-   Evidence or an Endorsement follows basis-ref to the first result and
-   accepts; the same result without basis-ref is rejected by that policy
-   and accepted by a policy that trusts the signing Verifier.  Both
-   encodings, the signed EARs, the forged and reference-less controls
-   and the appraisal table are in examples/trip-synthetic/ of the
-   repository.
+   basis-ref is the claim-uuid of the first Verifier's result, which
+   carried basis 0 (evidence) and the same jurisdiction; observed-from
+   and observed-until are the first and last collection times of the
+   trajectory, carried forward unchanged.  A Relying Party whose policy
+   accepts only results that bottom out in Evidence or an Endorsement
+   follows basis-ref and accepts; the same result without basis-ref is
+   rejected by that policy and accepted by a policy that trusts the
+   signing Verifier.  The Verifier chain that produced these bytes, with
+   the signed EARs in diagnostic notation, is published separately by
+   one of the authors.
 
 Appendix B.  Proof of Placement
 

@@ -1210,7 +1210,7 @@ In addition, one mechanism of directly creating a geographic result in the form 
                 <p id="section-toc.1-1.8.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-google-cloud-europe-west4-b" class="internal xref">Google Cloud, europe-west4 (basis: attestation-result)</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
-                <p id="section-toc.1-1.8.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-a-trajectory-derived-result" class="internal xref">A trajectory-derived result and a second hop (basis: evidence, then attestation-result)</a></p>
+                <p id="section-toc.1-1.8.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-a-result-resting-on-another" class="internal xref">A result resting on another result (basis: attestation-result, with basis-ref and an observation window)</a></p>
 </li>
             </ul>
 </li>
@@ -1723,32 +1723,13 @@ Across the 26 artifacts of the capture (twelve AWS Nitro documents, ten SEV-SNP 
 The Verifier emitted a geographic result for the 19 artifacts that carried any locational input and none for the seven SEV-SNP reports that carried none at all; all 19 results validate.<a href="#appendix-A.2-5" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="a-trajectory-derived-result-and-a-second-hop-basis-evidence-then-attestation-result">
+<div id="a-result-resting-on-another-result-basis-attestation-result-with-basis-ref-and-an-observation-window">
 <section id="appendix-A.3">
-        <h3 id="name-a-trajectory-derived-result">
-<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-a-trajectory-derived-result" class="section-name selfRef">A trajectory-derived result and a second hop (basis: evidence, then attestation-result)</a>
+        <h3 id="name-a-result-resting-on-another">
+<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-a-result-resting-on-another" class="section-name selfRef">A result resting on another result (basis: attestation-result, with basis-ref and an observation window)</a>
         </h3>
-<p id="appendix-A.3-1">The third example is shaped after a trajectory-based producer: sixty-four device-signed breadcrumbs, each an H3 resolution-10 cell and a timestamp, fifteen minutes apart, with no coordinate ever signed or seen.
-The cells and collection times were supplied by the author of the trajectory producer and are labelled synthetic; the set carries no signatures, so each breadcrumb is signed with the example's device key. The signatures, the encoding, the validation and the appraisal are real, and every byte reproduces from fixed seeds.
-A geographic Verifier verifies the sixty-four signatures, requires each whole cell to lie inside one country, and emits:<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
+<p id="appendix-A.3-1">A Verifier consumed a geographic result that another Verifier had derived from a device-signed trajectory (sixty-four H3 cells collected fifteen minutes apart; the set was supplied by the author of draft-ayerbe-trip-protocol and is labelled synthetic), and emitted its own:<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
 <div class="alignLeft art-text artwork" id="appendix-A.3-2">
-<pre>
-{
-  / grc.jurisdiction-country / 0: "NL",
-  / grm.claim-uuid /          13: h'9c413213e4ad5396b1413d7e1c37c4f6',
-  / grm.basis /               14: 0  / evidence /
-}
-</pre><a href="#appendix-A.3-2" class="pilcrow">¶</a>
-</div>
-<p id="appendix-A.3-3">Encoded (25 bytes):<a href="#appendix-A.3-3" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.3-4">
-<pre>
-a300624e4c0d509c413213e4ad5396b1413d7e1c37c4f60e00
-</pre><a href="#appendix-A.3-4" class="pilcrow">¶</a>
-</div>
-<p id="appendix-A.3-5">The same four bytes of jurisdiction as the two results above, resting on a third class.
-A second Verifier consumed that result inside a signed EAR as an Attestation Result and emitted its own, carrying the reference and the interval:<a href="#appendix-A.3-5" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.3-6">
 <pre>
 {
   / grc.jurisdiction-country / 0: "NL",
@@ -1758,16 +1739,17 @@ A second Verifier consumed that result inside a signed EAR as an Attestation Res
   / grm.observed-from /       17: 1(1767226500),
   / grm.observed-until /      18: 1(1767283200)
 }
-</pre><a href="#appendix-A.3-6" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.3-2" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.3-7">Encoded (57 bytes):<a href="#appendix-A.3-7" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.3-8">
+<p id="appendix-A.3-3">Encoded (57 bytes):<a href="#appendix-A.3-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.3-4">
 <pre>
 a600624e4c0d502bfa42bce6e45c2ab556b6a0862d11f70e0210509c413213e4ad5396b1413d7e1c37c4f611c11a6955bc8412c11a69569a00
-</pre><a href="#appendix-A.3-8" class="pilcrow">¶</a>
+</pre><a href="#appendix-A.3-4" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.3-9">A Relying Party whose policy accepts only results that bottom out in Evidence or an Endorsement follows <code>basis-ref</code> to the first result and accepts; the same result without <code>basis-ref</code> is rejected by that policy and accepted by a policy that trusts the signing Verifier.
-Both encodings, the signed EARs, the forged and reference-less controls and the appraisal table are in <code>examples/trip-synthetic/</code> of the repository.<a href="#appendix-A.3-9" class="pilcrow">¶</a></p>
+<p id="appendix-A.3-5"><code>basis-ref</code> is the <code>claim-uuid</code> of the first Verifier's result, which carried <code>basis</code> 0 (evidence) and the same jurisdiction; <code>observed-from</code> and <code>observed-until</code> are the first and last collection times of the trajectory, carried forward unchanged.
+A Relying Party whose policy accepts only results that bottom out in Evidence or an Endorsement follows <code>basis-ref</code> and accepts; the same result without <code>basis-ref</code> is rejected by that policy and accepted by a policy that trusts the signing Verifier.
+The Verifier chain that produced these bytes, with the signed EARs in diagnostic notation, is published separately by one of the authors.<a href="#appendix-A.3-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
