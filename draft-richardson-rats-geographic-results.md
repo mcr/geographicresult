@@ -303,7 +303,8 @@ The Endorsement may be provided to a Verifier through out of band means, or it c
 
 A geographic Attestation Result states where the Attester's platform was found to be, not where the Relying Party's peer is.
 An Attester elsewhere can present a genuine Result that a platform in the attested place obtained, and nothing in the Result itself shows the substitution; this is the diversion attack of {{ID-Crisis}} (Section 8).
-A Relying Party SHOULD therefore require that the Evidence behind the Result be bound to the session in which the Result is used, for instance by placing a digest of the session's ephemeral key, or of a TLS exporter value {{RFC9266}}, in the freshness field of the Evidence (REPORT_DATA for AMD SEV-SNP, REPORTDATA for Intel TDX, the extraData of a TPM quote), and a Verifier SHOULD carry that binding into the Result.
+A Relying Party SHOULD therefore require that the Evidence behind the Result be bound to the session in which the Result is used, and a Verifier SHOULD carry that binding into the Result.
+The binding has to be to a value derived from the session's shared secret, such as the TLS exporter value of {{RFC9266}}, placed in the freshness field of the Evidence (REPORT_DATA for AMD SEV-SNP, REPORTDATA for Intel TDX, the extraData of a TPM quote); binding the Evidence to a public key alone does not correlate it with the session, as the analysis of the binding mechanisms in {{ID-Crisis}} shows.
 A Result that is merely fresh is not bound.
 
 ## Masked Platform Identities
