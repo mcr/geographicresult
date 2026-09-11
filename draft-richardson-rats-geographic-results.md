@@ -178,11 +178,11 @@ $$ear-appraisal-extension //= (
 )
 
 geographic-result-claims = non-empty<{
-  ? grm.claim-uuid => corim.uuid-type
+  ? grc.claim-uuid => corim.uuid-type
   ? grc.jurisdiction-country-label => iso-3166-alpha-2-country-code
   ? grc.jurisdiction-country-exclave-label => bool
   ? grc.jurisdiction-subdivision-label => tstr .size (2..16)
-  ? grc.jurisdiction-state-exclave-label => bool
+  ? grc.jurisdiction-subdivision-exclave-label => bool
   ? grc.jurisdiction-city-label => tstr .size(2..16)
   ? grc.jurisdiction-city-exclave-label => bool
   ? grc.enclosing-exclave-country-label => iso-3166-alpha-2-country-code
