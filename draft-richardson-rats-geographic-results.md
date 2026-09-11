@@ -48,6 +48,16 @@ informative:
     seriesinfo:
       "Proceedings of the ACM Asia Conference on Computer and Communications Security": "pp. 547-560"
     date: 2026-06
+  Intra-handshake.fail:
+    target: https://www.researchgate.net/publication/408219182_Intra-handshakefail_CVE-2026-33697_High-severity_CVE_in_Attested_TLS
+    title: "Intra-handshake.fail (CVE-2026-33697): High-severity CVE in Attested TLS"
+    author:
+    - name: Muhammad Usama Sardar
+    - name: Viacheslav Dubeyko
+    - name: Jean-Marie Jacquet
+    seriesinfo:
+      "31st European Symposium on Research in Computer Security (ESORICS)": "LNCS, to appear"
+    date: 2026-09
   SNP-ABI:
     target: https://www.amd.com/content/dam/amd/en/documents/developer/56860.pdf
     title: SEV Secure Nested Paging Firmware ABI Specification, Revision 1.58
@@ -304,13 +314,17 @@ The Endorsement may be provided to a Verifier through out of band means, or it c
 A geographic Attestation Result states where the Attester's platform was found to be, not where the Relying Party's peer is.
 An Attester elsewhere can present a genuine Result that a platform in the attested place obtained, and nothing in the Result itself shows the substitution; this is the diversion attack of {{ID-Crisis}} (Section 8).
 A Relying Party SHOULD therefore require that the Evidence behind the Result be bound to the session in which the Result is used, and a Verifier SHOULD carry that binding into the Result.
-The binding has to be to a value derived from the session's shared secret, such as the TLS exporter value of {{RFC9266}}, placed in the freshness field of the Evidence (REPORT_DATA for AMD SEV-SNP, REPORTDATA for Intel TDX, the extraData of a TPM quote); binding the Evidence to a public key alone does not correlate it with the session, as the analysis of the binding mechanisms in {{ID-Crisis}} shows.
+The binding has to be to a value derived from the session's shared secret, such as the TLS exporter value of {{RFC9266}}, placed in the freshness field of the Evidence (REPORT_DATA for AMD SEV-SNP, REPORTDATA for Intel TDX, the extraData of a TPM quote).
+Binding the Evidence to the Attester's public key, with or without a nonce, does not correlate it with the session: anyone else who holds the private key, because it leaked, was provisioned at runtime or was extracted on another machine, can present that Evidence in a session of their own, as the analysis of binding mechanisms 4 and 6 in {{Intra-handshake.fail}} shows.
+The public key MAY be included alongside the shared-secret-derived value; the binding then holds while either of the two is unknown to the attacker ({{Intra-handshake.fail}}, Section 7.2).
 A Result that is merely fresh is not bound.
 
 ## Masked Platform Identities
 
 Some platforms hide the hardware identity from the guest by policy.
 Under AMD SEV-SNP the host may set MaskChipId, in which case CHIP_ID is zero in every guest report, and may disable the per-chip key for a guest (VCEK_DIS), in which case the report is signed by a key that every machine the provider enrolled in one key domain shares {{SNP-ABI}}.
+The two are independent choices of the host and neither is visible in the report except by its effect: a report can carry the per-chip signature with a zero CHIP_ID, and then only a party that learns the chip identity from the host side can obtain the certificate that verifies it, so the certificate is itself a statement by the operator.
+The two key domains also tell a Verifier different things: the shared key is issued by the manufacturer to an enrolled provider and wrapped to each chip ({{SNP-ABI}}, Section 3.7), so a report under it shows which provider's fleet the chip was enrolled in without naming the chip, while the per-chip key names the chip without the provider.
 A zeroed or shared identity is an input to appraisal policy, not an error.
 It means that the Verifier's location conclusion cannot rest on the identity of the chip, and therefore rests on a statement by the provider or on another Verifier's Result; the provenance information in this document exists so that the Relying Party can see which.
 A Relying Party whose policy requires a per-machine identity SHOULD treat such a Result as resting on the provider.
