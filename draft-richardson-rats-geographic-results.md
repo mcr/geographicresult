@@ -178,8 +178,8 @@ $$ear-appraisal-extension //= (
 )
 
 geographic-result-claims = non-empty<{
-  ? grm.claim-uuid-label => corim.uuid-type
-  ? grm.basis-label => grm.basis-class
+  ? grc.claim-uuid-label => corim.uuid-type
+  ? grc.basis-label => grc.basis-class
   ? grc.jurisdiction-country-label => iso-3166-alpha-2-country-code
   ? grc.jurisdiction-country-exclave-label => bool
   ? grc.jurisdiction-subdivision-label => tstr .size (2..16)
@@ -197,11 +197,11 @@ geographic-result-claims = non-empty<{
 
 ear.geographic-result-label = eat.JC<"TBD02", TBD01>
 
-grm.claim-uuid-label = eat.JC<"grm.claim-uuid", 13>
-grm.basis-label = eat.JC<"grm.basis", 14>
+grc.claim-uuid-label = eat.JC<"grc.claim-uuid", 13>
+grc.basis-label = eat.JC<"grc.basis", 14>
 
 ; the class of artifact a geographic result rests on (RFC 9334, Section 4.2)
-grm.basis-class = &(
+grc.basis-class = &(
   evidence: 0,
   endorsement: 1,
   attestation-result: 2,
@@ -338,8 +338,8 @@ The Verifier accepted it as an Endorsement and records that class.
 ~~~~
 {
   / grc.jurisdiction-country / 0: "NL",
-  / grm.claim-uuid /          13: h'814f1a077ed25b798641788ef6dab3a1',
-  / grm.basis /               14: 1  / endorsement /
+  / grc.claim-uuid /          13: h'814f1a077ed25b798641788ef6dab3a1',
+  / grc.basis /               14: 1  / endorsement /
 }
 ~~~~
 
@@ -360,8 +360,8 @@ Because a zone is more specific than a region-scoped hostname, this result also 
 {
   / grc.jurisdiction-country / 0: "NL",
   / grc.jurisdiction-city /    4: "Eemshaven",
-  / grm.claim-uuid /          13: h'5e1a26c009cb5e8489c4f9efa68f78ad',
-  / grm.basis /               14: 2  / attestation-result /
+  / grc.claim-uuid /          13: h'5e1a26c009cb5e8489c4f9efa68f78ad',
+  / grc.basis /               14: 2  / attestation-result /
 }
 ~~~~
 
