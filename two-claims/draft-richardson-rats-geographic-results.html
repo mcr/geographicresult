@@ -1053,7 +1053,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Richardson &amp; Nikolaichuk</td>
-<td class="center">Expires 14 March 2027</td>
+<td class="center">Expires 15 March 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1066,12 +1066,12 @@ svg {
 <dd class="internet-draft">draft-richardson-rats-geographic-results-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-09-10" class="published">10 September 2026</time>
+<time datetime="2026-09-11" class="published">11 September 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-03-14">14 March 2027</time></dd>
+<dd class="expires"><time datetime="2027-03-15">15 March 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ In addition, one mechanism of directly creating a geographic result in the form 
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 March 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 15 March 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1394,8 +1394,8 @@ $$ear-appraisal-extension //= (
 )
 
 geographic-result-claims = non-empty&lt;{
-  ? grm.claim-uuid-label =&gt; corim.uuid-type
-  ? grm.basis-label =&gt; grm.basis-class
+  ? grc.claim-uuid-label =&gt; corim.uuid-type
+  ? grc.basis-label =&gt; grc.basis-class
   ? grc.jurisdiction-country-label =&gt; iso-3166-alpha-2-country-code
   ? grc.jurisdiction-country-exclave-label =&gt; bool
   ? grc.jurisdiction-subdivision-label =&gt; tstr .size (2..16)
@@ -1413,11 +1413,11 @@ geographic-result-claims = non-empty&lt;{
 
 ear.geographic-result-label = eat.JC&lt;"TBD02", TBD01&gt;
 
-grm.claim-uuid-label = eat.JC&lt;"grm.claim-uuid", 13&gt;
-grm.basis-label = eat.JC&lt;"grm.basis", 14&gt;
+grc.claim-uuid-label = eat.JC&lt;"grc.claim-uuid", 13&gt;
+grc.basis-label = eat.JC&lt;"grc.basis", 14&gt;
 
 ; the class of artifact a geographic result rests on (RFC 9334, Section 4.2)
-grm.basis-class = &amp;(
+grc.basis-class = &amp;(
   evidence: 0,
   endorsement: 1,
   attestation-result: 2,
@@ -1661,8 +1661,8 @@ The Verifier accepted it as an Endorsement and records that class.<a href="#appe
 <pre>
 {
   / grc.jurisdiction-country / 0: "NL",
-  / grm.claim-uuid /          13: h'814f1a077ed25b798641788ef6dab3a1',
-  / grm.basis /               14: 1  / endorsement /
+  / grc.claim-uuid /          13: h'814f1a077ed25b798641788ef6dab3a1',
+  / grc.basis /               14: 1  / endorsement /
 }
 </pre><a href="#appendix-A.1-2" class="pilcrow">¶</a>
 </div>
@@ -1688,8 +1688,8 @@ Because a zone is more specific than a region-scoped hostname, this result also 
 {
   / grc.jurisdiction-country / 0: "NL",
   / grc.jurisdiction-city /    4: "Eemshaven",
-  / grm.claim-uuid /          13: h'5e1a26c009cb5e8489c4f9efa68f78ad',
-  / grm.basis /               14: 2  / attestation-result /
+  / grc.claim-uuid /          13: h'5e1a26c009cb5e8489c4f9efa68f78ad',
+  / grc.basis /               14: 2  / attestation-result /
 }
 </pre><a href="#appendix-A.2-2" class="pilcrow">¶</a>
 </div>
