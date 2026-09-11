@@ -1495,7 +1495,9 @@ The Endorsement may be provided to a Verifier through out of band means, or it c
 <p id="section-5.3-1">A geographic Attestation Result states where the Attester's platform was found to be, not where the Relying Party's peer is.
 An Attester elsewhere can present a genuine Result that a platform in the attested place obtained, and nothing in the Result itself shows the substitution; this is the diversion attack of <span>[<a href="#ID-Crisis" class="cite xref">ID-Crisis</a>]</span> (Section 8).
 A Relying Party <span class="bcp14">SHOULD</span> therefore require that the Evidence behind the Result be bound to the session in which the Result is used, and a Verifier <span class="bcp14">SHOULD</span> carry that binding into the Result.
-The binding has to be to a value derived from the session's shared secret, such as the TLS exporter value of <span>[<a href="#RFC9266" class="cite xref">RFC9266</a>]</span>, placed in the freshness field of the Evidence (REPORT_DATA for AMD SEV-SNP, REPORTDATA for Intel TDX, the extraData of a TPM quote); binding the Evidence to a public key alone does not correlate it with the session, as the analysis of the binding mechanisms in <span>[<a href="#ID-Crisis" class="cite xref">ID-Crisis</a>]</span> shows.
+The binding has to be to a value derived from the session's shared secret, such as the TLS exporter value of <span>[<a href="#RFC9266" class="cite xref">RFC9266</a>]</span>, placed in the freshness field of the Evidence (REPORT_DATA for AMD SEV-SNP, REPORTDATA for Intel TDX, the extraData of a TPM quote).
+Binding the Evidence to the Attester's public key, with or without a nonce, does not correlate it with the session: anyone else who holds the private key, because it leaked, was provisioned at runtime or was extracted on another machine, can present that Evidence in a session of their own, as the analysis of binding mechanisms 4 and 6 in <span>[<a href="#Intra-handshake.fail" class="cite xref">Intra-handshake.fail</a>]</span> shows.
+The public key <span class="bcp14">MAY</span> be included alongside the shared-secret-derived value; the binding then holds while either of the two is unknown to the attacker (<span>[<a href="#Intra-handshake.fail" class="cite xref">Intra-handshake.fail</a>]</span>, Section 7.2).
 A Result that is merely fresh is not bound.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1506,6 +1508,8 @@ A Result that is merely fresh is not bound.<a href="#section-5.3-1" class="pilcr
         </h3>
 <p id="section-5.4-1">Some platforms hide the hardware identity from the guest by policy.
 Under AMD SEV-SNP the host may set MaskChipId, in which case CHIP_ID is zero in every guest report, and may disable the per-chip key for a guest (VCEK_DIS), in which case the report is signed by a key that every machine the provider enrolled in one key domain shares <span>[<a href="#SNP-ABI" class="cite xref">SNP-ABI</a>]</span>.
+The two are independent choices of the host and neither is visible in the report except by its effect: a report can carry the per-chip signature with a zero CHIP_ID, and then only a party that learns the chip identity from the host side can obtain the certificate that verifies it, so the certificate is itself a statement by the operator.
+The two key domains also tell a Verifier different things: the shared key is issued by the manufacturer to an enrolled provider and wrapped to each chip (<span>[<a href="#SNP-ABI" class="cite xref">SNP-ABI</a>]</span>, Section 3.7), so a report under it shows which provider's fleet the chip was enrolled in without naming the chip, while the per-chip key names the chip without the provider.
 A zeroed or shared identity is an input to appraisal policy, not an error.
 It means that the Verifier's location conclusion cannot rest on the identity of the chip, and therefore rests on a statement by the provider or on another Verifier's Result; the provenance information in this document exists so that the Relying Party can see which.
 A Relying Party whose policy requires a per-machine identity <span class="bcp14">SHOULD</span> treat such a Result as resting on the provider.<a href="#section-5.4-1" class="pilcrow">¶</a></p>
@@ -1603,6 +1607,10 @@ However, it is possible that such an attack could make subsequent calculations i
 <dt id="IDevID">[IDevID]</dt>
         <dd>
 <span class="refAuthor">IEEE Standard</span>, <span class="refTitle">"IEEE 802.1AR Secure Device Identifier"</span>, <time datetime="2018" class="refDate">2018</time>, <span>&lt;<a href="https://1.ieee802.org/security/802-1ar/l">https://1.ieee802.org/security/802-1ar/l</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="Intra-handshake.fail">[Intra-handshake.fail]</dt>
+        <dd>
+<span class="refAuthor">Sardar, M. U.</span>, <span class="refAuthor">Dubeyko, V.</span>, and <span class="refAuthor">J.-M. Jacquet</span>, <span class="refTitle">"Intra-handshake.fail (CVE-2026-33697): High-severity CVE in Attested TLS"</span>, <span class="seriesInfo">31st European Symposium on Research in Computer Security (ESORICS) LNCS, to appear</span>, <time datetime="2026-09" class="refDate">September 2026</time>, <span>&lt;<a href="https://www.researchgate.net/publication/408219182_Intra-handshakefail_CVE-2026-33697_High-severity_CVE_in_Attested_TLS">https://www.researchgate.net/publication/408219182_Intra-handshakefail_CVE-2026-33697_High-severity_CVE_in_Attested_TLS</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="LLDP">[LLDP]</dt>
         <dd>
