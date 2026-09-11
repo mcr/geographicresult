@@ -37,6 +37,23 @@ normative:
 
 informative:
   RFC9360:
+  RFC9266:
+  ID-Crisis:
+    target: https://doi.org/10.1145/3779208.3785387
+    title: "Identity Crisis in Confidential Computing: Formal Analysis of Attested TLS"
+    author:
+    - name: Muhammad Usama Sardar
+    - name: Mariam Moustafa
+    - name: Tuomas Aura
+    seriesinfo:
+      "Proceedings of the ACM Asia Conference on Computer and Communications Security": "pp. 547-560"
+    date: 2026-06
+  SNP-ABI:
+    target: https://www.amd.com/content/dam/amd/en/documents/developer/56860.pdf
+    title: SEV Secure Nested Paging Firmware ABI Specification, Revision 1.58
+    author:
+    - org: Advanced Micro Devices
+    date: 2025-05
   IDevID:
     target: https://1.ieee802.org/security/802-1ar/l
     title: IEEE 802.1AR Secure Device Identifier
@@ -281,6 +298,21 @@ The claims present in this document will most often be combined with other claim
 
 When an EAT format Endorsement is created by an auditor, the auditor signs the artifact.
 The Endorsement may be provided to a Verifier through out of band means, or it can be stored by the Attesting Environment, and carried through another protocol from Attester to Verifier.
+
+## Relayed Results
+
+A geographic Attestation Result states where the Attester's platform was found to be, not where the Relying Party's peer is.
+An Attester elsewhere can present a genuine Result that a platform in the attested place obtained, and nothing in the Result itself shows the substitution; this is the diversion attack of {{ID-Crisis}} (Section 8).
+A Relying Party SHOULD therefore require that the Evidence behind the Result be bound to the session in which the Result is used, for instance by placing a digest of the session's ephemeral key, or of a TLS exporter value {{RFC9266}}, in the freshness field of the Evidence (REPORT_DATA for AMD SEV-SNP, REPORTDATA for Intel TDX, the extraData of a TPM quote), and a Verifier SHOULD carry that binding into the Result.
+A Result that is merely fresh is not bound.
+
+## Masked Platform Identities
+
+Some platforms hide the hardware identity from the guest by policy.
+Under AMD SEV-SNP the host may set MaskChipId, in which case CHIP_ID is zero in every guest report, and may disable the per-chip key for a guest (VCEK_DIS), in which case the report is signed by a key that every machine the provider enrolled in one key domain shares {{SNP-ABI}}.
+A zeroed or shared identity is an input to appraisal policy, not an error.
+It means that the Verifier's location conclusion cannot rest on the identity of the chip, and therefore rests on a statement by the provider or on another Verifier's Result; the provenance information in this document exists so that the Relying Party can see which.
+A Relying Party whose policy requires a per-machine identity SHOULD treat such a Result as resting on the provider.
 
 ## Availability Threats
 
