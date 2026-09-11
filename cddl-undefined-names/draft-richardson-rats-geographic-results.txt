@@ -5,7 +5,7 @@
 RATS (if adopted)                                          M. Richardson
 Internet-Draft                                  Sandelman Software Works
 Intended status: Standards Track                          S. Nikolaichuk
-Expires: 14 March 2027                                 10 September 2026
+Expires: 15 March 2027                                 11 September 2026
 
 
                      Geographic Attestation Results
@@ -58,7 +58,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 March 2027.
+   This Internet-Draft will expire on 15 March 2027.
 
 Copyright Notice
 
@@ -253,7 +253,7 @@ $$ear-appraisal-extension //= (
 )
 
 geographic-result-claims = non-empty<{
-  ? grm.claim-uuid => corim.uuid-type
+  ? grc.claim-uuid => corim.uuid-type
   ? grc.jurisdiction-country-label => iso-3166-alpha-2-country-code
   ? grc.jurisdiction-country-exclave-label => bool
   ? grc.jurisdiction-subdivision-label => tstr .size (2..16)
@@ -271,7 +271,7 @@ geographic-result-claims = non-empty<{
 
 ear.geographic-result-label = eat.JC<"TBD02", TBD01>
 
-grm.claim-uuid = corim.uuid-type
+grc.claim-uuid = corim.uuid-type
 grc.jurisdiction-country-label = eat.JC<"grc.jurisdiction-country", 0>
 grc.jurisdiction-country-exclave-label = eat.JC<"grc.jurisdiction-country-exclave", 1>
 grc.jurisdiction-subdivision-label = eat.JC<"grc.jurisdiction-state", 2>
