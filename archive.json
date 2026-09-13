@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-09-10T04:00:55.632705+00:00",
+  "timestamp": "2026-09-13T04:26:02.690017+00:00",
   "repo": "mcr/geographicresult",
   "labels": [
     {
@@ -266,22 +266,175 @@
     {
       "number": 6,
       "id": "PR_kwDOPwVOic8AAAABCr---Q",
-      "title": "add grm.basis and a claim-uuid label; fix two undefined CDDL names; worked examples",
+      "title": "grm.basis (three artifact classes of RFC 9334) and a label for claim-uuid; two worked examples",
       "url": "https://github.com/mcr/geographicresult/pull/6",
       "state": "OPEN",
       "author": "nikolaichuk7",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
-      "body": "Title: add grm.basis and a claim-uuid label; fix two undefined CDDL names; worked examples\n\nFollows the list thread on \"Should it care?\" and Michael's reply of 8 September (\"actually we need two (orthogonal) claims\"). This PR carries the class claim; the provenance registry text stays in #4 and applies on top.\n\n**What changes**\n\n- `grm.basis` (label 14): the class of artifact a geographic result rests on \u2014 `evidence` / `endorsement` / `attestation-result`, the three artifact classes of RFC 9334 Section 4.2 \u2014 written as a group-to-choice (RFC 8610 Section 2.2.2.2). Orthogonal to a provenance value: the class can always be populated, a standardized method only sometimes.\n- `grm.claim-uuid` gets a label (13). On main it is referenced inside the map but never defined, so the CDDL block does not parse (`cddl` 0.12.14: \"Unknown type grm.claim-uuid\"). `grc.jurisdiction-state-exclave-label` was likewise referenced but never defined; the map now uses the defined `subdivision-exclave` label. After this PR the block parses.\n- Prose: a short subsection on basis; a MUST for `claim-uuid` when a result is meant to be consumed as an Endorsement by another Verifier, so the consuming Verifier's result can say `endorsement` while the original class stays one hop away through the uuid; a Security Considerations subsection (\"this Verifier is trusted\" vs \"this Verifier had something to work with\").\n- Appendix \"Worked Examples\": two results from a Verifier written against this document and run over 26 public-cloud attestation artifacts. Azure West Europe \u2192 `{0: \"NL\", 13: uuid, 14: 1}` (25 bytes); GCP europe-west4 (SEV-SNP) \u2192 `{0: \"NL\", 4: \"Eemshaven\", 13: uuid, 14: 2}` (36 bytes). All 26 emitted results validate against the new CDDL; maps with `basis` 3, `basis` as text, or a 15-byte uuid are rejected.\n\n**Labels.** 0\u201312 are taken on main; 13 and 14 are the next free values. #4 assigns 12 to claim-uuid, which collides with `room-number`; rebasing #4 onto this branch resolves that and leaves 15 for `provence`.\n\n**Checks.** `kdrfc` builds; author-tools validation reports no errors (the remaining warnings are pre-existing: unused `ptp`/`speed` references, long lines in the presence appendix).\n",
+      "body": "Rewritten after the review of 10 September: one file, no code, no data, no binary files.\n\n- `grm.basis` at label 14: a group-to-choice of the three artifact classes of RFC 9334 Section 4.2 (evidence 0, endorsement 1, attestation-result 2), with prose on what it is and is not.\n- `grm.claim-uuid` at label 13 (on main the map key is a bare type name and the definition is misspelled; #9 fixes the names without assigning a label).\n- Worked examples appendix: the two public-cloud results (Azure West Europe, basis endorsement, 25 bytes; GCP europe-west4 SEV-SNP, basis attestation-result, 36 bytes), same four jurisdiction bytes, in diagnostic notation with the encoding beside it.\n\nStacked on #9 (the CDDL name fixes); once #9 merges this diff is the basis change alone. The verifier that produced the examples, with every vector in diagnostic notation, is at https://github.com/nikolaichuk7/geoar-verifier.",
       "createdAt": "2026-09-08T14:29:52Z",
-      "updatedAt": "2026-09-08T14:29:53Z",
+      "updatedAt": "2026-09-11T15:56:29Z",
       "baseRepository": "mcr/geographicresult",
       "baseRefName": "main",
       "baseRefOid": "9c4cd3229e318166f278c2651315fc874fc60bf4",
       "headRepository": "mcr/geographicresult",
       "headRefName": "two-claims",
-      "headRefOid": "62fe28242e5962ddea3a480931af40e0967a2b23",
+      "headRefOid": "9e14aa19e04be5e492316eb5b2cd098a35dd1d41",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOPwVOic8AAAABNB8nGQ",
+          "commit": {
+            "abbreviatedOid": "c2c5fc1"
+          },
+          "author": "mcr",
+          "authorAssociation": "OWNER",
+          "state": "CHANGES_REQUESTED",
+          "body": "Please make this two or three PRs..",
+          "createdAt": "2026-09-10T16:00:37Z",
+          "updatedAt": "2026-09-10T16:00:48Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOPwVOic8AAAABNB94pg",
+          "commit": {
+            "abbreviatedOid": "c2c5fc1"
+          },
+          "author": "mcr",
+          "authorAssociation": "OWNER",
+          "state": "CHANGES_REQUESTED",
+          "body": "Please consider using CBOR Diagnostic Notation or CBOR \"pretty\" mode rather than binary files.  That will be git diff happier, but also easier to include as examples.\n",
+          "createdAt": "2026-09-10T16:02:43Z",
+          "updatedAt": "2026-09-10T16:02:43Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOPwVOic8AAAABNMu-vQ",
+          "commit": {
+            "abbreviatedOid": "9e14aa1"
+          },
+          "author": "mcr",
+          "authorAssociation": "OWNER",
+          "state": "APPROVED",
+          "body": "Seems fine,but I won't merge until document is adopted/renamed, because minimizing changes between I-D and -00 is good.",
+          "createdAt": "2026-09-11T15:56:29Z",
+          "updatedAt": "2026-09-11T15:56:29Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "PR_kwDOPwVOic8AAAABC7657A",
+      "title": "(proposal, stacked on #6) basis-ref and an observation window",
+      "url": "https://github.com/mcr/geographicresult/pull/7",
+      "state": "OPEN",
+      "author": "nikolaichuk7",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Draft, stacked on #6, 41 lines of text, one short example, no code or data. Delete-able as a unit.\n\n**basis-ref (label 16, uuid).** The `claim-uuid` of the result this one rests on. MUST be present when `basis` is `attestation-result` and the consumed result carried a `claim-uuid`; without it the class is a dead end for an auditor. Distinct from `near-to`, which is spatial.\n\n**observed-from / observed-until (labels 17, 18, time).** The interval the observations behind the result cover. A conclusion drawn from a trajectory is about a period, not an instant; the EAR's issue time does not say which period.\n\nLabel 15 is left free for the provenance value of #4 (which, as written, uses 13, the label #6 uses for claim-uuid).\n\nThe one example is a 57-byte result resting on another result, with the reference and the interval, in diagnostic notation, and a sentence on where it came from. The producer's own data and analysis stay with the producer's document, as suggested; the chain that produced the bytes is at https://github.com/nikolaichuk7/geoar-verifier.",
+      "createdAt": "2026-09-10T04:42:16Z",
+      "updatedAt": "2026-09-11T01:58:13Z",
+      "baseRepository": "mcr/geographicresult",
+      "baseRefName": "two-claims",
+      "baseRefOid": "9e14aa19e04be5e492316eb5b2cd098a35dd1d41",
+      "headRepository": "mcr/geographicresult",
+      "headRefName": "basis-ref-window",
+      "headRefOid": "db7af1bbbb2619e90db60c034770cf39d1dde12d",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 9,
+      "id": "PR_kwDOPwVOic8AAAABDCEFRQ",
+      "title": "CDDL: define the two names used in the map but never defined",
+      "url": "https://github.com/mcr/geographicresult/pull/9",
+      "state": "OPEN",
+      "author": "nikolaichuk7",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Two names are used in the geographic-result-claims map but never defined, so the CDDL block does not parse: `grm.claim-uuid` (defined as `grc.claim-uuid`) and `grc.jurisdiction-state-exclave-label` (defined as `grc.jurisdiction-subdivision-exclave-label`). This PR only renames so that use and definition agree; no semantics change. Split out of #6 as requested.",
+      "createdAt": "2026-09-10T17:42:28Z",
+      "updatedAt": "2026-09-11T01:58:42Z",
+      "baseRepository": "mcr/geographicresult",
+      "baseRefName": "main",
+      "baseRefOid": "9c4cd3229e318166f278c2651315fc874fc60bf4",
+      "headRepository": "mcr/geographicresult",
+      "headRefName": "cddl-undefined-names",
+      "headRefOid": "4bde913754b52ffab64eed0a942a3f71b476fd15",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "nikolaichuk7",
+          "authorAssociation": "COLLABORATOR",
+          "body": "Applied both suggestions in 4bde913, and renamed the new names in #6 and #7 from grm. to grc. to match (9e14aa1, db7af1b); the CDDL block parses on all three branches.\n\nOne note for later rather than for this PR: with `grc.claim-uuid = corim.uuid-type` the map key is itself a uuid type. In #6 the same claim gets a label in the eat.JC pattern the other claims use (`grc.claim-uuid-label = eat.JC<\"grc.claim-uuid\", 13>`). Happy to fold that into #9 instead if you would rather have it here.",
+          "createdAt": "2026-09-11T01:58:42Z",
+          "updatedAt": "2026-09-11T01:58:42Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOPwVOic8AAAABNGgClg",
+          "commit": {
+            "abbreviatedOid": "20fc1a9"
+          },
+          "author": "mcr",
+          "authorAssociation": "OWNER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2026-09-11T01:52:30Z",
+          "updatedAt": "2026-09-11T01:53:03Z",
+          "comments": [
+            {
+              "originalPosition": 1,
+              "body": "```suggestion\n  ? grc.claim-uuid => corim.uuid-type\n```",
+              "createdAt": "2026-09-11T01:52:30Z",
+              "updatedAt": "2026-09-11T01:53:03Z"
+            },
+            {
+              "originalPosition": 14,
+              "body": "```suggestion\ngrc.claim-uuid = corim.uuid-type\n```",
+              "createdAt": "2026-09-11T01:52:46Z",
+              "updatedAt": "2026-09-11T01:53:03Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDOPwVOic8AAAABDLumIQ",
+      "title": "Security Considerations: relayed Results and masked platform identities",
+      "url": "https://github.com/mcr/geographicresult/pull/10",
+      "state": "OPEN",
+      "author": "nikolaichuk7",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "\nTwo short subsections under Security Considerations, as promised on the list (11 September) after Usama Sardar's questions and Giri Mandyam's answer on CHIP_ID.\n\n**Relayed Results.** A geographic Attestation Result states where the Attester's platform was found, not where the Relying Party's peer is; an Attester elsewhere can present a genuine Result obtained by a platform in the attested place (the diversion attack of Sardar, Moustafa and Aura, ASIA CCS 2026, Section 8). The text asks the Relying Party to require that the Evidence behind the Result be bound to the session through a value derived from the session's shared secret (the TLS exporter value of RFC 9266, in the freshness field of the Evidence) and the Verifier to carry that binding into the Result; it says explicitly that binding to a public key alone does not correlate the Evidence with the session, per the binder analysis in ID-Crisis. Measured on 11 September (geoar-verifier, PROTOCOLS.md, protocol 5): through a relay holding the guest's TLS key the key binder accepts and the exporter binder rejects.\n\n**Masked platform identities.** MaskChipId zeroes CHIP_ID in every guest report and VCEK_DIS makes the report key shared across a provider's key domain (SEV-SNP ABI, Rev. 1.58, Sections 3.7, 7.3, 8.18); measured on AWS shared tenancy on 11 September. Per Giri's note on the list, a zeroed identity is an appraisal-policy input, not an error; the text says what it implies for the basis of the Result. Written without reference to the `basis` field so that it applies whether #6 or #4 lands.\n\nReferences added (informative): ID-Crisis, SNP-ABI, RFC9266. Builds with kramdown-rfc and xml2rfc.\n\n---\nUpdate pushed 11 September (evening), commit 34fdbf0, after Usama Sardar's reply of 19:56Z:\n\n- Relayed Results: the binder analysis is now cited where it lives, Intra-handshake.fail (ESORICS 2026, binding mechanisms 4 and 6), and the text says a public-key binding fails against any other holder of the private key, not only a leaked one; the public key MAY accompany the shared-secret-derived value (its Section 7.2). ID-Crisis stays as the reference for the diversion attack.\n- Masked Platform Identities: MaskChipId and VCEK_DIS are independent host choices, neither visible in the report except by its effect; a per-chip signature with a zero CHIP_ID is verifiable only by whoever learns the chip identity from the host side, which makes that certificate an operator statement; the shared key names the provider's fleet without the chip, the per-chip key the chip without the provider (SNP-ABI Section 3.7).\n- Measured on 11 September on a bare-metal EPYC Genoa under my control, four launch configurations (geoar-verifier, baremetal/RESULTS.md).",
+      "createdAt": "2026-09-11T18:12:10Z",
+      "updatedAt": "2026-09-11T20:31:33Z",
+      "baseRepository": "mcr/geographicresult",
+      "baseRefName": "main",
+      "baseRefOid": "9c4cd3229e318166f278c2651315fc874fc60bf4",
+      "headRepository": "mcr/geographicresult",
+      "headRefName": "security-relay-masked-identity",
+      "headRefOid": "34fdbf0e0623e47eae38ad46db1fbfa695c24c8a",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
