@@ -200,7 +200,8 @@ ear.geographic-result-label = eat.JC<"TBD02", TBD01>
 grc.claim-uuid-label = eat.JC<"grc.claim-uuid", 13>
 grc.basis-label = eat.JC<"grc.basis", 14>
 
-; the class of artifact a geographic result rests on (RFC 9334, Section 4.2)
+; the class of artifact a geographic result rests on
+; (RFC 9334, Section 4.2)
 grc.basis-class = &(
   evidence: 0,
   endorsement: 1,
