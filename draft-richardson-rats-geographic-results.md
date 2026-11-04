@@ -411,7 +411,8 @@ A Verifier consumed a geographic result that another Verifier had derived from a
 Encoded (57 bytes):
 
 ~~~~
-a600624e4c0d502bfa42bce6e45c2ab556b6a0862d11f70e0210509c413213e4ad5396b1413d7e1c37c4f611c11a6955bc8412c11a69569a00
+a600624e4c0d502bfa42bce6e45c2ab556b6a0862d11f70e0210509c413213
+e4ad5396b1413d7e1c37c4f611c11a6955bc8412c11a69569a00
 ~~~~
 
 {{fig-chain}} shows the two Verifiers and what each result carries.
