@@ -414,6 +414,32 @@ Encoded (57 bytes):
 a600624e4c0d502bfa42bce6e45c2ab556b6a0862d11f70e0210509c413213e4ad5396b1413d7e1c37c4f611c11a6955bc8412c11a69569a00
 ~~~~
 
+{{fig-chain}} shows the two Verifiers and what each result carries.
+
+~~~~
+.----------.  Evidence     .------------.
+| Attester +-------------->| Verifier A |
+'----------'  64 signed    '-----+------'
+              H3 cells           | AR U1:
+                                 |  jurisdiction-country "NL"
+                                 |  basis 0, evidence
+                                 |  claim-uuid U1
+                                 v
+                           .------------.
+                           | Verifier B |
+                           '-----+------'
+                                 | AR U2:
+                                 |  jurisdiction-country "NL"
+                                 |  basis 2, attestation-result
+                                 |  basis-ref U1
+                                 |  observed-from, observed-until
+                                 v
+                          .---------------.
+                          | Relying Party |
+                          '---------------'
+~~~~
+{: #fig-chain title="A result that rests on another result"}
+
 `basis-ref` is the `claim-uuid` of the first Verifier's result, which carried `basis` 0 (evidence) and the same jurisdiction; `observed-from` and `observed-until` are the first and last collection times of the trajectory, carried forward unchanged.
 A Relying Party whose policy accepts only results that bottom out in Evidence or an Endorsement follows `basis-ref` and accepts; the same result without `basis-ref` is rejected by that policy and accepted by a policy that trusts the signing Verifier.
 The Verifier chain that produced these bytes, with the signed EARs in diagnostic notation, is published separately by one of the authors.
