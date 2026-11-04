@@ -313,6 +313,22 @@ The Endorsement may be provided to a Verifier through out of band means, or it c
 
 A geographic Attestation Result states where the Attester's platform was found to be, not where the Relying Party's peer is.
 An Attester elsewhere can present a genuine Result that a platform in the attested place obtained, and nothing in the Result itself shows the substitution; this is the diversion attack of {{ID-Crisis}} (Section 8).
+
+~~~~
+   in place P                                   elsewhere
+.------------.  Evidence  .----------.  AR     .------------.
+| Attester X +----------->| Verifier +-------->| Attester Y |
+'------------'  bound to  '----------'  for P  '-----+------'
+                session S                            | presents the
+                                                     | genuine AR in
+                                                     | its session S'
+                                                     v
+                                              .---------------.
+                                              | Relying Party |
+                                              '---------------'
+~~~~
+{: #fig-relay title="A relayed Result, and the binding that defeats it"}
+
 A Relying Party SHOULD therefore require that the Evidence behind the Result be bound to the session in which the Result is used, and a Verifier SHOULD carry that binding into the Result.
 The binding has to be to a value derived from the session's shared secret, such as the TLS exporter value of {{RFC9266}}, placed in the freshness field of the Evidence (REPORT_DATA for AMD SEV-SNP, REPORTDATA for Intel TDX, the extraData of a TPM quote).
 Binding the Evidence to the Attester's public key, with or without a nonce, does not correlate it with the session: anyone else who holds the private key, because it leaked, was provisioned at runtime or was extracted on another machine, can present that Evidence in a session of their own, as the analysis of binding mechanisms 4 and 6 in {{Intra-handshake.fail}} shows.
