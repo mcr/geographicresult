@@ -15,25 +15,25 @@ No matter which mechanism is appropriate for a given situation, the result of th
        This document is about encoding a variety of geographical conclusions conclusions in an Attestation Result.
 In addition, one mechanism of directly creating a geographic result in the form of an Endorsement is described in an appendix. 
     " name="description">
-<meta content="xml2rfc 3.34.0" name="generator">
+<meta content="xml2rfc 3.35.0" name="generator">
 <meta content="geofence" name="keyword">
 <meta content="workload" name="keyword">
 <meta content="soverign computing" name="keyword">
 <meta content="draft-richardson-rats-geographic-results-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.34.0
-    Python 3.14.7
-    ConfigArgParse 1.7.5
+  xml2rfc 3.35.0
+    Python 3.14.10
+    ConfigArgParse 1.9.0
     google-i18n-address 3.1.1
     intervaltree 3.2.1
     Jinja2 3.1.6
     lxml 6.1.1
     natsort 8.4.0
-    platformdirs 4.11.7
+    platformdirs 4.14.3
     pycountry 24.6.1
     PyYAML 6.0.3
     requests 2.33.1
-    wcwidth 0.8.3
+    wcwidth 0.9.4
 -->
 <link href="draft-richardson-rats-geographic-results.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1049,11 +1049,11 @@ svg {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">geoAR</td>
-<td class="right">September 2026</td>
+<td class="right">November 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Richardson &amp; Nikolaichuk</td>
-<td class="center">Expires 15 March 2027</td>
+<td class="center">Expires 8 May 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1066,12 +1066,12 @@ svg {
 <dd class="internet-draft">draft-richardson-rats-geographic-results-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-09-11" class="published">11 September 2026</time>
+<time datetime="2026-11-04" class="published">4 November 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-03-15">15 March 2027</time></dd>
+<dd class="expires"><time datetime="2027-05-08">8 May 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ In addition, one mechanism of directly creating a geographic result in the form 
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 15 March 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 8 May 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1179,13 +1179,10 @@ In addition, one mechanism of directly creating a geographic result in the form 
                 <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-integrity-threats" class="internal xref">Integrity Threats</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
-                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-relayed-results" class="internal xref">Relayed Results</a></p>
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-basis-of-a-result" class="internal xref">Basis of a Result</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.4">
-                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="auto internal xref">5.4</a>.  <a href="#name-masked-platform-identities" class="internal xref">Masked Platform Identities</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.5">
-                <p id="section-toc.1-1.5.2.5.1"><a href="#section-5.5" class="auto internal xref">5.5</a>.  <a href="#name-availability-threats" class="internal xref">Availability Threats</a></p>
+                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="auto internal xref">5.4</a>.  <a href="#name-availability-threats" class="internal xref">Availability Threats</a></p>
 </li>
             </ul>
 </li>
@@ -1204,55 +1201,66 @@ In addition, one mechanism of directly creating a geographic result in the form 
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-proof-of-placement" class="internal xref">Proof of Placement</a></p>
+            <p id="section-toc.1-1.8.1"><a href="#appendix-A" class="auto internal xref">Appendix A</a>.  <a href="#name-worked-examples" class="internal xref">Worked Examples</a></p>
 <ul class="compact toc ulBare ulEmpty">
 <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
-                <p id="section-toc.1-1.8.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-introduction-2" class="internal xref">Introduction</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1.2.1">
-                    <p id="section-toc.1-1.8.2.1.2.1.1"><a href="#appendix-A.1.1" class="auto internal xref">A.1.1</a>.  <a href="#name-overview-of-mechanism" class="internal xref">Overview of mechanism</a></p>
-</li>
-                </ul>
+                <p id="section-toc.1-1.8.2.1.1"><a href="#appendix-A.1" class="auto internal xref">A.1</a>.  <a href="#name-microsoft-azure-west-europe" class="internal xref">Microsoft Azure, West Europe (basis: endorsement)</a></p>
 </li>
               <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
-                <p id="section-toc.1-1.8.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3">
-                <p id="section-toc.1-1.8.2.3.1"><a href="#appendix-A.3" class="auto internal xref">A.3</a>.  <a href="#name-presence-protocol" class="internal xref">Presence Protocol</a></p>
-<ul class="compact toc ulBare ulEmpty">
-<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.1">
-                    <p id="section-toc.1-1.8.2.3.2.1.1"><a href="#appendix-A.3.1" class="auto internal xref">A.3.1</a>.  <a href="#name-initial-handshake" class="internal xref">Initial Handshake</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.2">
-                    <p id="section-toc.1-1.8.2.3.2.2.1"><a href="#appendix-A.3.2" class="auto internal xref">A.3.2</a>.  <a href="#name-proof-of-presence" class="internal xref">Proof of Presence</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.3">
-                    <p id="section-toc.1-1.8.2.3.2.3.1"><a href="#appendix-A.3.3" class="auto internal xref">A.3.3</a>.  <a href="#name-collection-of-endorsement-c" class="internal xref">Collection of Endorsement Claims</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.4">
-                    <p id="section-toc.1-1.8.2.3.2.4.1"><a href="#appendix-A.3.4" class="auto internal xref">A.3.4</a>.  <a href="#name-additional-commands" class="internal xref">Additional Commands</a></p>
-</li>
-                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.3.2.5">
-                    <p id="section-toc.1-1.8.2.3.2.5.1"><a href="#appendix-A.3.5" class="auto internal xref">A.3.5</a>.  <a href="#name-generation-of-endorsement" class="internal xref">Generation of Endorsement</a></p>
-</li>
-                </ul>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.4">
-                <p id="section-toc.1-1.8.2.4.1"><a href="#appendix-A.4" class="auto internal xref">A.4</a>.  <a href="#name-alternatives-to-usb-serial-" class="internal xref">Alternatives to USB/serial cables</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.5">
-                <p id="section-toc.1-1.8.2.5.1"><a href="#appendix-A.5" class="auto internal xref">A.5</a>.  <a href="#name-privacy-considerations" class="internal xref">Privacy Considerations</a></p>
-</li>
-              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.6">
-                <p id="section-toc.1-1.8.2.6.1"><a href="#appendix-A.6" class="auto internal xref">A.6</a>.  <a href="#name-security-considerations-2" class="internal xref">Security Considerations</a></p>
+                <p id="section-toc.1-1.8.2.2.1"><a href="#appendix-A.2" class="auto internal xref">A.2</a>.  <a href="#name-google-cloud-europe-west4-b" class="internal xref">Google Cloud, europe-west4 (basis: attestation-result)</a></p>
 </li>
             </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#appendix-B" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+            <p id="section-toc.1-1.9.1"><a href="#appendix-B" class="auto internal xref">Appendix B</a>.  <a href="#name-proof-of-placement" class="internal xref">Proof of Placement</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#appendix-B.1" class="auto internal xref">B.1</a>.  <a href="#name-introduction-2" class="internal xref">Introduction</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.1.2.1">
+                    <p id="section-toc.1-1.9.2.1.2.1.1"><a href="#appendix-B.1.1" class="auto internal xref">B.1.1</a>.  <a href="#name-overview-of-mechanism" class="internal xref">Overview of mechanism</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#appendix-B.2" class="auto internal xref">B.2</a>.  <a href="#name-terminology" class="internal xref">Terminology</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3">
+                <p id="section-toc.1-1.9.2.3.1"><a href="#appendix-B.3" class="auto internal xref">B.3</a>.  <a href="#name-presence-protocol" class="internal xref">Presence Protocol</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3.2.1">
+                    <p id="section-toc.1-1.9.2.3.2.1.1"><a href="#appendix-B.3.1" class="auto internal xref">B.3.1</a>.  <a href="#name-initial-handshake" class="internal xref">Initial Handshake</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3.2.2">
+                    <p id="section-toc.1-1.9.2.3.2.2.1"><a href="#appendix-B.3.2" class="auto internal xref">B.3.2</a>.  <a href="#name-proof-of-presence" class="internal xref">Proof of Presence</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3.2.3">
+                    <p id="section-toc.1-1.9.2.3.2.3.1"><a href="#appendix-B.3.3" class="auto internal xref">B.3.3</a>.  <a href="#name-collection-of-endorsement-c" class="internal xref">Collection of Endorsement Claims</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3.2.4">
+                    <p id="section-toc.1-1.9.2.3.2.4.1"><a href="#appendix-B.3.4" class="auto internal xref">B.3.4</a>.  <a href="#name-additional-commands" class="internal xref">Additional Commands</a></p>
+</li>
+                  <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.3.2.5">
+                    <p id="section-toc.1-1.9.2.3.2.5.1"><a href="#appendix-B.3.5" class="auto internal xref">B.3.5</a>.  <a href="#name-generation-of-endorsement" class="internal xref">Generation of Endorsement</a></p>
+</li>
+                </ul>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.4">
+                <p id="section-toc.1-1.9.2.4.1"><a href="#appendix-B.4" class="auto internal xref">B.4</a>.  <a href="#name-alternatives-to-usb-serial-" class="internal xref">Alternatives to USB/serial cables</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.5">
+                <p id="section-toc.1-1.9.2.5.1"><a href="#appendix-B.5" class="auto internal xref">B.5</a>.  <a href="#name-privacy-considerations" class="internal xref">Privacy Considerations</a></p>
+</li>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9.2.6">
+                <p id="section-toc.1-1.9.2.6.1"><a href="#appendix-B.6" class="auto internal xref">B.6</a>.  <a href="#name-security-considerations-2" class="internal xref">Security Considerations</a></p>
+</li>
+            </ul>
 </li>
           <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+            <p id="section-toc.1-1.10.1"><a href="#appendix-C" class="auto internal xref"></a><a href="#name-acknowledgments" class="internal xref">Acknowledgments</a></p>
+</li>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#appendix-D" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
 </li>
         </ul>
 </nav>
@@ -1266,40 +1274,66 @@ In addition, one mechanism of directly creating a geographic result in the form 
 <p id="section-1-1">Resolving the question of where certain computations are done can be critical to assessing how much trust to put into the result.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">MORE USE CASES HERE.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3"><span>[<a href="#I-D.ietf-rats-ear" class="cite xref">I-D.ietf-rats-ear</a>]</span> provides a framework that allows an <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span> Verifier to return a conclusion as to geographic region for an Target Environment.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">While <span>[<a href="#RFC9711" class="cite xref">RFC9711</a>], <a href="https://rfc-editor.org/rfc/rfc9711#section-4.2.10" class="relref">Section 4.2.10</a></span> provides a very good WGS84 based location claim, often very suitable as Evidence, it is not ideal for the use by Relying Parties.<a href="#section-1-4" class="pilcrow">¶</a></p>
-<p id="section-1-5">There are a few reasons:<a href="#section-1-5" class="pilcrow">¶</a></p>
+<p id="section-1-4"><a href="#fig-dataflow" class="auto internal xref">Figure 1</a> places the geographic result in the data flow of <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>: the Verifier appraises Evidence or Endorsements about location by a method outside this document and returns one format to the Relying Party.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<span id="name-geographic-attestation-resu"></span><div id="fig-dataflow">
+<figure id="figure-1">
+        <div class="alignLeft art-text artwork" id="section-1-5.1">
+<pre>
+                   Endorsement about location        Appraisal Policy
+.----------.       (an auditor, Appendix A)          for Attestation
+| Endorser +--------------------------.              Results
+'----------'                          |                     |
+                                      v                     v
+.----------.  Evidence of     .---------------.     .---------------.
+| Attester +-----------------&gt;|   Verifier    |     | Relying Party |
+'----------'  location:       | appraises by  |  AR | reads one     |
+              GNSS, PTP,      | a method this +----&gt;| format,       |
+              TRIP, V-PEA     | document does |     | whatever the  |
+                              | not define    |     | method        |
+                              '---------------'     '---------------'
+
+AR = Attestation Result carrying geographic-result-claims:
+     the jurisdiction claims, claim-uuid and basis
+</pre>
+</div>
+<figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
+<a href="#name-geographic-attestation-resu" class="selfRef">Geographic Attestation Result in the RATS data flow</a>
+        </figcaption></figure>
+</div>
+<p id="section-1-6">While <span>[<a href="#RFC9711" class="cite xref">RFC9711</a>], <a href="https://rfc-editor.org/rfc/rfc9711#section-4.2.10" class="relref">Section 4.2.10</a></span> provides a very good WGS84 based location claim, often very suitable as Evidence, it is not ideal for the use by Relying Parties.<a href="#section-1-6" class="pilcrow">¶</a></p>
+<p id="section-1-7">There are a few reasons:<a href="#section-1-7" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-1-6.1">
-          <p id="section-1-6.1.1">the latitude and longitude describe a location on the Earth. The Relying Party is seldom interested in that level of detail.  It needs to know if it's in an acceptable place.<a href="#section-1-6.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-1-8.1">
+          <p id="section-1-8.1.1">the latitude and longitude describe a location on the Earth. The Relying Party is seldom interested in that level of detail.  It needs to know if it's in an acceptable place.<a href="#section-1-8.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-6.2">
-          <p id="section-1-6.2.1">the geographic position can leak significant amount of private information that is not necessary for the Relying Party to know.   Information not collected/stored can not be inadvertently disclosed.<a href="#section-1-6.2.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-1-8.2">
+          <p id="section-1-8.2.1">the geographic position can leak significant amount of private information that is not necessary for the Relying Party to know.   Information not collected/stored can not be inadvertently disclosed.<a href="#section-1-8.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-1-6.3">
-          <p id="section-1-6.3.1">for many activities, it is the Legal Jurisdiction that matters, not the actual location.
+        <li class="normal" id="section-1-8.3">
+          <p id="section-1-8.3.1">for many activities, it is the Legal Jurisdiction that matters, not the actual location.
 Jurisdictions often do not have well defined concentric boundaries.
 For instance, the South Korean Consultate in Los Angelos is usually for Legal purposes, in Korea.
-Yet, only a few meters away, possibly below the level of WGS84 accuracy, the jurisdiction would be different.<a href="#section-1-6.3.1" class="pilcrow">¶</a></p>
+Yet, only a few meters away, possibly below the level of WGS84 accuracy, the jurisdiction would be different.<a href="#section-1-8.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
-<p id="section-1-7">This document offers a new set of structured abstract claims that provides an evaluated view of where a Target Environment is.
-The mechanism to do this appraisal may depend upon a number of factors which may be related to physical geographic position, but also include other considerations.<a href="#section-1-7" class="pilcrow">¶</a></p>
-<p id="section-1-8">There are many different ways in which a Verifier might generate this result from Evidence and/or Endorsements that are provided to it.
+<p id="section-1-9">This document offers a new set of structured abstract claims that provides an evaluated view of where a Target Environment is.
+The mechanism to do this appraisal may depend upon a number of factors which may be related to physical geographic position, but also include other considerations.<a href="#section-1-9" class="pilcrow">¶</a></p>
+<p id="section-1-10">There are many different ways in which a Verifier might generate this result from Evidence and/or Endorsements that are provided to it.
 The exact method can be important for a small number of uses, but more often, if the Verify is trusted, then the details are not important.
 The exact method may be of interest only during forensic audits.
-This document does <em>not</em> standardize any mechanism for a Verify to appraise location data.<a href="#section-1-8" class="pilcrow">¶</a></p>
-<p id="section-1-9">The most obvious way is through various Global Navitation Satellite Systems (GNSS): the United States Global Positioning System (GPS), Russia's Global Navigation Satellite System (GLONASS), China's BeiDou Navigation Satellite System (BDS) and the European Union's Galileo.
+This document does <em>not</em> standardize any mechanism for a Verify to appraise location data.<a href="#section-1-10" class="pilcrow">¶</a></p>
+<p id="section-1-11">The most obvious way is through various Global Navitation Satellite Systems (GNSS): the United States Global Positioning System (GPS), Russia's Global Navigation Satellite System (GLONASS), China's BeiDou Navigation Satellite System (BDS) and the European Union's Galileo.
 These signals can be spoofed, manipulated and suppressed, however that does not render these signals useless, just that the level of trust must be carefully evaluated.
-There are also many environments, such as inside a (Faraday) cage in a Data Center, where GNSS signals do not reach.<a href="#section-1-9" class="pilcrow">¶</a></p>
-<p id="section-1-10">There are also other radio methods, such as time of travel calculations from a mobile (LTE) tower.<a href="#section-1-10" class="pilcrow">¶</a></p>
-<p id="section-1-11"><span>[<a href="#I-D.lkspa-rats-verifiable-geo-fence" class="cite xref">I-D.lkspa-rats-verifiable-geo-fence</a>]</span> provides a more general architecture for such evaluations.<a href="#section-1-11" class="pilcrow">¶</a></p>
-<p id="section-1-12">As an example of another method, described in <span>[<a href="#I-D.ramki-ptp-hardware-rooted-attestation" class="cite xref">I-D.ramki-ptp-hardware-rooted-attestation</a>]</span>,  there could be Evidence that a Target Environment is less than 1ns (as light travels in a fiber optic cable) away from another Target Enviroment whose location is known.
-Given a typical fiber optic cable has a speed of 200,000 kilometers per second (slower than light in a vacuum due to the index of refraction of the glass involved), so if the round trip time between environments is 1ns, then the distance between Target Environments can be appraised to be within 1m of each other.<a href="#section-1-12" class="pilcrow">¶</a></p>
-<p id="section-1-13">Whether or not any of these methods are a good enough measure of location is not the subject of this document.
-Rather, if a Verifier believes that information trustworthy for the purpose intended, then it may use the format described here to document it's conclusion.<a href="#section-1-13" class="pilcrow">¶</a></p>
-<p id="section-1-14">In addition to detailing the Attestation Result (EAR) format for the results, this document also addresses the case of an Endorsement created as to a device's location.
-<a href="#presence" class="auto internal xref">Appendix A</a> details a processs by which this Endorsement could be generated by a human auditor equipped with a smartphone, tablet, or dedicated auditing device.
-<a href="#presence" class="auto internal xref">Appendix A</a> is not a normative part of the Attestation Result defined below, but it is considered a normative process defined by this document.<a href="#section-1-14" class="pilcrow">¶</a></p>
+There are also many environments, such as inside a (Faraday) cage in a Data Center, where GNSS signals do not reach.<a href="#section-1-11" class="pilcrow">¶</a></p>
+<p id="section-1-12">There are also other radio methods, such as time of travel calculations from a mobile (LTE) tower.<a href="#section-1-12" class="pilcrow">¶</a></p>
+<p id="section-1-13"><span>[<a href="#I-D.lkspa-rats-verifiable-geo-fence" class="cite xref">I-D.lkspa-rats-verifiable-geo-fence</a>]</span> provides a more general architecture for such evaluations.<a href="#section-1-13" class="pilcrow">¶</a></p>
+<p id="section-1-14">As an example of another method, described in <span>[<a href="#I-D.ramki-ptp-hardware-rooted-attestation" class="cite xref">I-D.ramki-ptp-hardware-rooted-attestation</a>]</span>,  there could be Evidence that a Target Environment is less than 1ns (as light travels in a fiber optic cable) away from another Target Enviroment whose location is known.
+Given a typical fiber optic cable has a speed of 200,000 kilometers per second (slower than light in a vacuum due to the index of refraction of the glass involved), so if the round trip time between environments is 1ns, then the distance between Target Environments can be appraised to be within 1m of each other.<a href="#section-1-14" class="pilcrow">¶</a></p>
+<p id="section-1-15">Whether or not any of these methods are a good enough measure of location is not the subject of this document.
+Rather, if a Verifier believes that information trustworthy for the purpose intended, then it may use the format described here to document it's conclusion.<a href="#section-1-15" class="pilcrow">¶</a></p>
+<p id="section-1-16">In addition to detailing the Attestation Result (EAR) format for the results, this document also addresses the case of an Endorsement created as to a device's location.
+<a href="#presence" class="auto internal xref">Appendix B</a> details a processs by which this Endorsement could be generated by a human auditor equipped with a smartphone, tablet, or dedicated auditing device.
+<a href="#presence" class="auto internal xref">Appendix B</a> is not a normative part of the Attestation Result defined below, but it is considered a normative process defined by this document.<a href="#section-1-16" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="conventions-and-definitions">
@@ -1386,11 +1420,12 @@ $$ear-appraisal-extension //= (
 )
 
 geographic-result-claims = non-empty&lt;{
-  ? grm.claim-uuid =&gt; corim.uuid-type
+  ? grc.claim-uuid-label =&gt; corim.uuid-type
+  ? grc.basis-label =&gt; grc.basis-class
   ? grc.jurisdiction-country-label =&gt; iso-3166-alpha-2-country-code
   ? grc.jurisdiction-country-exclave-label =&gt; bool
   ? grc.jurisdiction-subdivision-label =&gt; tstr .size (2..16)
-  ? grc.jurisdiction-state-exclave-label =&gt; bool
+  ? grc.jurisdiction-subdivision-exclave-label =&gt; bool
   ? grc.jurisdiction-city-label =&gt; tstr .size(2..16)
   ? grc.jurisdiction-city-exclave-label =&gt; bool
   ? grc.enclosing-exclave-country-label =&gt; iso-3166-alpha-2-country-code
@@ -1404,7 +1439,16 @@ geographic-result-claims = non-empty&lt;{
 
 ear.geographic-result-label = eat.JC&lt;"TBD02", TBD01&gt;
 
-grc.claim-uuid = corim.uuid-type
+grc.claim-uuid-label = eat.JC&lt;"grc.claim-uuid", 13&gt;
+grc.basis-label = eat.JC&lt;"grc.basis", 14&gt;
+
+; the class of artifact a geographic result rests on
+; (RFC 9334, Section 4.2)
+grc.basis-class = &amp;(
+  evidence: 0,
+  endorsement: 1,
+  attestation-result: 2,
+)
 grc.jurisdiction-country-label = eat.JC&lt;"grc.jurisdiction-country", 0&gt;
 grc.jurisdiction-country-exclave-label = eat.JC&lt;"grc.jurisdiction-country-exclave", 1&gt;
 grc.jurisdiction-subdivision-label = eat.JC&lt;"grc.jurisdiction-state", 2&gt;
@@ -1427,33 +1471,43 @@ iso-3166-alpha-2-country-code = tstr .size 2
 But, at least some result <span class="bcp14">MUST</span> be provided.
 Which one will be needed is subject to the target usage and the needs of the Relying Party.<a href="#section-4-2" class="pilcrow">¶</a></p>
 <p id="section-4-3">The <code>claim-uuid</code> field allows this claim/endorsement to be labelled, which can be used in the <code>near-to-label</code> attribute of another claim.<a href="#section-4-3" class="pilcrow">¶</a></p>
-<p id="section-4-4">The explicitely geographic based jurisdiction fields are arranged in a hierarchy of values.
+<p id="section-4-4">The <code>basis</code> field names the class of artifact the geographic result rests on, using the three artifact classes of <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>, Section 4.2: the result was computed from Evidence, it was accepted from an Endorsement, or it is an Attestation Result produced by another Verifier.
+It does not name the method.
+Which sensor, protocol or audit produced a location is a separate question, answered by a provenance value when a standardized method exists; the class can always be populated, a method only sometimes.
+A Verifier producing a geographic result <span class="bcp14">SHOULD</span> include <code>basis</code>.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-5">When a geographic result is intended to be consumed as an Endorsement by another Verifier, it <span class="bcp14">MUST</span> carry <code>claim-uuid</code>.
+The consuming Verifier's own result then names the class of what it consumed (<code>endorsement</code>), and the original class remains reachable one hop away through the uuid.
+A Relying Party that does not need the distinction stops at the first class it sees; an auditor follows the uuid.
+Nothing about the method travels on the wire unless it is asked for.<a href="#section-4-5" class="pilcrow">¶</a></p>
+<p id="section-4-6">Two results carrying identical jurisdiction claims may rest on different classes.
+<a href="#examples" class="auto internal xref">Appendix A</a> shows two such results produced by the same Verifier from public cloud attestation artifacts.<a href="#section-4-6" class="pilcrow">¶</a></p>
+<p id="section-4-7">The explicitely geographic based jurisdiction fields are arranged in a hierarchy of values.
 The outer most values are <span class="bcp14">REQUIRED</span> when any inner value is also present.
-This includes the claims: country, subdivision, and city, or the equivalent exclave claims (country-exclave, subdivision-exclave, and city-exclave).<a href="#section-4-4" class="pilcrow">¶</a></p>
-<p id="section-4-5">Note that the ISO 3166 term for a part of a country is called a "subdivision".
+This includes the claims: country, subdivision, and city, or the equivalent exclave claims (country-exclave, subdivision-exclave, and city-exclave).<a href="#section-4-7" class="pilcrow">¶</a></p>
+<p id="section-4-8">Note that the ISO 3166 term for a part of a country is called a "subdivision".
 This should be understood to mean "state" (e.g., in the USA, Australia), "province" and "territory" (e.g., Canada, France).
-There are no IANA maintained values for "subdivision", but the ISO 3166-2 has codes for many subdivisions, which can be seen in the ISO's Online Browsing Platform <span>[<a href="#obp" class="cite xref">obp</a>]</span>.<a href="#section-4-5" class="pilcrow">¶</a></p>
-<p id="section-4-6">In general, subdivision lists are maintained by countries.
+There are no IANA maintained values for "subdivision", but the ISO 3166-2 has codes for many subdivisions, which can be seen in the ISO's Online Browsing Platform <span>[<a href="#obp" class="cite xref">obp</a>]</span>.<a href="#section-4-8" class="pilcrow">¶</a></p>
+<p id="section-4-9">In general, subdivision lists are maintained by countries.
 It is usually the case that city lists are maintained by subdivisions, and there are no lists of these in any hierarchial databases, such as the ISO might maintain for countries.
 It is therefore not unsual for there to be a Paris, Texas, USA, and a Paris, France, and a London, Ontario, Canada, as well as a London, England, UK.
-Equally, there are many cities called Springfield in different states of the USA.<a href="#section-4-6" class="pilcrow">¶</a></p>
-<p id="section-4-7">Exclaves can exist at all levels: one part of a city might be within another city, but both are in the same country and subdivision.<a href="#section-4-7" class="pilcrow">¶</a></p>
-<p id="section-4-8">Even when in an exclave, it is acceptable for a Verifier to only return the non-exclave version, hiding that an exclave is involved.
-In that case, the Relying Party will receive the country, subdivision and city of where the computation is.<a href="#section-4-8" class="pilcrow">¶</a></p>
-<p id="section-4-9">In general, only one of (country, country-exclave), (subdivision, subdivision-exclave), and (city, city-exclave) will be present.
-When the exclave versions are present, if the Relying Party needs to indicate where the exclave is located, it may use the enclosing-exclave-country label.<a href="#section-4-9" class="pilcrow">¶</a></p>
-<p id="section-4-10">The near-to-label is an arbitrary relative reference, and it refers to some other claim that the Relying Party is assumed to already know about.
+Equally, there are many cities called Springfield in different states of the USA.<a href="#section-4-9" class="pilcrow">¶</a></p>
+<p id="section-4-10">Exclaves can exist at all levels: one part of a city might be within another city, but both are in the same country and subdivision.<a href="#section-4-10" class="pilcrow">¶</a></p>
+<p id="section-4-11">Even when in an exclave, it is acceptable for a Verifier to only return the non-exclave version, hiding that an exclave is involved.
+In that case, the Relying Party will receive the country, subdivision and city of where the computation is.<a href="#section-4-11" class="pilcrow">¶</a></p>
+<p id="section-4-12">In general, only one of (country, country-exclave), (subdivision, subdivision-exclave), and (city, city-exclave) will be present.
+When the exclave versions are present, if the Relying Party needs to indicate where the exclave is located, it may use the enclosing-exclave-country label.<a href="#section-4-12" class="pilcrow">¶</a></p>
+<p id="section-4-13">The near-to-label is an arbitrary relative reference, and it refers to some other claim that the Relying Party is assumed to already know about.
 It is a uuid value, and <span class="bcp14">SHOULD</span> refer to another claim by its <code>claim-uuid</code>
-The definition of "near" is up to the Verifier, but in general, it is expected that it is close enough that it is in the same jurisdiction as the other entity.<a href="#section-4-10" class="pilcrow">¶</a></p>
-<p id="section-4-11">The series of claims, Data-Center, Floor-Number, Room-Number, Hallway-Number, Cabinet-Number and Rack-U-Number form a partial hierarchy designed to identify where a piece of equipment is.
-This set of claims is more useful when a location Endorsement is created by an auditor, such as through the process described in <a href="#presence" class="auto internal xref">Appendix A</a>.<a href="#section-4-11" class="pilcrow">¶</a></p>
-<p id="section-4-12">Not all data centers are numbered in the same way.
+The definition of "near" is up to the Verifier, but in general, it is expected that it is close enough that it is in the same jurisdiction as the other entity.<a href="#section-4-13" class="pilcrow">¶</a></p>
+<p id="section-4-14">The series of claims, Data-Center, Floor-Number, Room-Number, Hallway-Number, Cabinet-Number and Rack-U-Number form a partial hierarchy designed to identify where a piece of equipment is.
+This set of claims is more useful when a location Endorsement is created by an auditor, such as through the process described in <a href="#presence" class="auto internal xref">Appendix B</a>.<a href="#section-4-14" class="pilcrow">¶</a></p>
+<p id="section-4-15">Not all data centers are numbered in the same way.
 For some, the Room-Number implies the Floor-Number.
-For others, the Hallway-Number implies both room and floor, and for still others, the Cabinet-Number is unique per building.<a href="#section-4-12" class="pilcrow">¶</a></p>
-<p id="section-4-13">Rack-U numbers refer to the system within a cabinet, with the bottom most position labelled as 1.  This accomodates cabinets of varying heights and capacities.<a href="#section-4-13" class="pilcrow">¶</a></p>
-<p id="section-4-14">Without information as to basis or provenance, a Relying Party has no way to tell a hardware-rooted
+For others, the Hallway-Number implies both room and floor, and for still others, the Cabinet-Number is unique per building.<a href="#section-4-15" class="pilcrow">¶</a></p>
+<p id="section-4-16">Rack-U numbers refer to the system within a cabinet, with the bottom most position labelled as 1.  This accomodates cabinets of varying heights and capacities.<a href="#section-4-16" class="pilcrow">¶</a></p>
+<p id="section-4-17">Without <code>basis</code>, a Relying Party has no way to tell a hardware-rooted
 result from an operator-typed label, even though both may appear in the
-same claims map above.<a href="#section-4-14" class="pilcrow">¶</a></p>
+same claims map above.<a href="#section-4-17" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations">
@@ -1461,7 +1515,7 @@ same claims map above.<a href="#section-4-14" class="pilcrow">¶</a></p>
       <h2 id="name-security-considerations">
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<p id="section-5-1">These considerations do not cover the protocol described in <a href="#presence" class="auto internal xref">Appendix A</a>.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<p id="section-5-1">These considerations do not cover the protocol described in <a href="#presence" class="auto internal xref">Appendix B</a>.<a href="#section-5-1" class="pilcrow">¶</a></p>
 <p id="section-5-2">This document describes attributes that would go into an EAT format Attestation Result (EAR).
 This is an artifact that is communicated from a Verifier to a Relying Party.
 The threat model for this artifact is governed by a typical "CIA" list: Confidentiality, Integrity and Availability.<a href="#section-5-2" class="pilcrow">¶</a></p>
@@ -1487,43 +1541,26 @@ The claims present in this document will most often be combined with other claim
 The Endorsement may be provided to a Verifier through out of band means, or it can be stored by the Attesting Environment, and carried through another protocol from Attester to Verifier.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="relayed-results">
+<div id="basis-of-a-result">
 <section id="section-5.3">
-        <h3 id="name-relayed-results">
-<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-relayed-results" class="section-name selfRef">Relayed Results</a>
+        <h3 id="name-basis-of-a-result">
+<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-basis-of-a-result" class="section-name selfRef">Basis of a Result</a>
         </h3>
-<p id="section-5.3-1">A geographic Attestation Result states where the Attester's platform was found to be, not where the Relying Party's peer is.
-An Attester elsewhere can present a genuine Result that a platform in the attested place obtained, and nothing in the Result itself shows the substitution; this is the diversion attack of <span>[<a href="#ID-Crisis" class="cite xref">ID-Crisis</a>]</span> (Section 8).
-A Relying Party <span class="bcp14">SHOULD</span> therefore require that the Evidence behind the Result be bound to the session in which the Result is used, and a Verifier <span class="bcp14">SHOULD</span> carry that binding into the Result.
-The binding has to be to a value derived from the session's shared secret, such as the TLS exporter value of <span>[<a href="#RFC9266" class="cite xref">RFC9266</a>]</span>, placed in the freshness field of the Evidence (REPORT_DATA for AMD SEV-SNP, REPORTDATA for Intel TDX, the extraData of a TPM quote).
-Binding the Evidence to the Attester's public key, with or without a nonce, does not correlate it with the session: anyone else who holds the private key, because it leaked, was provisioned at runtime or was extracted on another machine, can present that Evidence in a session of their own, as the analysis of binding mechanisms 4 and 6 in <span>[<a href="#Intra-handshake.fail" class="cite xref">Intra-handshake.fail</a>]</span> shows.
-The public key <span class="bcp14">MAY</span> be included alongside the shared-secret-derived value; the binding then holds while either of the two is unknown to the attacker (<span>[<a href="#Intra-handshake.fail" class="cite xref">Intra-handshake.fail</a>]</span>, Section 7.2).
-A Result that is merely fresh is not bound.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
-</section>
-</div>
-<div id="masked-platform-identities">
-<section id="section-5.4">
-        <h3 id="name-masked-platform-identities">
-<a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-masked-platform-identities" class="section-name selfRef">Masked Platform Identities</a>
-        </h3>
-<p id="section-5.4-1">Some platforms hide the hardware identity from the guest by policy.
-Under AMD SEV-SNP the host may set MaskChipId, in which case CHIP_ID is zero in every guest report, and may disable the per-chip key for a guest (VCEK_DIS), in which case the report is signed by a key that every machine the provider enrolled in one key domain shares <span>[<a href="#SNP-ABI" class="cite xref">SNP-ABI</a>]</span>.
-The two are independent choices of the host and neither is visible in the report except by its effect: a report can carry the per-chip signature with a zero CHIP_ID, and then only a party that learns the chip identity from the host side can obtain the certificate that verifies it, so the certificate is itself a statement by the operator.
-The two key domains also tell a Verifier different things: the shared key is issued by the manufacturer to an enrolled provider and wrapped to each chip (<span>[<a href="#SNP-ABI" class="cite xref">SNP-ABI</a>]</span>, Section 3.7), so a report under it shows which provider's fleet the chip was enrolled in without naming the chip, while the per-chip key names the chip without the provider.
-A zeroed or shared identity is an input to appraisal policy, not an error.
-It means that the Verifier's location conclusion cannot rest on the identity of the chip, and therefore rests on a statement by the provider or on another Verifier's Result; the provenance information in this document exists so that the Relying Party can see which.
-A Relying Party whose policy requires a per-machine identity <span class="bcp14">SHOULD</span> treat such a Result as resting on the provider.<a href="#section-5.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.3-1">A signed Attestation Result whose location was taken from an unsigned operator label carries exactly the same integrity protection as one derived from Evidence.
+The signature says who produced the result; it says nothing about what the result rests on.
+Without <code>basis</code>, a Relying Party cannot separate "this Verifier is trusted" from "this Verifier had something to work with", and those are different questions with different consequences when a regulator asks the second one.
+The <code>basis</code> class discloses no more than which of the three artifact classes was involved: it names neither a receiver, nor an endorser, nor a method, and therefore leaks less than the region string already present in the certificate chains of some attestation formats.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="availability-threats">
-<section id="section-5.5">
+<section id="section-5.4">
         <h3 id="name-availability-threats">
-<a href="#section-5.5" class="section-number selfRef">5.5. </a><a href="#name-availability-threats" class="section-name selfRef">Availability Threats</a>
+<a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-availability-threats" class="section-name selfRef">Availability Threats</a>
         </h3>
-<p id="section-5.5-1">This artifact is the result of a calculation or audit that establishes a result.
-Once created, it can be valid for a period of time from seconds (GNSS result on a martphone) to months (human audit of a data center).<a href="#section-5.5-1" class="pilcrow">¶</a></p>
-<p id="section-5.5-2">Distruptions to the mechanism of location calculation do not make the result of the previous calculation invalid.
-However, it is possible that such an attack could make subsequent calculations infeasible.  For instance, the GNSS signals can easily be jammed.<a href="#section-5.5-2" class="pilcrow">¶</a></p>
+<p id="section-5.4-1">This artifact is the result of a calculation or audit that establishes a result.
+Once created, it can be valid for a period of time from seconds (GNSS result on a martphone) to months (human audit of a data center).<a href="#section-5.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.4-2">Distruptions to the mechanism of location calculation do not make the result of the previous calculation invalid.
+However, it is possible that such an attack could make subsequent calculations infeasible.  For instance, the GNSS signals can easily be jammed.<a href="#section-5.4-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -1549,11 +1586,11 @@ However, it is possible that such an attack could make subsequent calculations i
 <dl class="references">
 <dt id="I-D.ietf-rats-ear">[I-D.ietf-rats-ear]</dt>
         <dd>
-<span class="refAuthor">Fossati, T.</span>, <span class="refAuthor">Voit, E.</span>, <span class="refAuthor">Trofimov, S.</span>, and <span class="refAuthor">H. Birkholz</span>, <span class="refTitle">"EAT Attestation Results"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-rats-ear-04</span>, <time datetime="2026-05-26" class="refDate">26 May 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-rats-ear-04">https://datatracker.ietf.org/doc/html/draft-ietf-rats-ear-04</a>&gt;</span>. </dd>
+<span class="refAuthor">Fossati, T.</span>, <span class="refAuthor">Voit, E.</span>, <span class="refAuthor">Trofimov, S.</span>, and <span class="refAuthor">H. Birkholz</span>, <span class="refTitle">"EAT Attestation Results"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-rats-ear-05</span>, <time datetime="2026-11-02" class="refDate">2 November 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-rats-ear-05">https://datatracker.ietf.org/doc/html/draft-ietf-rats-ear-05</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ietf-rats-endorsements">[I-D.ietf-rats-endorsements]</dt>
         <dd>
-<span class="refAuthor">Thaler, D.</span>, <span class="refAuthor">Birkholz, H.</span>, and <span class="refAuthor">T. Fossati</span>, <span class="refTitle">"RATS Endorsements"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-rats-endorsements-09</span>, <time datetime="2026-03-02" class="refDate">2 March 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-rats-endorsements-09">https://datatracker.ietf.org/doc/html/draft-ietf-rats-endorsements-09</a>&gt;</span>. </dd>
+<span class="refAuthor">Thaler, D.</span>, <span class="refAuthor">Birkholz, H.</span>, and <span class="refAuthor">T. Fossati</span>, <span class="refTitle">"Remote Attestation Procedures (RATS) Endorsements"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-rats-endorsements-13</span>, <time datetime="2026-10-14" class="refDate">14 October 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-rats-endorsements-13">https://datatracker.ietf.org/doc/html/draft-ietf-rats-endorsements-13</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -1586,11 +1623,11 @@ However, it is possible that such an attack could make subsequent calculations i
 <dl class="references">
 <dt id="I-D.lkspa-rats-verifiable-geo-fence">[I-D.lkspa-rats-verifiable-geo-fence]</dt>
         <dd>
-<span class="refAuthor">Krishnan, R.</span>, <span class="refAuthor">Smith, N.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Prasad, A.</span>, <span class="refAuthor">Addepalli, S.</span>, and <span class="refAuthor">H. Birkholz</span>, <span class="refTitle">"Verifiable Proof of Environment Attestation Profile"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-lkspa-rats-verifiable-geo-fence-03</span>, <time datetime="2026-06-13" class="refDate">13 June 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-lkspa-rats-verifiable-geo-fence-03">https://datatracker.ietf.org/doc/html/draft-lkspa-rats-verifiable-geo-fence-03</a>&gt;</span>. </dd>
+<span class="refAuthor">Krishnan, R.</span>, <span class="refAuthor">Smith, N.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Prasad, A.</span>, <span class="refAuthor">Addepalli, S.</span>, and <span class="refAuthor">H. Birkholz</span>, <span class="refTitle">"Verifiable Proof of Environment Attestation Profile"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-lkspa-rats-verifiable-geo-fence-04</span>, <time datetime="2026-10-31" class="refDate">31 October 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-lkspa-rats-verifiable-geo-fence-04">https://datatracker.ietf.org/doc/html/draft-lkspa-rats-verifiable-geo-fence-04</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="I-D.ramki-ptp-hardware-rooted-attestation">[I-D.ramki-ptp-hardware-rooted-attestation]</dt>
         <dd>
-<span class="refAuthor">Krishnan, R.</span>, <span class="refAuthor">Richardson, M.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Prasad, A.</span>, and <span class="refAuthor">S. Addepalli</span>, <span class="refTitle">"Hardware-Rooted Attestation for Precision Time Protocol: Scalable Workload Identity and Phased PQC Readiness"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ramki-ptp-hardware-rooted-attestation-01</span>, <time datetime="2026-03-01" class="refDate">1 March 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ramki-ptp-hardware-rooted-attestation-01">https://datatracker.ietf.org/doc/html/draft-ramki-ptp-hardware-rooted-attestation-01</a>&gt;</span>. </dd>
+<span class="refAuthor">Krishnan, R.</span>, <span class="refAuthor">Richardson, M.</span>, <span class="refAuthor">Lopez, D.</span>, <span class="refAuthor">Prasad, A.</span>, and <span class="refAuthor">S. Addepalli</span>, <span class="refTitle">"Hardware-Rooted Attestation for Precision Time Protocol: Scalable Workload Identity and Phased PQC Readiness"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ramki-ptp-hardware-rooted-attestation-02</span>, <time datetime="2026-10-18" class="refDate">18 October 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ramki-ptp-hardware-rooted-attestation-02">https://datatracker.ietf.org/doc/html/draft-ramki-ptp-hardware-rooted-attestation-02</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="IANA.cwt">[IANA.cwt]</dt>
         <dd>
@@ -1600,17 +1637,9 @@ However, it is possible that such an attack could make subsequent calculations i
         <dd>
 <span class="refAuthor">IANA</span>, <span class="refTitle">"JSON Web Token (JWT)"</span>, <span>&lt;<a href="https://www.iana.org/assignments/jwt">https://www.iana.org/assignments/jwt</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="ID-Crisis">[ID-Crisis]</dt>
-        <dd>
-<span class="refAuthor">Sardar, M. U.</span>, <span class="refAuthor">Moustafa, M.</span>, and <span class="refAuthor">T. Aura</span>, <span class="refTitle">"Identity Crisis in Confidential Computing: Formal Analysis of Attested TLS"</span>, <span class="seriesInfo">Proceedings of the ACM Asia Conference on Computer and Communications Security pp. 547-560</span>, <time datetime="2026-06" class="refDate">June 2026</time>, <span>&lt;<a href="https://doi.org/10.1145/3779208.3785387">https://doi.org/10.1145/3779208.3785387</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="IDevID">[IDevID]</dt>
         <dd>
 <span class="refAuthor">IEEE Standard</span>, <span class="refTitle">"IEEE 802.1AR Secure Device Identifier"</span>, <time datetime="2018" class="refDate">2018</time>, <span>&lt;<a href="https://1.ieee802.org/security/802-1ar/l">https://1.ieee802.org/security/802-1ar/l</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="Intra-handshake.fail">[Intra-handshake.fail]</dt>
-        <dd>
-<span class="refAuthor">Sardar, M. U.</span>, <span class="refAuthor">Dubeyko, V.</span>, and <span class="refAuthor">J.-M. Jacquet</span>, <span class="refTitle">"Intra-handshake.fail (CVE-2026-33697): High-severity CVE in Attested TLS"</span>, <span class="seriesInfo">31st European Symposium on Research in Computer Security (ESORICS) LNCS, to appear</span>, <time datetime="2026-09" class="refDate">September 2026</time>, <span>&lt;<a href="https://www.researchgate.net/publication/408219182_Intra-handshakefail_CVE-2026-33697_High-severity_CVE_in_Attested_TLS">https://www.researchgate.net/publication/408219182_Intra-handshakefail_CVE-2026-33697_High-severity_CVE_in_Attested_TLS</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="LLDP">[LLDP]</dt>
         <dd>
@@ -1624,10 +1653,6 @@ However, it is possible that such an attack could make subsequent calculations i
         <dd>
 <span class="refAuthor">Wikipedia</span>, <span class="refTitle">"Precision Time Protocol"</span>, <time datetime="2025-10-07" class="refDate">7 October 2025</time>, <span>&lt;<a href="https://en.wikipedia.org/wiki/Precision_Time_Protocol">https://en.wikipedia.org/wiki/Precision_Time_Protocol</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC9266">[RFC9266]</dt>
-        <dd>
-<span class="refAuthor">Whited, S.</span>, <span class="refTitle">"Channel Bindings for TLS 1.3"</span>, <span class="seriesInfo">RFC 9266</span>, <span class="seriesInfo">DOI 10.17487/RFC9266</span>, <time datetime="2022-07" class="refDate">July 2022</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9266">https://www.rfc-editor.org/rfc/rfc9266</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC9360">[RFC9360]</dt>
         <dd>
 <span class="refAuthor">Schaad, J.</span>, <span class="refTitle">"CBOR Object Signing and Encryption (COSE): Header Parameters for Carrying and Referencing X.509 Certificates"</span>, <span class="seriesInfo">RFC 9360</span>, <span class="seriesInfo">DOI 10.17487/RFC9360</span>, <time datetime="2023-02" class="refDate">February 2023</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc9360">https://www.rfc-editor.org/rfc/rfc9360</a>&gt;</span>. </dd>
@@ -1635,10 +1660,6 @@ However, it is possible that such an attack could make subsequent calculations i
 <dt id="rollover">[rollover]</dt>
         <dd>
 <span class="refAuthor">Wikipedia</span>, <span class="refTitle">"Console Rollover Cable"</span>, <time datetime="2025-04-26" class="refDate">26 April 2025</time>, <span>&lt;<a href="https://en.wikipedia.org/wiki/Rollover_cable">https://en.wikipedia.org/wiki/Rollover_cable</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="SNP-ABI">[SNP-ABI]</dt>
-        <dd>
-<span class="refAuthor">Advanced Micro Devices</span>, <span class="refTitle">"SEV Secure Nested Paging Firmware ABI Specification, Revision 1.58"</span>, <time datetime="2025-05" class="refDate">May 2025</time>, <span>&lt;<a href="https://www.amd.com/content/dam/amd/en/documents/developer/56860.pdf">https://www.amd.com/content/dam/amd/en/documents/developer/56860.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="speed">[speed]</dt>
       <dd>
@@ -1649,116 +1670,213 @@ However, it is possible that such an attack could make subsequent calculations i
 </div>
 </section>
 </div>
-<div id="presence">
+<div id="examples">
 <section id="appendix-A">
-      <h2 id="name-proof-of-placement">
-<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-proof-of-placement" class="section-name selfRef">Proof of Placement</a>
+      <h2 id="name-worked-examples">
+<a href="#appendix-A" class="section-number selfRef">Appendix A. </a><a href="#name-worked-examples" class="section-name selfRef">Worked Examples</a>
       </h2>
-<p id="appendix-A-1">Some aspects of a device can not be intuited by the device itself.
-For instance, a router platform may have no way to know what color the case is, where in a cabinet it is located, or which electrical circuit it is connected to.
-This kind of information must be provided through an Endorsement: a statement from a third party.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
-<p id="appendix-A-2">These statements may require human audiitors to inspect the device physically.
-But, which device is really in front of an auditor?  This document describes a mechanism by which an auditor can make physical contact with a device and collect information to identify the
-device in a cryptographically strong manner.<a href="#appendix-A-2" class="pilcrow">¶</a></p>
-<p id="appendix-A-3">The Proof of Presence protocol is intended to provide a mechanism by which device identity can be established via non-networked, physical cabling such as a USB cable, or a serial (craft) console.<a href="#appendix-A-3" class="pilcrow">¶</a></p>
-<div id="introduction-1">
+<p id="appendix-A-1">The two results below were produced by a minimal Verifier written against the CDDL in this document and run over hardware-signed attestation artifacts captured from a single workload in public clouds.
+Both verify against public roots; both yield <code>jurisdiction-country</code> "NL"; they rest on different classes.<a href="#appendix-A-1" class="pilcrow">¶</a></p>
+<div id="microsoft-azure-west-europe-basis-endorsement">
 <section id="appendix-A.1">
-        <h3 id="name-introduction-2">
-<a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-introduction-2" class="section-name selfRef">Introduction</a>
+        <h3 id="name-microsoft-azure-west-europe">
+<a href="#appendix-A.1" class="section-number selfRef">A.1. </a><a href="#name-microsoft-azure-west-europe" class="section-name selfRef">Microsoft Azure, West Europe (basis: endorsement)</a>
         </h3>
-<p id="appendix-A.1-1">In the RATS Architecture <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>, an important input to the Verifier function is the Endorsement.
+<p id="appendix-A.1-1">The only locational signal in a Microsoft Azure Attestation token is the issuer hostname: a region-scoped service identity asserted by the issuer and covered by its signature.
+The Verifier accepted it as an Endorsement and records that class.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.1-2">
+<pre>
+{
+  / grc.jurisdiction-country / 0: "NL",
+  / grc.claim-uuid /          13: h'814f1a077ed25b798641788ef6dab3a1',
+  / grc.basis /               14: 1  / endorsement /
+}
+</pre><a href="#appendix-A.1-2" class="pilcrow">¶</a>
+</div>
+<p id="appendix-A.1-3">Encoded (25 bytes):<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.1-4">
+<pre>
+a300624e4c0d50814f1a077ed25b798641788ef6dab3a10e01
+</pre><a href="#appendix-A.1-4" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="google-cloud-europe-west4-basis-attestation-result">
+<section id="appendix-A.2">
+        <h3 id="name-google-cloud-europe-west4-b">
+<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-google-cloud-europe-west4-b" class="section-name selfRef">Google Cloud, europe-west4 (basis: attestation-result)</a>
+        </h3>
+<p id="appendix-A.2-1">An AMD SEV-SNP ATTESTATION_REPORT contains no locational field by definition of its ABI.
+The zone came from capture metadata stored next to the report, unsigned.
+The Verifier appraised it on its own authority and records <code>attestation-result</code>.
+Because a zone is more specific than a region-scoped hostname, this result also carries a city: the result with less behind it is the more detailed one.<a href="#appendix-A.2-1" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.2-2">
+<pre>
+{
+  / grc.jurisdiction-country / 0: "NL",
+  / grc.jurisdiction-city /    4: "Eemshaven",
+  / grc.claim-uuid /          13: h'5e1a26c009cb5e8489c4f9efa68f78ad',
+  / grc.basis /               14: 2  / attestation-result /
+}
+</pre><a href="#appendix-A.2-2" class="pilcrow">¶</a>
+</div>
+<p id="appendix-A.2-3">Encoded (36 bytes):<a href="#appendix-A.2-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-A.2-4">
+<pre>
+a400624e4c046945656d73686176656e0d505e1a26c009cb5e8489c4f9efa68f78ad0e02
+</pre><a href="#appendix-A.2-4" class="pilcrow">¶</a>
+</div>
+<p id="appendix-A.2-5"><a href="#fig-wire" class="auto internal xref">Figure 2</a> annotates both encodings byte by byte.<a href="#appendix-A.2-5" class="pilcrow">¶</a></p>
+<span id="name-the-two-results-annotated"></span><div id="fig-wire">
+<figure id="figure-2">
+          <div class="alignLeft art-text artwork" id="appendix-A.2-6.1">
+<pre>
+Microsoft Azure, West Europe: basis endorsement, 25 bytes
+
+a3                                      # map(3)
+   00                                   #  key 0 jurisdiction-country
+   62 4e4c                              #  text(2) "NL"
+   0d                                   #  key 13 claim-uuid
+   50 814f1a077ed25b798641788ef6dab3a1  #  bytes(16)
+   0e                                   #  key 14 basis
+   01                                   #  1 = endorsement
+
+Google Cloud, europe-west4: basis attestation-result, 36 bytes
+
+a4                                      # map(4)
+   00                                   #  key 0 jurisdiction-country
+   62 4e4c                              #  text(2) "NL"
+   04                                   #  key 4 jurisdiction-city
+   69 45656d73686176656e                #  text(9) "Eemshaven"
+   0d                                   #  key 13 claim-uuid
+   50 5e1a26c009cb5e8489c4f9efa68f78ad  #  bytes(16)
+   0e                                   #  key 14 basis
+   02                                   #  2 = attestation-result
+</pre>
+</div>
+<figcaption><a href="#figure-2" class="selfRef">Figure 2</a>:
+<a href="#name-the-two-results-annotated" class="selfRef">The two results, annotated</a>
+          </figcaption></figure>
+</div>
+<p id="appendix-A.2-7">The jurisdiction claim is the same four bytes, 00 62 4e 4c, in each.
+Both maps validate against the CDDL in this document; a map carrying <code>basis</code> 3, <code>basis</code> as a text string, or a 15-byte <code>claim-uuid</code> is rejected.
+The Verifier used is a minimal implementation of this document written by one of the authors.
+Across the 26 artifacts of the capture (twelve AWS Nitro documents, ten SEV-SNP reports, four Azure tokens) every signature verified against its public root.
+The Verifier emitted a geographic result for the 19 artifacts that carried any locational input and none for the seven SEV-SNP reports that carried none at all; all 19 results validate.<a href="#appendix-A.2-7" class="pilcrow">¶</a></p>
+</section>
+</div>
+</section>
+</div>
+<div id="presence">
+<section id="appendix-B">
+      <h2 id="name-proof-of-placement">
+<a href="#appendix-B" class="section-number selfRef">Appendix B. </a><a href="#name-proof-of-placement" class="section-name selfRef">Proof of Placement</a>
+      </h2>
+<p id="appendix-B-1">Some aspects of a device can not be intuited by the device itself.
+For instance, a router platform may have no way to know what color the case is, where in a cabinet it is located, or which electrical circuit it is connected to.
+This kind of information must be provided through an Endorsement: a statement from a third party.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-B-2">These statements may require human audiitors to inspect the device physically.
+But, which device is really in front of an auditor?  This document describes a mechanism by which an auditor can make physical contact with a device and collect information to identify the
+device in a cryptographically strong manner.<a href="#appendix-B-2" class="pilcrow">¶</a></p>
+<p id="appendix-B-3">The Proof of Presence protocol is intended to provide a mechanism by which device identity can be established via non-networked, physical cabling such as a USB cable, or a serial (craft) console.<a href="#appendix-B-3" class="pilcrow">¶</a></p>
+<div id="introduction-1">
+<section id="appendix-B.1">
+        <h3 id="name-introduction-2">
+<a href="#appendix-B.1" class="section-number selfRef">B.1. </a><a href="#name-introduction-2" class="section-name selfRef">Introduction</a>
+        </h3>
+<p id="appendix-B.1-1">In the RATS Architecture <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>, an important input to the Verifier function is the Endorsement.
 Endorsements <span>[<a href="#I-D.ietf-rats-endorsements" class="cite xref">I-D.ietf-rats-endorsements</a>]</span> provide information that the Attester can not inherently know.
 This includes a statement that a particular (Attester) keypair belongs  to a device of a particular type.
-Some of this information might be placed into device identity certificate (such as an IDevID <span>[<a href="#IDevID" class="cite xref">IDevID</a>]</span>), but many other kinds of claims would not belong.<a href="#appendix-A.1-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.1-2">For instance, the physical location or connectivity of a device would be subject to change.
+Some of this information might be placed into device identity certificate (such as an IDevID <span>[<a href="#IDevID" class="cite xref">IDevID</a>]</span>), but many other kinds of claims would not belong.<a href="#appendix-B.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-B.1-2">For instance, the physical location or connectivity of a device would be subject to change.
 In some cases a GPS coordinate might make sense, but in other cases GPS might not be trustworthy, or might be inadequate.
 The physical location of a router, as being in "Building 4, Aisle 37, Cabinet 9, Rack Unit 2-3"
 would be a level of precision that GPS would be unable to provide.
 Other claims might involve knowledge of the color of a device ("the red car"), or the connectivity of the device ("the device plugged into the blue cable").
-A relative claim might also be relevant: The house on top of the person with Ruby Slippers.<a href="#appendix-A.1-2" class="pilcrow">¶</a></p>
-<p id="appendix-A.1-3">In these cases an endorsement will need to be created, often by a human inspector/auditor that will have to physically visit the device and ascertain the state of the device.
+A relative claim might also be relevant: The house on top of the person with Ruby Slippers.<a href="#appendix-B.1-2" class="pilcrow">¶</a></p>
+<p id="appendix-B.1-3">In these cases an endorsement will need to be created, often by a human inspector/auditor that will have to physically visit the device and ascertain the state of the device.
 There are some challenges for such an auditor: they could be led astray by malicious intent to inspect the wrong device, or they could simply not locate the device they intended to audit.
-This results in an endorsement linked to the wrong device.<a href="#appendix-A.1-3" class="pilcrow">¶</a></p>
+This results in an endorsement linked to the wrong device.<a href="#appendix-B.1-3" class="pilcrow">¶</a></p>
 <div id="overview-of-mechanism">
-<section id="appendix-A.1.1">
+<section id="appendix-B.1.1">
           <h4 id="name-overview-of-mechanism">
-<a href="#appendix-A.1.1" class="section-number selfRef">A.1.1. </a><a href="#name-overview-of-mechanism" class="section-name selfRef">Overview of mechanism</a>
+<a href="#appendix-B.1.1" class="section-number selfRef">B.1.1. </a><a href="#name-overview-of-mechanism" class="section-name selfRef">Overview of mechanism</a>
           </h4>
-<p id="appendix-A.1.1-1">The auditor is equiped with a portable device (e.g., a tablet computer) containing an endorsement  signing key.
+<p id="appendix-B.1.1-1">The auditor is equiped with a portable device (e.g., a tablet computer) containing an endorsement  signing key.
 This is the audit device.
-(This could be an actual key, or it could just be a secure/tamperproof container in which endorsements will be stored until a long-term/more-secure endorsement key can be employed)<a href="#appendix-A.1.1-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.1.1-2">The auditor finds the device in question and then collects whatever information is relevant.
+(This could be an actual key, or it could just be a secure/tamperproof container in which endorsements will be stored until a long-term/more-secure endorsement key can be employed)<a href="#appendix-B.1.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-B.1.1-2">The auditor finds the device in question and then collects whatever information is relevant.
 For instance, the location in whatever form makes sense for the endorsement.
-That might include taking pictures of the device in-situ, scans of serial numbers on the outside of the case, and which cables are connected to which physical ports.<a href="#appendix-A.1.1-2" class="pilcrow">¶</a></p>
-<p id="appendix-A.1.1-3">The auditor then plugs a physical cable between their audit device and the device under audit.
+That might include taking pictures of the device in-situ, scans of serial numbers on the outside of the case, and which cables are connected to which physical ports.<a href="#appendix-B.1.1-2" class="pilcrow">¶</a></p>
+<p id="appendix-B.1.1-3">The auditor then plugs a physical cable between their audit device and the device under audit.
 This cable is envisioned to be either a USB console "rollover" cable <span>[<a href="#rollover" class="cite xref">rollover</a>]</span>.
-The audit device then initiates some commands over this cable that will result in a proof of the idnetity of connected device.<a href="#appendix-A.1.1-3" class="pilcrow">¶</a></p>
+The audit device then initiates some commands over this cable that will result in a proof of the idnetity of connected device.<a href="#appendix-B.1.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="terminology">
-<section id="appendix-A.2">
+<section id="appendix-B.2">
         <h3 id="name-terminology">
-<a href="#appendix-A.2" class="section-number selfRef">A.2. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
+<a href="#appendix-B.2" class="section-number selfRef">B.2. </a><a href="#name-terminology" class="section-name selfRef">Terminology</a>
         </h3>
-<span class="break"></span><dl class="dlParallel" id="appendix-A.2-1">
-          <dt id="appendix-A.2-1.1">Audit Device:</dt>
-          <dd style="margin-left: 1.5em" id="appendix-A.2-1.2">
-            <p id="appendix-A.2-1.2.1">The device that is used to collect information that will go into endorsements.<a href="#appendix-A.2-1.2.1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="appendix-B.2-1">
+          <dt id="appendix-B.2-1.1">Audit Device:</dt>
+          <dd style="margin-left: 1.5em" id="appendix-B.2-1.2">
+            <p id="appendix-B.2-1.2.1">The device that is used to collect information that will go into endorsements.<a href="#appendix-B.2-1.2.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="appendix-A.2-1.3">Device Under Audit:</dt>
-          <dd style="margin-left: 1.5em" id="appendix-A.2-1.4">
-            <p id="appendix-A.2-1.4.1">Abbreviated to DUA. The device for which endorsements are being made.<a href="#appendix-A.2-1.4.1" class="pilcrow">¶</a></p>
+<dt id="appendix-B.2-1.3">Device Under Audit:</dt>
+          <dd style="margin-left: 1.5em" id="appendix-B.2-1.4">
+            <p id="appendix-B.2-1.4.1">Abbreviated to DUA. The device for which endorsements are being made.<a href="#appendix-B.2-1.4.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
-<dt id="appendix-A.2-1.5">Auditor:</dt>
-          <dd style="margin-left: 1.5em" id="appendix-A.2-1.6">
-            <p id="appendix-A.2-1.6.1">The human who inspects the Device Under Audit.<a href="#appendix-A.2-1.6.1" class="pilcrow">¶</a></p>
+<dt id="appendix-B.2-1.5">Auditor:</dt>
+          <dd style="margin-left: 1.5em" id="appendix-B.2-1.6">
+            <p id="appendix-B.2-1.6.1">The human who inspects the Device Under Audit.<a href="#appendix-B.2-1.6.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 </dl>
 </section>
 </div>
 <div id="presence-protocol">
-<section id="appendix-A.3">
+<section id="appendix-B.3">
         <h3 id="name-presence-protocol">
-<a href="#appendix-A.3" class="section-number selfRef">A.3. </a><a href="#name-presence-protocol" class="section-name selfRef">Presence Protocol</a>
+<a href="#appendix-B.3" class="section-number selfRef">B.3. </a><a href="#name-presence-protocol" class="section-name selfRef">Presence Protocol</a>
         </h3>
-<p id="appendix-A.3-1">It is assumed that the console port has been designed for use by humans.
+<p id="appendix-B.3-1">It is assumed that the console port has been designed for use by humans.
 This protocol is designed to interact as if it's a human.
-Note that more sophisticated mechanisms such as SLIP or PPP would be more vulnerable to spoofing.<a href="#appendix-A.3-1" class="pilcrow">¶</a></p>
+Note that more sophisticated mechanisms such as SLIP or PPP would be more vulnerable to spoofing.<a href="#appendix-B.3-1" class="pilcrow">¶</a></p>
 <div id="loginhandshake">
-<section id="appendix-A.3.1">
+<section id="appendix-B.3.1">
           <h4 id="name-initial-handshake">
-<a href="#appendix-A.3.1" class="section-number selfRef">A.3.1. </a><a href="#name-initial-handshake" class="section-name selfRef">Initial Handshake</a>
+<a href="#appendix-B.3.1" class="section-number selfRef">B.3.1. </a><a href="#name-initial-handshake" class="section-name selfRef">Initial Handshake</a>
           </h4>
-<p id="appendix-A.3.1-1">The audit device sends carriage returns (octet 13) until it sees a response with a colon (":") in it.
+<p id="appendix-B.3.1-1">The audit device sends carriage returns (octet 13) until it sees a response with a colon (":") in it.
 This is usually a "login:" or "username:" prompt of some kind.
 The audit device then sends the word "endorsementaudit" with a carriage return.
 This represents a user login, and for some systems this can be set as a real login with limited permissions.
 It could run a special audit shell that only can perform system audits.
-On other systems, this might just an unpriviledged account with the normal prompts and commands.<a href="#appendix-A.3.1-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.3.1-2">The handshake is over when the word "endorsement" is seen.<a href="#appendix-A.3.1-2" class="pilcrow">¶</a></p>
+On other systems, this might just an unpriviledged account with the normal prompts and commands.<a href="#appendix-B.3.1-1" class="pilcrow">¶</a></p>
+<p id="appendix-B.3.1-2">The handshake is over when the word "endorsement" is seen.<a href="#appendix-B.3.1-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="proof-of-presence">
-<section id="appendix-A.3.2">
+<section id="appendix-B.3.2">
           <h4 id="name-proof-of-presence">
-<a href="#appendix-A.3.2" class="section-number selfRef">A.3.2. </a><a href="#name-proof-of-presence" class="section-name selfRef">Proof of Presence</a>
+<a href="#appendix-B.3.2" class="section-number selfRef">B.3.2. </a><a href="#name-proof-of-presence" class="section-name selfRef">Proof of Presence</a>
           </h4>
-<p id="appendix-A.3.2-1">(Proof of Presence, or POP, is not a great TLA, as it often refers to proof that a private key is used.  A better name is saught)<a href="#appendix-A.3.2-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.3.2-2">All commands are prefixed with "rfcXXXX" (with a trailing space, where XXXX is the number of this document).
+<p id="appendix-B.3.2-1">(Proof of Presence, or POP, is not a great TLA, as it often refers to proof that a private key is used.  A better name is saught)<a href="#appendix-B.3.2-1" class="pilcrow">¶</a></p>
+<p id="appendix-B.3.2-2">All commands are prefixed with "rfcXXXX" (with a trailing space, where XXXX is the number of this document).
 A second word indicates the command.
-The allows the device under audit to collect all operations under a single command or command sub-system.<a href="#appendix-A.3.2-2" class="pilcrow">¶</a></p>
-<p id="appendix-A.3.2-3">The audit device then sends the word/command "position-proof", followed by a 33 byte nonce, base64URL encoded into a 45 byte string.
-(33 bytes are recommended because being divisible by three, they encode evenly in base64, leaving  no trailing =)<a href="#appendix-A.3.2-3" class="pilcrow">¶</a></p>
-<p id="appendix-A.3.2-4">The device under audit then responds with a CBOR format EAT object, encoded in base64URL, and wrapped in the strings "--- BEGIN COSE OBJECT ---" and "--- END COSE OBJECT ---"<a href="#appendix-A.3.2-4" class="pilcrow">¶</a></p>
-<p id="appendix-A.3.2-5">The EAT payload should be constructed as follows.
+The allows the device under audit to collect all operations under a single command or command sub-system.<a href="#appendix-B.3.2-2" class="pilcrow">¶</a></p>
+<p id="appendix-B.3.2-3">The audit device then sends the word/command "position-proof", followed by a 33 byte nonce, base64URL encoded into a 45 byte string.
+(33 bytes are recommended because being divisible by three, they encode evenly in base64, leaving  no trailing =)<a href="#appendix-B.3.2-3" class="pilcrow">¶</a></p>
+<p id="appendix-B.3.2-4">The device under audit then responds with a CBOR format EAT object, encoded in base64URL, and wrapped in the strings "--- BEGIN COSE OBJECT ---" and "--- END COSE OBJECT ---"<a href="#appendix-B.3.2-4" class="pilcrow">¶</a></p>
+<p id="appendix-B.3.2-5">The EAT payload should be constructed as follows.
 Shown are a few attributes that would make sense to include.
-The above provide nonce becomes the eat_nonce.<a href="#appendix-A.3.2-5" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.3.2-6">
+The above provide nonce becomes the eat_nonce.<a href="#appendix-B.3.2-5" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-B.3.2-6">
 <pre>
 {
     / eat_nonce /       10: h'948f8860d13a463e8e',
@@ -1770,12 +1888,12 @@ The above provide nonce becomes the eat_nonce.<a href="#appendix-A.3.2-5" class=
     / swname /         271: "Acme OS",
     / swversion /      272: ["3.5.5", 1],
 }
-</pre><a href="#appendix-A.3.2-6" class="pilcrow">¶</a>
+</pre><a href="#appendix-B.3.2-6" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.3.2-7">The EAT payload is signed using the device under audit's Attestation Key.
+<p id="appendix-B.3.2-7">The EAT payload is signed using the device under audit's Attestation Key.
 (A TPM's Endorsement Key can not sign things)
-The hash of the Attestation Key is provided in the unprotected headers.<a href="#appendix-A.3.2-7" class="pilcrow">¶</a></p>
-<div class="alignLeft art-text artwork" id="appendix-A.3.2-8">
+The hash of the Attestation Key is provided in the unprotected headers.<a href="#appendix-B.3.2-7" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="appendix-B.3.2-8">
 <pre>
    61( 18( [
        h'A10126',                           / protected headers  /
@@ -1788,174 +1906,174 @@ The hash of the Attestation Key is provided in the unprotected headers.<a href="
          A07417391243A79C478562D285612E292C622162
          AB233787'                                   / signature /
    ] ) )
-</pre><a href="#appendix-A.3.2-8" class="pilcrow">¶</a>
+</pre><a href="#appendix-B.3.2-8" class="pilcrow">¶</a>
 </div>
-<p id="appendix-A.3.2-9">x5t is from <span>[<a href="#RFC9360" class="cite xref">RFC9360</a>]</span>.
+<p id="appendix-B.3.2-9">x5t is from <span>[<a href="#RFC9360" class="cite xref">RFC9360</a>]</span>.
 The hash algoritm <span class="bcp14">SHOULD</span> be SHA256, or newer.
-(Example to be updated.<a href="#appendix-A.3.2-9" class="pilcrow">¶</a></p>
+(Example to be updated.<a href="#appendix-B.3.2-9" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="collection-of-endorsement-claims">
-<section id="appendix-A.3.3">
+<section id="appendix-B.3.3">
           <h4 id="name-collection-of-endorsement-c">
-<a href="#appendix-A.3.3" class="section-number selfRef">A.3.3. </a><a href="#name-collection-of-endorsement-c" class="section-name selfRef">Collection of Endorsement Claims</a>
+<a href="#appendix-B.3.3" class="section-number selfRef">B.3.3. </a><a href="#name-collection-of-endorsement-c" class="section-name selfRef">Collection of Endorsement Claims</a>
           </h4>
-<p id="appendix-A.3.3-1">The audit device then validates the received EAT object from the device.
+<p id="appendix-B.3.3-1">The audit device then validates the received EAT object from the device.
 The audit device locates the public part of the device's Attestation Key.
-This will in most cases be part of the "work order" that the auditor has been provided, but in some cases, the auditor will have to collect it from the device.<a href="#appendix-A.3.3-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.3.3-2">For instance, a device might have been replaced since the audit was requested, or there might be additional devices that the auditor thinks might be relevant.
+This will in most cases be part of the "work order" that the auditor has been provided, but in some cases, the auditor will have to collect it from the device.<a href="#appendix-B.3.3-1" class="pilcrow">¶</a></p>
+<p id="appendix-B.3.3-2">For instance, a device might have been replaced since the audit was requested, or there might be additional devices that the auditor thinks might be relevant.
 An example might be when a switching device has many cables connected into an adjacent optical media converter that puts multiple signals through a single multi-frequency optical cable.
-Such a layer of indirection might affect the audit's ability to indicate which port is physically connected to which cable.<a href="#appendix-A.3.3-2" class="pilcrow">¶</a></p>
-<p id="appendix-A.3.3-3">Some key physical information that an auditor might need to collect is which fibre patches are connected to which ports of the switch.
-This information would be ideally collected by scanning (and checking) labels on the fibre patches.<a href="#appendix-A.3.3-3" class="pilcrow">¶</a></p>
+Such a layer of indirection might affect the audit's ability to indicate which port is physically connected to which cable.<a href="#appendix-B.3.3-2" class="pilcrow">¶</a></p>
+<p id="appendix-B.3.3-3">Some key physical information that an auditor might need to collect is which fibre patches are connected to which ports of the switch.
+This information would be ideally collected by scanning (and checking) labels on the fibre patches.<a href="#appendix-B.3.3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="additional-commands">
-<section id="appendix-A.3.4">
+<section id="appendix-B.3.4">
           <h4 id="name-additional-commands">
-<a href="#appendix-A.3.4" class="section-number selfRef">A.3.4. </a><a href="#name-additional-commands" class="section-name selfRef">Additional Commands</a>
+<a href="#appendix-B.3.4" class="section-number selfRef">B.3.4. </a><a href="#name-additional-commands" class="section-name selfRef">Additional Commands</a>
           </h4>
-<p id="appendix-A.3.4-1">Some additional commands can be provided by the device under audit:<a href="#appendix-A.3.4-1" class="pilcrow">¶</a></p>
-<span class="break"></span><dl class="dlParallel" id="appendix-A.3.4-2">
-            <dt id="appendix-A.3.4-2.1">"attestation-key":</dt>
-            <dd style="margin-left: 1.5em" id="appendix-A.3.4-2.2">
-              <p id="appendix-A.3.4-2.2.1">This command returns the public certificate for the device's Attestation Key in <span>[<a href="#RFC7468" class="cite xref">RFC7468</a>]</span> Certificate format.<a href="#appendix-A.3.4-2.2.1" class="pilcrow">¶</a></p>
+<p id="appendix-B.3.4-1">Some additional commands can be provided by the device under audit:<a href="#appendix-B.3.4-1" class="pilcrow">¶</a></p>
+<span class="break"></span><dl class="dlParallel" id="appendix-B.3.4-2">
+            <dt id="appendix-B.3.4-2.1">"attestation-key":</dt>
+            <dd style="margin-left: 1.5em" id="appendix-B.3.4-2.2">
+              <p id="appendix-B.3.4-2.2.1">This command returns the public certificate for the device's Attestation Key in <span>[<a href="#RFC7468" class="cite xref">RFC7468</a>]</span> Certificate format.<a href="#appendix-B.3.4-2.2.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="appendix-A.3.4-2.3">"port-flash":</dt>
-            <dd style="margin-left: 1.5em" id="appendix-A.3.4-2.4">
-              <p id="appendix-A.3.4-2.4.1">This command takes an interface number/name (e.g., "GigabitEthernet 3/014"), and causes the LEDs adjacent to a particular port to flash in a distinct pattern.  This is to help identity which physical port is which.<a href="#appendix-A.3.4-2.4.1" class="pilcrow">¶</a></p>
+<dt id="appendix-B.3.4-2.3">"port-flash":</dt>
+            <dd style="margin-left: 1.5em" id="appendix-B.3.4-2.4">
+              <p id="appendix-B.3.4-2.4.1">This command takes an interface number/name (e.g., "GigabitEthernet 3/014"), and causes the LEDs adjacent to a particular port to flash in a distinct pattern.  This is to help identity which physical port is which.<a href="#appendix-B.3.4-2.4.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="appendix-A.3.4-2.5">"port-down":</dt>
-            <dd style="margin-left: 1.5em" id="appendix-A.3.4-2.6">
-              <p id="appendix-A.3.4-2.6.1">This command takes an interface number/name (as above), and causes the switch to mark the physical port as down, but not turn off the laser.  Traffic <span class="bcp14">SHOULD</span> be re-routed as if the fibre has failed.  This is a disruptive test!  The auditor may then physically unplug the fibre as part of an audit of the fibre paths.  This command might not perform the action immediately, but could signal to the network operations center that such a test is desired, and allow them to approve it.<a href="#appendix-A.3.4-2.6.1" class="pilcrow">¶</a></p>
+<dt id="appendix-B.3.4-2.5">"port-down":</dt>
+            <dd style="margin-left: 1.5em" id="appendix-B.3.4-2.6">
+              <p id="appendix-B.3.4-2.6.1">This command takes an interface number/name (as above), and causes the switch to mark the physical port as down, but not turn off the laser.  Traffic <span class="bcp14">SHOULD</span> be re-routed as if the fibre has failed.  This is a disruptive test!  The auditor may then physically unplug the fibre as part of an audit of the fibre paths.  This command might not perform the action immediately, but could signal to the network operations center that such a test is desired, and allow them to approve it.<a href="#appendix-B.3.4-2.6.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="appendix-A.3.4-2.7">"port-up":</dt>
-            <dd style="margin-left: 1.5em" id="appendix-A.3.4-2.8">
-              <p id="appendix-A.3.4-2.8.1">Indicates the end of an path-audit started by "port-down".<a href="#appendix-A.3.4-2.8.1" class="pilcrow">¶</a></p>
+<dt id="appendix-B.3.4-2.7">"port-up":</dt>
+            <dd style="margin-left: 1.5em" id="appendix-B.3.4-2.8">
+              <p id="appendix-B.3.4-2.8.1">Indicates the end of an path-audit started by "port-down".<a href="#appendix-B.3.4-2.8.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="appendix-A.3.4-2.9">"endorsements":</dt>
-            <dd style="margin-left: 1.5em" id="appendix-A.3.4-2.10">
-              <p id="appendix-A.3.4-2.10.1">This command is followed by a base64URL encoded CBOR Sequence of Endorsements, wrapped in the same BEGIN COSE header and footer as before.  To guard against failure during, the device under audit <span class="bcp14">SHOULD</span> time out this command after 120s if no END COSE OBJECT framing is seen.
-This command allows the auditor to load any resulting endorsements directly into the device to be passed up along with Evidence to a Verifier.<a href="#appendix-A.3.4-2.10.1" class="pilcrow">¶</a></p>
+<dt id="appendix-B.3.4-2.9">"endorsements":</dt>
+            <dd style="margin-left: 1.5em" id="appendix-B.3.4-2.10">
+              <p id="appendix-B.3.4-2.10.1">This command is followed by a base64URL encoded CBOR Sequence of Endorsements, wrapped in the same BEGIN COSE header and footer as before.  To guard against failure during, the device under audit <span class="bcp14">SHOULD</span> time out this command after 120s if no END COSE OBJECT framing is seen.
+This command allows the auditor to load any resulting endorsements directly into the device to be passed up along with Evidence to a Verifier.<a href="#appendix-B.3.4-2.10.1" class="pilcrow">¶</a></p>
 </dd>
             <dd class="break"></dd>
-<dt id="appendix-A.3.4-2.11">"exit":</dt>
-            <dd style="margin-left: 1.5em" id="appendix-A.3.4-2.12">
-              <p id="appendix-A.3.4-2.12.1">This command indicates that the audit is over, and the device under audit can return the console interface to the normal state.<a href="#appendix-A.3.4-2.12.1" class="pilcrow">¶</a></p>
+<dt id="appendix-B.3.4-2.11">"exit":</dt>
+            <dd style="margin-left: 1.5em" id="appendix-B.3.4-2.12">
+              <p id="appendix-B.3.4-2.12.1">This command indicates that the audit is over, and the device under audit can return the console interface to the normal state.<a href="#appendix-B.3.4-2.12.1" class="pilcrow">¶</a></p>
 </dd>
           <dd class="break"></dd>
 </dl>
 </section>
 </div>
 <div id="generation-of-endorsement">
-<section id="appendix-A.3.5">
+<section id="appendix-B.3.5">
           <h4 id="name-generation-of-endorsement">
-<a href="#appendix-A.3.5" class="section-number selfRef">A.3.5. </a><a href="#name-generation-of-endorsement" class="section-name selfRef">Generation of Endorsement</a>
+<a href="#appendix-B.3.5" class="section-number selfRef">B.3.5. </a><a href="#name-generation-of-endorsement" class="section-name selfRef">Generation of Endorsement</a>
           </h4>
-<p id="appendix-A.3.5-1">The auditor, having collected one or more proofs, then transmits them to the endorsement agency.
-This may be via physical transfer, secured email, or some secured online API.<a href="#appendix-A.3.5-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.3.5-2">The endorsement agency then needs to do the following:<a href="#appendix-A.3.5-2" class="pilcrow">¶</a></p>
-<ol start="1" type="1" class="normal type-1" id="appendix-A.3.5-3">
-<li id="appendix-A.3.5-3.1">
-              <p id="appendix-A.3.5-3.1.1">locate the Endorsement Certificate, if it was not collected from the device.<a href="#appendix-A.3.5-3.1.1" class="pilcrow">¶</a></p>
+<p id="appendix-B.3.5-1">The auditor, having collected one or more proofs, then transmits them to the endorsement agency.
+This may be via physical transfer, secured email, or some secured online API.<a href="#appendix-B.3.5-1" class="pilcrow">¶</a></p>
+<p id="appendix-B.3.5-2">The endorsement agency then needs to do the following:<a href="#appendix-B.3.5-2" class="pilcrow">¶</a></p>
+<ol start="1" type="1" class="normal type-1" id="appendix-B.3.5-3">
+<li id="appendix-B.3.5-3.1">
+              <p id="appendix-B.3.5-3.1.1">locate the Endorsement Certificate, if it was not collected from the device.<a href="#appendix-B.3.5-3.1.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="appendix-A.3.5-3.2">
-              <p id="appendix-A.3.5-3.2.1">validate that the provided EAT is signed by the associated Endorsement Key.<a href="#appendix-A.3.5-3.2.1" class="pilcrow">¶</a></p>
+            <li id="appendix-B.3.5-3.2">
+              <p id="appendix-B.3.5-3.2.1">validate that the provided EAT is signed by the associated Endorsement Key.<a href="#appendix-B.3.5-3.2.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="appendix-A.3.5-3.3">
-              <p id="appendix-A.3.5-3.3.1">validate that the claims in the EAT are consistent with that which is expected from the device.<a href="#appendix-A.3.5-3.3.1" class="pilcrow">¶</a></p>
+            <li id="appendix-B.3.5-3.3">
+              <p id="appendix-B.3.5-3.3.1">validate that the claims in the EAT are consistent with that which is expected from the device.<a href="#appendix-B.3.5-3.3.1" class="pilcrow">¶</a></p>
 </li>
-            <li id="appendix-A.3.5-3.4">
-              <p id="appendix-A.3.5-3.4.1">validate the format of the additional information collected by the auditor.  Location, type and number of connections, (colour of device even).<a href="#appendix-A.3.5-3.4.1" class="pilcrow">¶</a></p>
+            <li id="appendix-B.3.5-3.4">
+              <p id="appendix-B.3.5-3.4.1">validate the format of the additional information collected by the auditor.  Location, type and number of connections, (colour of device even).<a href="#appendix-B.3.5-3.4.1" class="pilcrow">¶</a></p>
 </li>
           </ol>
-<p id="appendix-A.3.5-4">From this, one or more Endorsements are then created and signed by the endorsing agency.<a href="#appendix-A.3.5-4" class="pilcrow">¶</a></p>
-<p id="appendix-A.3.5-5">In some cases the auditor might be entirely self-contained, producing the endorsements directly on their audit device.
-In that case, they would use the "endorsements" to load the resulting Endorsements directly into the device.<a href="#appendix-A.3.5-5" class="pilcrow">¶</a></p>
+<p id="appendix-B.3.5-4">From this, one or more Endorsements are then created and signed by the endorsing agency.<a href="#appendix-B.3.5-4" class="pilcrow">¶</a></p>
+<p id="appendix-B.3.5-5">In some cases the auditor might be entirely self-contained, producing the endorsements directly on their audit device.
+In that case, they would use the "endorsements" to load the resulting Endorsements directly into the device.<a href="#appendix-B.3.5-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="alternatives-to-usbserial-cables">
-<section id="appendix-A.4">
+<section id="appendix-B.4">
         <h3 id="name-alternatives-to-usb-serial-">
-<a href="#appendix-A.4" class="section-number selfRef">A.4. </a><a href="#name-alternatives-to-usb-serial-" class="section-name selfRef">Alternatives to USB/serial cables</a>
+<a href="#appendix-B.4" class="section-number selfRef">B.4. </a><a href="#name-alternatives-to-usb-serial-" class="section-name selfRef">Alternatives to USB/serial cables</a>
         </h3>
-<p id="appendix-A.4-1">There are a number of cases where a USB or serial console cable might be unavailable, or it's might be undesireable.
+<p id="appendix-B.4-1">There are a number of cases where a USB or serial console cable might be unavailable, or it's might be undesireable.
 Many smaller IoT devices, home routers and consumer items do not have any kind of console available.
 The console access might require removal of the case, which might be impossible to do while the device is operational, or while the device is physically installed.
-Console access might provide access to a priviledged prompt; that access might either be unsafe to give to the auditor, or might require a password to access that should not be shared.<a href="#appendix-A.4-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-2">One alternative is to use Ethernet.
+Console access might provide access to a priviledged prompt; that access might either be unsafe to give to the auditor, or might require a password to access that should not be shared.<a href="#appendix-B.4-1" class="pilcrow">¶</a></p>
+<p id="appendix-B.4-2">One alternative is to use Ethernet.
 Most routing platforms have many ethernet ports, and usually have at least one empty ethernet port.
 It is also common for there to be a dedicated copper ethernet port for management even on routing platforms that otherwise only have fiber-optic ports running at multiple hundred gigabits.
 The use of ethernet has problems because ethernet can easily be switched; transmitting the signal to another device elsewhere.
 This is often the whole point of the routing platform: to switch traffic elsewhere.
-This would result in a false audit if the auditor is diverted.<a href="#appendix-A.4-2" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-3">The LLDP protocol <span>[<a href="#LLDP" class="cite xref">LLDP</a>]</span> is a one-hop protocol which is usually not forwarded.
+This would result in a false audit if the auditor is diverted.<a href="#appendix-B.4-2" class="pilcrow">¶</a></p>
+<p id="appendix-B.4-3">The LLDP protocol <span>[<a href="#LLDP" class="cite xref">LLDP</a>]</span> is a one-hop protocol which is usually not forwarded.
 It can do things like tell a connected device which port of client device is connected to.
 While trustworthy devices will not forward LLDP frames, an untrustworthy device that has been programmed to participate in a subterfuge might well forward frames.
-It might be possible to construct a challenge/response system that has the auditor plug cables in some non-deterministic order in order to defeat the subterfuge.<a href="#appendix-A.4-3" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-4">This process would probably need to augmented with some other forms of feedback; perhaps flashing of status LEDs on the device in a pattern.<a href="#appendix-A.4-4" class="pilcrow">¶</a></p>
-<p id="appendix-A.4-5">Note: the console/USB cable could also be redirected to another host!<a href="#appendix-A.4-5" class="pilcrow">¶</a></p>
+It might be possible to construct a challenge/response system that has the auditor plug cables in some non-deterministic order in order to defeat the subterfuge.<a href="#appendix-B.4-3" class="pilcrow">¶</a></p>
+<p id="appendix-B.4-4">This process would probably need to augmented with some other forms of feedback; perhaps flashing of status LEDs on the device in a pattern.<a href="#appendix-B.4-4" class="pilcrow">¶</a></p>
+<p id="appendix-B.4-5">Note: the console/USB cable could also be redirected to another host!<a href="#appendix-B.4-5" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="privacy-considerations">
-<section id="appendix-A.5">
+<section id="appendix-B.5">
         <h3 id="name-privacy-considerations">
-<a href="#appendix-A.5" class="section-number selfRef">A.5. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy Considerations</a>
+<a href="#appendix-B.5" class="section-number selfRef">B.5. </a><a href="#name-privacy-considerations" class="section-name selfRef">Privacy Considerations</a>
         </h3>
-<p id="appendix-A.5-1">The ability to walk up to a device and interogate it as to it's identity is potentially privacy violating if the device is associated with a person.
-This would include all kinds of small devices: phones, laptops, electric bicycles, automobiles,<a href="#appendix-A.5-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.5-2">One countermeasure is that the device needs to be put into an audit mode before it can be interrogated.
+<p id="appendix-B.5-1">The ability to walk up to a device and interogate it as to it's identity is potentially privacy violating if the device is associated with a person.
+This would include all kinds of small devices: phones, laptops, electric bicycles, automobiles,<a href="#appendix-B.5-1" class="pilcrow">¶</a></p>
+<p id="appendix-B.5-2">One countermeasure is that the device needs to be put into an audit mode before it can be interrogated.
 This is reasonable for some devices and some audit processes, but for other processees, the need to do random audits may countermand this need.
 For devices such as large routing platforms, they are often located in data centers with multiple layers of physical access control: locked buildings, locked machine rooms, and locked cabinets.
-For such devices, there are perhaps few privacy concerns, and the auditor needs credentials in order to access the device at all.<a href="#appendix-A.5-2" class="pilcrow">¶</a></p>
+For such devices, there are perhaps few privacy concerns, and the auditor needs credentials in order to access the device at all.<a href="#appendix-B.5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="security-considerations-1">
-<section id="appendix-A.6">
+<section id="appendix-B.6">
         <h3 id="name-security-considerations-2">
-<a href="#appendix-A.6" class="section-number selfRef">A.6. </a><a href="#name-security-considerations-2" class="section-name selfRef">Security Considerations</a>
+<a href="#appendix-B.6" class="section-number selfRef">B.6. </a><a href="#name-security-considerations-2" class="section-name selfRef">Security Considerations</a>
         </h3>
-<p id="appendix-A.6-1">There are three concerns with this protocol.<a href="#appendix-A.6-1" class="pilcrow">¶</a></p>
-<p id="appendix-A.6-2">The first is the potential for unauthorized people to collect information about devices to which they have no authority to interogate.
+<p id="appendix-B.6-1">There are three concerns with this protocol.<a href="#appendix-B.6-1" class="pilcrow">¶</a></p>
+<p id="appendix-B.6-2">The first is the potential for unauthorized people to collect information about devices to which they have no authority to interogate.
 In industrial settings, this is mitigated by physical access controls.
-In those settings the ability to identify devices which may be physically misbehaving or are damaged and connect them to their digital identity significantly outweighs any concerns about device identity.<a href="#appendix-A.6-2" class="pilcrow">¶</a></p>
-<p id="appendix-A.6-3">In consumer and retail settings, the device <span class="bcp14">SHOULD</span> not respond to this protocol unless an operator/owner has put the device into device identication mode.<a href="#appendix-A.6-3" class="pilcrow">¶</a></p>
-<p id="appendix-A.6-4">The second concern with this protocol is that it might be spoofed or confuzzled.
+In those settings the ability to identify devices which may be physically misbehaving or are damaged and connect them to their digital identity significantly outweighs any concerns about device identity.<a href="#appendix-B.6-2" class="pilcrow">¶</a></p>
+<p id="appendix-B.6-3">In consumer and retail settings, the device <span class="bcp14">SHOULD</span> not respond to this protocol unless an operator/owner has put the device into device identication mode.<a href="#appendix-B.6-3" class="pilcrow">¶</a></p>
+<p id="appendix-B.6-4">The second concern with this protocol is that it might be spoofed or confuzzled.
 The auditor could be mislead as whether the device in front of them is really the device that is responding to their queries.
 The auditor <span class="bcp14">SHOULD</span> have the device identity with them already as part of the work order.
 They should therefore not be mislead as to which device they intend to audit,  the issue is that it might not be the device that is physically in front of them.
 The device might be a mock-up designed to look right, but really it is wired secretly to the real device which is elsewhere, and is differently configured.
-This attack is called the "Sock-Puppet" attack.<a href="#appendix-A.6-4" class="pilcrow">¶</a></p>
-<p id="appendix-A.6-5">Such attacks require physical examination to detect.
+This attack is called the "Sock-Puppet" attack.<a href="#appendix-B.6-4" class="pilcrow">¶</a></p>
+<p id="appendix-B.6-5">Such attacks require physical examination to detect.
 Some attacks may be mitigated through careful use of the "port-flash" commands to cause signals visible to the auditor that would ideally be difficult to fake.
-Efforts this way are the subject of further work.<a href="#appendix-A.6-5" class="pilcrow">¶</a></p>
-<p id="appendix-A.6-6">The third concern with this protocol is that it might open up the device to attacks via this console port.
-The Initial Handshake <a href="#loginhandshake" class="auto internal xref">Appendix A.3.1</a> mechanism is designed so that it can be easily implemented by typical router and operating system login mechanisms.
+Efforts this way are the subject of further work.<a href="#appendix-B.6-5" class="pilcrow">¶</a></p>
+<p id="appendix-B.6-6">The third concern with this protocol is that it might open up the device to attacks via this console port.
+The Initial Handshake <a href="#loginhandshake" class="auto internal xref">Appendix B.3.1</a> mechanism is designed so that it can be easily implemented by typical router and operating system login mechanisms.
 A very limited account would be created, or even a mode within the login mechanism itself, and so no additional inquiries would be possible.
 Some operators prefer to never have a login process on the console/craft ports of their devices.
 This is usually done so that maintenance people do not need to have passwords that can then be  re-used over a network, weaking the security of the device.
 They depend upon physical security for the console ports to provide security.
-Such operators might wish to rethink this policy for devices which will be subject to audit.<a href="#appendix-A.6-6" class="pilcrow">¶</a></p>
+Such operators might wish to rethink this policy for devices which will be subject to audit.<a href="#appendix-B.6-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="acknowledgments">
-<section id="appendix-B">
+<section id="appendix-C">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="appendix-B-1">TODO acknowledge.<a href="#appendix-B-1" class="pilcrow">¶</a></p>
+<p id="appendix-C-1">TODO acknowledge.<a href="#appendix-C-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="appendix-C">
+<section id="appendix-D">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
