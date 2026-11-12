@@ -99,7 +99,7 @@ MORE USE CASES HERE.
 
 {{fig-dataflow}} places the geographic result in the data flow of {{-Architecture}}: the Verifier appraises Evidence or Endorsements about location by a method outside this document and returns one format to the Relying Party.
 
-~~~~
+~~~~ aasvg
                    Endorsement about location        Appraisal Policy
 .----------.       (an auditor, Appendix A)          for Attestation
 | Endorser +--------------------------.              Results
