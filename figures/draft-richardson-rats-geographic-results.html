@@ -1034,7 +1034,7 @@ svg {
   & :is([stroke="white"], [stroke^="#fff"]) {
     stroke: var(--background-color);
   }
-  & :is([fill="black"], [fill^="#000"], :not([fill])) {
+  & :is([fill="black"], [fill^="#000"], :not([fill], [fill] *)) {
     fill: var(--text-color);
   }
   & :is([fill="white"], [fill^="#fff"]) {
@@ -1053,7 +1053,7 @@ svg {
 </tr></thead>
 <tfoot><tr>
 <td class="left">Richardson &amp; Nikolaichuk</td>
-<td class="center">Expires 8 May 2027</td>
+<td class="center">Expires 16 May 2027</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1066,12 +1066,12 @@ svg {
 <dd class="internet-draft">draft-richardson-rats-geographic-results-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2026-11-04" class="published">4 November 2026</time>
+<time datetime="2026-11-12" class="published">12 November 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2027-05-08">8 May 2027</time></dd>
+<dd class="expires"><time datetime="2027-05-16">16 May 2027</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1128,7 +1128,7 @@ In addition, one mechanism of directly creating a geographic result in the form 
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 8 May 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 16 May 2027.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1277,24 +1277,90 @@ In addition, one mechanism of directly creating a geographic result in the form 
 <p id="section-1-4"><a href="#fig-dataflow" class="auto internal xref">Figure 1</a> places the geographic result in the data flow of <span>[<a href="#RFC9334" class="cite xref">RFC9334</a>]</span>: the Verifier appraises Evidence or Endorsements about location by a method outside this document and returns one format to the Relying Party.<a href="#section-1-4" class="pilcrow">¶</a></p>
 <span id="name-geographic-attestation-resu"></span><div id="fig-dataflow">
 <figure id="figure-1">
-        <div class="alignLeft art-text artwork" id="section-1-5.1">
-<pre>
-                   Endorsement about location        Appraisal Policy
-.----------.       (an auditor, Appendix A)          for Attestation
-| Endorser +--------------------------.              Results
-'----------'                          |                     |
-                                      v                     v
-.----------.  Evidence of     .---------------.     .---------------.
-| Attester +-----------------&gt;|   Verifier    |     | Relying Party |
-'----------'  location:       | appraises by  |  AR | reads one     |
-              GNSS, PTP,      | a method this +----&gt;| format,       |
-              TRIP, V-PEA     | document does |     | whatever the  |
-                              | not define    |     | method        |
-                              '---------------'     '---------------'
-
-AR = Attestation Result carrying geographic-result-claims:
-     the jurisdiction claims, claim-uuid and basis
-</pre>
+        <div id="section-1-5.1">
+          <div class="alignLeft art-svg artwork" id="section-1-5.1.1">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="272" width="560" viewBox="0 0 560 272" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+              <path d="M 8,48 L 8,80" fill="none" stroke="black"></path>
+              <path d="M 8,112 L 8,144" fill="none" stroke="black"></path>
+              <path d="M 96,48 L 96,80" fill="none" stroke="black"></path>
+              <path d="M 96,112 L 96,144" fill="none" stroke="black"></path>
+              <path d="M 248,112 L 248,208" fill="none" stroke="black"></path>
+              <path d="M 312,64 L 312,104" fill="none" stroke="black"></path>
+              <path d="M 376,112 L 376,208" fill="none" stroke="black"></path>
+              <path d="M 424,112 L 424,208" fill="none" stroke="black"></path>
+              <path d="M 488,80 L 488,104" fill="none" stroke="black"></path>
+              <path d="M 552,112 L 552,208" fill="none" stroke="black"></path>
+              <path d="M 8,48 L 96,48" fill="none" stroke="black"></path>
+              <path d="M 96,64 L 312,64" fill="none" stroke="black"></path>
+              <path d="M 8,80 L 96,80" fill="none" stroke="black"></path>
+              <path d="M 8,112 L 96,112" fill="none" stroke="black"></path>
+              <path d="M 248,112 L 376,112" fill="none" stroke="black"></path>
+              <path d="M 424,112 L 552,112" fill="none" stroke="black"></path>
+              <path d="M 96,128 L 240,128" fill="none" stroke="black"></path>
+              <path d="M 8,144 L 96,144" fill="none" stroke="black"></path>
+              <path d="M 376,160 L 416,160" fill="none" stroke="black"></path>
+              <path d="M 248,208 L 376,208" fill="none" stroke="black"></path>
+              <path d="M 424,208 L 552,208" fill="none" stroke="black"></path>
+              <polygon class="arrowhead" points="496,104 484,98.4 484,109.6" fill="black" transform="rotate(90,488,104)"></polygon>
+              <polygon class="arrowhead" points="424,160 412,154.4 412,165.6" fill="black" transform="rotate(0,416,160)"></polygon>
+              <polygon class="arrowhead" points="320,104 308,98.4 308,109.6" fill="black" transform="rotate(90,312,104)"></polygon>
+              <polygon class="arrowhead" points="248,128 236,122.4 236,133.6" fill="black" transform="rotate(0,240,128)"></polygon>
+              <g class="text">
+                <text x="200" y="36">Endorsement</text>
+                <text x="272" y="36">about</text>
+                <text x="332" y="36">location</text>
+                <text x="464" y="36">Appraisal</text>
+                <text x="532" y="36">Policy</text>
+                <text x="168" y="52">(an</text>
+                <text x="220" y="52">auditor,</text>
+                <text x="292" y="52">Appendix</text>
+                <text x="340" y="52">A)</text>
+                <text x="440" y="52">for</text>
+                <text x="504" y="52">Attestation</text>
+                <text x="52" y="68">Endorser</text>
+                <text x="456" y="68">Results</text>
+                <text x="148" y="116">Evidence</text>
+                <text x="196" y="116">of</text>
+                <text x="52" y="132">Attester</text>
+                <text x="308" y="132">Verifier</text>
+                <text x="464" y="132">Relying</text>
+                <text x="520" y="132">Party</text>
+                <text x="152" y="148">location:</text>
+                <text x="296" y="148">appraises</text>
+                <text x="348" y="148">by</text>
+                <text x="404" y="148">AR</text>
+                <text x="456" y="148">reads</text>
+                <text x="496" y="148">one</text>
+                <text x="136" y="164">GNSS,</text>
+                <text x="180" y="164">PTP,</text>
+                <text x="264" y="164">a</text>
+                <text x="300" y="164">method</text>
+                <text x="348" y="164">this</text>
+                <text x="464" y="164">format,</text>
+                <text x="136" y="180">TRIP,</text>
+                <text x="184" y="180">V-PEA</text>
+                <text x="292" y="180">document</text>
+                <text x="348" y="180">does</text>
+                <text x="468" y="180">whatever</text>
+                <text x="520" y="180">the</text>
+                <text x="272" y="196">not</text>
+                <text x="316" y="196">define</text>
+                <text x="460" y="196">method</text>
+                <text x="12" y="244">AR</text>
+                <text x="32" y="244">=</text>
+                <text x="88" y="244">Attestation</text>
+                <text x="164" y="244">Result</text>
+                <text x="228" y="244">carrying</text>
+                <text x="368" y="244">geographic-result-claims:</text>
+                <text x="56" y="260">the</text>
+                <text x="124" y="260">jurisdiction</text>
+                <text x="208" y="260">claims,</text>
+                <text x="284" y="260">claim-uuid</text>
+                <text x="344" y="260">and</text>
+                <text x="384" y="260">basis</text>
+              </g>
+            </svg><a href="#section-1-5.1.1" class="pilcrow">¶</a>
+</div>
 </div>
 <figcaption><a href="#figure-1" class="selfRef">Figure 1</a>:
 <a href="#name-geographic-attestation-resu" class="selfRef">Geographic Attestation Result in the RATS data flow</a>
