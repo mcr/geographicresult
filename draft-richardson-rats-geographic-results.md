@@ -417,7 +417,7 @@ e4ad5396b1413d7e1c37c4f611c11a6955bc8412c11a69569a00
 
 {{fig-chain}} shows the two Verifiers and what each result carries.
 
-~~~~
+~~~~ aasvg
 .----------.  Evidence     .------------.
 | Attester +-------------->| Verifier A |
 '----------'  64 signed    '-----+------'
