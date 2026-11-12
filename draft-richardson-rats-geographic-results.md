@@ -314,7 +314,7 @@ The Endorsement may be provided to a Verifier through out of band means, or it c
 A geographic Attestation Result states where the Attester's platform was found to be, not where the Relying Party's peer is.
 An Attester elsewhere can present a genuine Result that a platform in the attested place obtained, and nothing in the Result itself shows the substitution; this is the diversion attack of {{ID-Crisis}} (Section 8).
 
-~~~~
+~~~~ aasvg
    in place P                                   elsewhere
 .------------.  Evidence  .----------.  AR     .------------.
 | Attester X +----------->| Verifier +-------->| Attester Y |
