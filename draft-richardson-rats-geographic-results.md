@@ -33,6 +33,12 @@ normative:
   RFC9711:
   I-D.ietf-rats-ear:
   RFC9334: Architecture
+  FIPS180-4:
+    target: https://doi.org/10.6028/NIST.FIPS.180-4
+    title: Secure Hash Standard (SHS)
+    author:
+    - org: National Institute of Standards and Technology
+    date: 2015-08
   I-D.ietf-rats-endorsements:
 
 informative:
@@ -160,6 +166,7 @@ Geographic Results can contain one or more of the following claims.
 11. hallway-number = ordinal
 12. room-numbr = string
 13. floor-number = string, usually representing an integer.
+14. zone-membership = membership in an operator-defined zone.
 
 There are some additional things which may be received as Evidence, but which is sometimes important to convert to  Results,  having verified some aspects. (TBD)
 
@@ -192,6 +199,7 @@ geographic-result-claims = non-empty<{
   ? grc.hallway-number => uint
   ? grc.room-number => tstr .size (2..64)
   ? grc.floor-number => int
+  ? grc.zone-membership-label => grc.zone-membership
 }>
 
 ear.geographic-result-label = eat.JC<"TBD02", TBD01>
@@ -210,6 +218,14 @@ grc.cabinet-number = eat.JC<"grc.cabinet-number", 9>
 grc.hallway-number = eat.JC<"grc.hallway-number", 10>
 grc.room-number = eat.JC<"grc.room-number", 12>
 grc.floor-number = eat.JC<"grc.floor-number", 11>
+
+grc.zone-membership-label = eat.JC<"grc.zone-membership", 19>
+grc.zone-membership = [
+  zone-id: tstr .size (1..255),
+  boundary-digest: eat.JC<grc.zone-digest-json, grc.zone-digest-cbor>
+]
+grc.zone-digest-json = eat.base64-url-text .size 43
+grc.zone-digest-cbor = bstr .size 32
 
 iso-3166-alpha-2-country-code = tstr .size 2
 
@@ -259,6 +275,25 @@ Without information as to basis or provenance, a Relying Party has no way to tel
 result from an operator-typed label, even though both may appear in the
 same claims map above.
 
+## Zone Membership
+
+The optional `grc.zone-membership` claim asserts that the Verifier established
+that the Target Environment was inside the identified zone. Omission conveys
+no conclusion about membership. A zone can be defined by a geographic
+boundary, such as a polygon, or by a set of physical placements, such as rooms
+or cabinets. The claim can appear alone or alongside the placement and
+jurisdiction claims. For example, a Verifier could report membership in an
+approved zone spanning several rooms and also report the cabinet number.
+
+The `zone-id` is assigned by the operator and interpreted in a namespace known
+to the Verifier and Relying Party. The `boundary-digest` is the SHA-256 digest
+{{FIPS180-4}} of the exact octets of the zone definition used for appraisal.
+The zone definition's format and encoding are agreed out of band. The digest
+is a byte string in CBOR and unpadded base64url text in JSON. A Relying Party
+using the claim for a policy decision MUST match both the identifier and the
+digest to the expected values in its appraisal policy. Any jurisdiction claim
+requires its own appraisal.
+
 # Security Considerations
 
 These considerations do not cover the protocol described in {{presence}}.
@@ -272,6 +307,15 @@ The threat model for this artifact is governed by a typical "CIA" list: Confiden
 This artifact contains abtracted information about a location.
 The location could include where a person operating the computation is, such as if this escribes the location of a person's smartphone, in which case the location, even bstracted would be PII.
 It is almost always preferable for this artifact to remain private, however the integrity of the artifact is not compromised if that is not the case.
+
+When precise coordinates should be withheld from the Verifier, the Attester
+can supply Evidence containing or referencing a zero-knowledge membership
+proof, as in the V-PEA `privacy-technique = "zkp"` mode
+{{?I-D.lkspa-rats-verifiable-geo-fence}}. The Verifier can appraise the
+proof without collecting the coordinates and report only membership in
+the zone definition used to verify the proof. Zone identifiers, boundary
+digests, and accompanying placement claims can still reveal location.
+Verifiers SHOULD disclose only the geographic detail the Relying Party needs.
 
 ## Integrity Threats
 
